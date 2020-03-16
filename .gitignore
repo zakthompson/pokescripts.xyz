@@ -42,6 +42,9 @@
 *.idb
 *.pdb
 
+# Compiled hexes
+*.hex
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
