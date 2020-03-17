@@ -20,6 +20,17 @@ these buttons for our use.
 
 #include "Joystick.h"
 
+/*------------------------------------------*/
+// INSTRUCTIONS
+// -> You must be OFFLINE
+// -> You must have a party of six Pokemon (NOT EGGS)
+// -> The second Pokemon will be sent to your box when the first egg is collected
+// -> You must be in Bridge Field, OFF your bike
+// -> The Daycare Lady must have an egg ready to be picked up
+// -> Your menu cursor must be over Town Map, but the menu must be closed
+// -> (the game remembers cursor position)
+// -> The loop begins as soon as you plug in
+
 static const Command step[] = {
 	// Setup controller
 	{ NOTHING,  250 },
