@@ -20,32 +20,7 @@ these buttons for our use.
 
 #include "Joystick.h"
 
-typedef enum {
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-	UP_LEFT,
-	UP_RIGHT,
-	X,
-	Y,
-	A,
-	B,
-	L,
-	R,
-	PLUS,
-	MINUS,
-	THROW,
-	NOTHING,
-	TRIGGERS
-} Buttons_t;
-
-typedef struct {
-	Buttons_t button;
-	uint16_t duration;
-} command;
-
-static const command step[] = {
+static const Command step[] = {
 	// Setup controller
 	{ NOTHING,  250 },
 	{ TRIGGERS,   5 },

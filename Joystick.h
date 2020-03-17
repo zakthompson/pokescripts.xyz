@@ -113,6 +113,8 @@ typedef enum {
 	DOWN,
 	LEFT,
 	RIGHT,
+	UP_LEFT,
+	UP_RIGHT,
 	X,
 	Y,
 	A,
@@ -135,7 +137,7 @@ typedef enum {
 typedef struct {
 	Buttons_t button;
 	uint16_t duration;
-} Command; 
+} Command;
 
 // Function Prototypes
 // Setup all necessary hardware, including USB initialization.
