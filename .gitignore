@@ -49,6 +49,9 @@
 *.lss
 *.sym
 
+# Except in the build folder
+!builds/*.hex
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd

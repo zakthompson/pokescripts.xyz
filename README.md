@@ -23,6 +23,7 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **AutoLoto**: Infinite loto reward grinding
 * **AutoFossil**: Shiny Fossil grinding
 * **AutoHost**: Auto hosting raids, with optional fixed/random link code
+* **AutoHostAirplane**: Auto hosting raids, using airplane mode method to exit
 * **TurboA**: A button masher (for digging duo)
 * **WattFarmer**: Fast watt collector
 * **BerryFarmer**: Fast berry farmer
@@ -30,6 +31,19 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **Hatcher**: Automatically collect and hatch eggs
 
 Each of these have instructions written in a comment at the top of the corresponding `.c` file.
+
+## Pre-Compiled Hexes
+In the build folder, you will find precompiled hexes for the scripts that don't require variables to be changed.  These include:
+* Auto3DaySkipper
+* AutoLoto
+* AutoHost
+* AutoHostAirplane
+* TurboA
+* WattFarmer
+* BerryFarmer
+* BoxRelease
+
+Additionally, there are precompiled hexes for hatching eggs of Pokemon that require 5120 steps or 6400 steps. Note that these both assume you have the Oval Charm and a Pokemon with Flame Body in your party in a slot other than the 2nd.
 
 ## Contributing
 Feel free to submit a pull-request with a clear explanation of what improvement you are adding. I will review it as quickly as I can.

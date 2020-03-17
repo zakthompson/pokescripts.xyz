@@ -24,7 +24,8 @@
 # Auto3DaySkipper: Auto roll den to the 4th day, SR and repeats
 # AutoLoto: Infinite loto reward grinding
 # AutoFossil: Shiny Fossil grinding
-# AutoHost: Auto hosting raids, with optional fixed/random link code
+# AutoHost: Auto hosting raids, with optional fixed/random link code, using game restart to exit
+# AutoHostAirplane: Auto hosting raids using airplane mode method to exit
 # TurboA: A button masher (for digging duo)
 # WattFarmer: Fast watt collector
 # BerryFarmer: Fast berry farmer
