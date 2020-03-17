@@ -23,15 +23,19 @@ these buttons for our use.
 
 /*------------------------------------------*/
 // INSTRUCTION
+// -> THIS SCRIPT RELIES ON AIRPLANE MODE AND ONLY WORKS HANDHELD
+// -> The benefit of the airplane mode method is you don't have to save-lock to a Pokemon
 // -> You MUST stand in front of an active den (with watts already collected)
 // -> Be careful if time is synced and past mid-night, you will start able to collect watts
 // -> You MUST not have connected to the internet at the beginning
 // -> You are adviced to have wired connection for stable and fast internet
 // -> If you use WiFi you probably need to adjust your connection time below in code
-// -> This program relies on clients to be ready before 1 minute mark, otherwise the raid fails
-// -> Program will close the game when raid starts, and it may freeze on client's side for 10-15 seconds
+// -> This program relies on clients to be ready before 2 minute mark, otherwise the raid fails
+// -> Once the raid starts, it will turn on airplane mode to remove you from the raid
 // -> You have to start this program at the Change Grip/Order menu
-// -> It takes ~3 minutes 25 seconds to host a raid
+//
+// KNOWN ISSUES
+// -> Link codes currently do not work in this script (the indexes below need to be updated)
 
 // -> Use optional link code or not? (true/false)
 bool m_useLinkCode = false;
