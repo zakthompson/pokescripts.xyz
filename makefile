@@ -31,6 +31,7 @@
 # BerryFarmer: Fast berry farmer
 # BoxRelease: Release all pokemon in PC boxes
 # Hatcher: Automatically collect and hatch eggs
+# RemoveFriends: Quickly remove as many friends as you'd like
 
 MCU          = atmega16u2
 ARCH         = AVR8
@@ -56,3 +57,9 @@ include $(LUFA_PATH)/Build/lufa_dfu.mk
 include $(LUFA_PATH)/Build/lufa_hid.mk
 include $(LUFA_PATH)/Build/lufa_avrdude.mk
 include $(LUFA_PATH)/Build/lufa_atprogram.mk
+
+.PHONY: flash
+flash:
+	sudo dfu-programmer $(MCU) erase
+	sudo dfu-programmer $(MCU) flash $(TARGET).hex
+	sudo dfu-programmer $(MCU) reset

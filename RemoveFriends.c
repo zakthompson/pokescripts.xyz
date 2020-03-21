@@ -1,5 +1,5 @@
 /*
-Nintendo Switch Fightstick - Proof-of-Concept
+Switch Friend Delete
 
 Based on the LUFA library's Low-Level Joystick Demo
 	(C) Dean Camera
@@ -22,71 +22,41 @@ these buttons for our use.
 
 /*------------------------------------------*/
 // INSTRUCTIONS
-// -> You must be OFFLINE
-// -> You must have a party of six Pokemon (NOT EGGS)
-// -> The second Pokemon will be sent to your box when the first egg is collected
-// -> You must be in Bridge Field, OFF your bike
-// -> The Daycare Lady must have an egg ready to be picked up
-// -> Your menu cursor must be over Town Map, but the menu must be closed
-// -> (the game remembers cursor position)
-// -> The loop begins as soon as you plug in
+// -> Set the number of friends you want to remove by setting m_friendsToRemove
+// -> If you have friends you'd like to keep, "Best Friend" them and then refresh your list
+// -> (This moves them to the top)
+// -> Start with your cursor over the first friend you would like to delete
+// -> Plug in
 
-static const Command step[] = {
-	// Setup controller
-	{ NOTHING,  250 },
-	{ TRIGGERS,   5 },
-	{ NOTHING,  150 },
-	{ TRIGGERS,   5 },
-	{ NOTHING,  150 },
-	{ A,          5 },
-	{ NOTHING,  250 },
+// Set how many friends you want to remove
+int m_friendsToRemove = 4;
+/*------------------------------------------*/
 
-	// Flying to front of daycare
-	{ X,         5 },
-	{ NOTHING,  100 },
-	{ A,         5 },
-	{ NOTHING,  100 },
-	{ A,          5 },
-	{ NOTHING,  100 },
-	{ A,          5 },
-	{ NOTHING,  100 },
+static const Command removeFriends[] = {
+	//----------Setup [0,2]----------
+	// Press A once to connect
+  {NOTHING, 30},
+  {A, 1},
+  {NOTHING, 1},
 
-	// Walking back to get egg and putting it in party
-	{ DOWN,     100 },
-	{ LEFT,       5 },
-	{ A,          5 },
-	{ NOTHING,  100 },
-    { A,          5 },
-	{ NOTHING,  200 },
-	{ A,          5 },
-	{ NOTHING,  100 },
-	{ A,          5 },
-	{ NOTHING,  100 },
-	{ A,          5 },
-	{ NOTHING,  100 },
-	{ DOWN,       5 },
-	{ NOTHING,  100 },
-	{ A,          5 },
-	{ NOTHING,  150 },
-	{ A,          5 },
-	{ NOTHING,  200 },
-	{ A,          5 },
-	{ NOTHING,  100 },
+	//----------Remove Friend [3,14]----------
+	{A, 1},                 // Select friend
+	{NOTHING, 30},
+	{DOWN, 1},              // Go down to Options
+	{NOTHING, 10},
+	{A, 1},                 // Select Options
+	{NOTHING, 10},
+	{A, 1},                 // Select Remove Friend
+	{NOTHING, 25},
+	{A, 1},                 // Select Delete
+	{NOTHING, 200},         // Wait - adjust this for network speed
+	{A, 1},                 // Select OK
+	{NOTHING, 50},
 
-	//Getting on bike, moving up and to the right, then start looping
-	{ PLUS,       5 },
-	{ UP_RIGHT, 150 },
-	{ UP_LEFT, 2100 }, // This is the number that determines hatching steps
-	{ A,          5 },
-    { NOTHING, 1000 },
-	{ A,          5 },
-	{ NOTHING,  200 },
-	{ B,          5 },
-  { NOTHING,  100 },
-	/* { UP_LEFT, 1500 }, */
-	{ PLUS,       5 },
-	{ NOTHING,  100 }
+  //----------End [15,15]-----------
+  {NOTHING, 100}
 };
+
 
 // Main entry point.
 int main(void) {
@@ -111,7 +81,7 @@ void SetupHardware(void) {
 	wdt_disable();
 
 	// We need to disable clock division before initializing the USB hardware.
-	clock_prescale_set(clock_div_1);
+	//clock_prescale_set(clock_div_1);
 	// We can then initialize our hardware and peripherals, including the USB stack.
 
 	#ifdef ALERT_WHEN_DONE
@@ -199,25 +169,26 @@ void HID_Task(void) {
 }
 
 typedef enum {
-	SYNC_CONTROLLER,
-	SYNC_POSITION,
-	BREATHE,
 	PROCESS,
-	CLEANUP,
 	DONE
 } State_t;
-State_t state = SYNC_CONTROLLER;
+State_t state = PROCESS;
 
 #define ECHOES 2
 int echoes = 0;
 USB_JoystickReport_Input_t last_report;
 
-int report_count = 0;
 int xpos = 0;
 int ypos = 0;
-int bufindex = 0;
-int duration_count = 0;
 int portsval = 0;
+
+int durationCount = 0;
+
+// start and end index of "Setup"
+int commandIndex = 0;
+int m_endIndex = 2;
+
+int m_friend = 1;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -241,187 +212,133 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 	// States and moves management
 	switch (state)
 	{
-
-		case SYNC_CONTROLLER:
-			state = BREATHE;
-			break;
-
-		// case SYNC_CONTROLLER:
-		// 	if (report_count > 550)
-		// 	{
-		// 		report_count = 0;
-		// 		state = SYNC_POSITION;
-		// 	}
-		// 	else if (report_count == 250 || report_count == 300 || report_count == 325)
-		// 	{
-		// 		ReportData->Button |= SWITCH_L | SWITCH_R;
-		// 	}
-		// 	else if (report_count == 350 || report_count == 375 || report_count == 400)
-		// 	{
-		// 		ReportData->Button |= SWITCH_A;
-		// 	}
-		// 	else
-		// 	{
-		// 		ReportData->Button = 0;
-		// 		ReportData->LX = STICK_CENTER;
-		// 		ReportData->LY = STICK_CENTER;
-		// 		ReportData->RX = STICK_CENTER;
-		// 		ReportData->RY = STICK_CENTER;
-		// 		ReportData->HAT = HAT_CENTER;
-		// 	}
-		// 	report_count++;
-		// 	break;
-
-		case SYNC_POSITION:
-			bufindex = 0;
-
-
-			ReportData->Button = 0;
-			ReportData->LX = STICK_CENTER;
-			ReportData->LY = STICK_CENTER;
-			ReportData->RX = STICK_CENTER;
-			ReportData->RY = STICK_CENTER;
-			ReportData->HAT = HAT_CENTER;
-
-
-			state = BREATHE;
-			break;
-
-		case BREATHE:
-			state = PROCESS;
-			break;
-
 		case PROCESS:
-
-			switch (step[bufindex].button)
+			// Get the next command sequence (new start and end)
+			if (commandIndex == -1)
 			{
-
-				case UP:
-					ReportData->LY = STICK_MIN;
+				if (m_endIndex == 15)
+				{
+					// Complete
+					state = DONE;
 					break;
+				}
+				else if (m_friend > m_friendsToRemove)
+				{
+          // We're done
+          commandIndex = 15;
+          m_endIndex = 15;
+				}
+				else
+				{
+          m_friend++;
+          commandIndex = 3;
+          m_endIndex = 14;
+				}
+			}
 
-				case LEFT:
-					ReportData->LX = STICK_MIN;
-					break;
+			switch (removeFriends[commandIndex].button)
+			{
+				/* case UP:                      */
+				/*   ReportData->LY = STICK_MIN; */
+				/*   break;                      */
+
+				/* case LEFT:                    */
+				/*   ReportData->LX = STICK_MIN; */
+				/*   break;                      */
 
 				case DOWN:
 					ReportData->LY = STICK_MAX;
 					break;
 
-				case RIGHT:
-					ReportData->LX = STICK_MAX;
-					break;
+				/* case RIGHT:                   */
+				/*   ReportData->LX = STICK_MAX; */
+				/*   break;                      */
 
-				case UP_LEFT:
-					ReportData->RX = STICK_MIN;
-					ReportData->LX = STICK_MIN;
-					break;
-
-				case UP_RIGHT:
-					ReportData->LY = STICK_MIN;
-					ReportData->LX = STICK_MAX;
-					break;
-
-				case A:
-					ReportData->Button |= SWITCH_A;
-					break;
-
-				case B:
-					ReportData->Button |= SWITCH_B;
-					break;
-
-				case R:
-					ReportData->Button |= SWITCH_R;
-					break;
-
-				case X:
+				/*case X:
 					ReportData->Button |= SWITCH_X;
 					break;
 
 				case Y:
 					ReportData->Button |= SWITCH_Y;
+					break;*/
+
+				case A:
+					ReportData->Button |= SWITCH_A;
 					break;
 
-				case PLUS:
-					ReportData->Button |= SWITCH_PLUS;
+				/* case B:                           */
+				/*   ReportData->Button |= SWITCH_B; */
+				/*   break;                          */
+
+				/*case L:
+					ReportData->Button |= SWITCH_L;
+					break;*/
+
+				/* case R:                           */
+				/*   ReportData->Button |= SWITCH_R; */
+				/*   break;                          */
+
+				/*case ZL:
+					ReportData->Button |= SWITCH_ZL;
+					break;
+
+				case ZR:
+					ReportData->Button |= SWITCH_ZR;
 					break;
 
 				case MINUS:
 					ReportData->Button |= SWITCH_MINUS;
 					break;
 
-				/*case THROW:
-					ReportData->LY = STICK_MIN;
-					ReportData->Button |= SWITCH_R;
+				case PLUS:
+					ReportData->Button |= SWITCH_PLUS;
+					break;
+
+				case LCLICK:
+					ReportData->Button |= SWITCH_LCLICK;
+					break;
+
+				case RCLICK:
+					ReportData->Button |= SWITCH_RCLICK;
 					break;*/
 
-				case TRIGGERS:
-					ReportData->Button |= SWITCH_L | SWITCH_R;
-					break;
+				/* case TRIGGERS:                               */
+				/*   ReportData->Button |= SWITCH_L | SWITCH_R; */
+				/*   break;                                     */
+
+				/* case HOME:                                   */
+				/*   ReportData->Button |= SWITCH_HOME;         */
+				/*   break;                                     */
+
+				/*case CAPTURE:
+					ReportData->Button |= SWITCH_CAPTURE;
+					break;*/
 
 				default:
-					ReportData->LX = STICK_CENTER;
-					ReportData->LY = STICK_CENTER;
-					ReportData->RX = STICK_CENTER;
-					ReportData->RY = STICK_CENTER;
-					ReportData->HAT = HAT_CENTER;
+					// really nothing lol
 					break;
 			}
 
-			duration_count++;
+			durationCount++;
 
-			if (duration_count > step[bufindex].duration)
+			if (durationCount > removeFriends[commandIndex].duration)
 			{
-				bufindex++;
-				duration_count = 0;
-			}
+				commandIndex++;
+				durationCount = 0;
 
-
-			if (bufindex > (int)( sizeof(step) / sizeof(step[0])) - 1)
-			{
-
-				// state = CLEANUP;
-
-				bufindex = 7;
-				duration_count = 0;
-
-				state = BREATHE;
-
-				ReportData->LX = STICK_CENTER;
-				ReportData->LY = STICK_CENTER;
-				ReportData->RX = STICK_CENTER;
-				ReportData->RY = STICK_CENTER;
-				ReportData->HAT = HAT_CENTER;
-
-
-				// state = DONE;
-//				state = BREATHE;
-
+				// We reached the end of a command sequence
+				if (commandIndex > m_endIndex)
+				{
+					commandIndex = -1;
+				}
 			}
 
 			break;
 
-		case CLEANUP:
-			state = DONE;
-			break;
-
-		case DONE:
-			#ifdef ALERT_WHEN_DONE
-			portsval = ~portsval;
-			PORTD = portsval; //flash LED(s) and sound buzzer if attached
-			PORTB = portsval;
-			_delay_ms(250);
-			#endif
-			return;
+		case DONE: return;
 	}
-
-	// // Inking
-	// if (state != SYNC_CONTROLLER && state != SYNC_POSITION)
-	// 	if (pgm_read_byte(&(image_data[(xpos / 8) + (ypos * 40)])) & 1 << (xpos % 8))
-	// 		ReportData->Button |= SWITCH_A;
 
 	// Prepare to echo this report
 	memcpy(&last_report, ReportData, sizeof(USB_JoystickReport_Input_t));
 	echoes = ECHOES;
-
 }

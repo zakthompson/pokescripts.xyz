@@ -29,6 +29,7 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **BerryFarmer**: Fast berry farmer
 * **BoxRelease**: Release all pokemon in PC boxes
 * **Hatcher**: Automatically collect and hatch eggs
+* **RemoveFriends**: Quickly remove as many friends as you'd like
 
 Each of these have instructions written in a comment at the top of the corresponding `.c` file.
 
