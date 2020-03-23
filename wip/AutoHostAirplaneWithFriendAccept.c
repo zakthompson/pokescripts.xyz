@@ -61,7 +61,7 @@ static const Command autoHost[] = {
 
 	//----------Connect Internet [6,12]----------
 	{Y, 50},
-	{PLUS, 500},		// Internet connection time (400 ~= 9 seconds wait)
+	{PLUS, 900},		// Internet connection time (400 ~= 9 seconds wait)
 	{B, 1},
 	{NOTHING, 6},
 	{B, 140},			// Allow time to load other players
@@ -117,7 +117,7 @@ static const Command autoHost[] = {
 	{A, 1},                // Select profile
 	{NOTHING, 80},
 	{A, 1},                // Press okay on network warning
-	{NOTHING, 400},        // Wait for network to load friend requests
+	{NOTHING, 600},        // Wait for network to load friend requests
 	{A, 1},                // Press Add Friends
 	{NOTHING, 10},
   {A, 1},                // Press view friend requests
