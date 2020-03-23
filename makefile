@@ -60,6 +60,6 @@ include $(LUFA_PATH)/Build/lufa_atprogram.mk
 
 .PHONY: flash
 flash:
-	sudo dfu-programmer $(MCU) erase
+	sudo dfu-programmer $(MCU) erase || true
 	sudo dfu-programmer $(MCU) flash $(TARGET).hex
 	sudo dfu-programmer $(MCU) reset
