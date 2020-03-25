@@ -133,7 +133,7 @@ static const Command autoHost[] = {
 	{HOME, 1},
 	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 40},
+	{NOTHING, 100},
   //----------Airplane On/Off [34, 57]----------
 
 	//----------Set Link Code [34, 57]----------
