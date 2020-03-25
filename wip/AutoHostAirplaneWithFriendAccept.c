@@ -115,7 +115,7 @@ static const Command autoHost[] = {
 	{UP, 1},
 	{NOTHING, 10},
 	{A, 1},                // Select profile
-	{NOTHING, 80},
+	{NOTHING, 400},        // Wait for friends menu to load
 	{A, 1},                // Press Add Friends
 	{NOTHING, 10},
   {A, 1},                // Press view friend requests
@@ -133,7 +133,7 @@ static const Command autoHost[] = {
 	{HOME, 1},
 	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 300},
+	{NOTHING, 10},
   //----------Airplane On/Off [34, 57]----------
 
 	//----------Set Link Code [34, 57]----------
