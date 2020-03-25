@@ -108,16 +108,14 @@ static const Command autoHost[] = {
 	{B, 1},
 	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 1000},
-  //----------Airplane On/Off [34, 59]----------
+	{NOTHING, 10},
+  //----------Airplane On/Off [34, 57]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{UP, 1},
 	{NOTHING, 10},
 	{A, 1},                // Select profile
 	{NOTHING, 80},
-	{A, 1},                // Press okay on network warning
-	{NOTHING, 600},        // Wait for network to load friend requests
 	{A, 1},                // Press Add Friends
 	{NOTHING, 10},
   {A, 1},                // Press view friend requests
@@ -135,8 +133,8 @@ static const Command autoHost[] = {
 	{HOME, 1},
 	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 100},
-  //----------Airplane On/Off [34, 59]----------
+	{NOTHING, 300},
+  //----------Airplane On/Off [34, 57]----------
 
 	//----------Set Link Code [34, 57]----------
 	// Init
@@ -334,7 +332,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
 				// Skip to start raid, invite, SR
 				commandIndex = 16;
-				m_endIndex = 59;
+				m_endIndex = 57;
 
 				m_sequence = 0;
 			}
@@ -374,7 +372,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else if (number % 3 == 0) // 3,6,9
 				{
 					commandIndex = 52 + (number / 3 - 1) * 2;
-					m_endIndex = 59;
+					m_endIndex = 57;
 				}
 				else // 1,4,7,2,5,8
 				{
