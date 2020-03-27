@@ -60,7 +60,7 @@ static const Command autoHost[] = {
 	{NOTHING, 60},
 
 	//----------Connect Internet [6,12]----------
-	{Y, 50},
+	{Y, 80},
 	{PLUS, 900},		// Internet connection time (400 ~= 9 seconds wait)
 	{B, 1},
 	{NOTHING, 6},
@@ -133,7 +133,7 @@ static const Command autoHost[] = {
 	{HOME, 1},
 	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 100},
+	{NOTHING, 200},
   //----------Airplane On/Off [34, 57]----------
 
 	//----------Set Link Code [34, 57]----------
