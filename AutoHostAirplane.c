@@ -88,7 +88,6 @@ static const Command autoHost[] = {
 
 
   //----------Airplane On/Off [24, 33]----------
-  // NOTE:  This breaks link codes
   {HOME, 40},
   {DOWN, 40},
   {A, 1},
