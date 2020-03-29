@@ -22,24 +22,23 @@ these buttons for our use.
 #include "Joystick.h"
 
 /*------------------------------------------*/
-// INSTRUCTION
+// INSTRUCTIONS
+// -> This script requires you save-lock to a specific shiny Pokemon
 // -> You MUST stand in front of an active den (with watts already collected)
-// -> Be careful if time is synced and past mid-night, you will start able to collect watts
 // -> You MUST not have connected to the internet at the beginning
-// -> You are adviced to have wired connection for stable and fast internet
-// -> If you use WiFi you probably need to adjust your connection time below in code
-// -> This program relies on clients to be ready before 1 minute mark, otherwise the raid fails
+// -> You may need to adjust the network connection time below based on your connection
+// -> This program relies on raiders being ready before 2 minute mark, otherwise the raid fails
 // -> Program will close the game when raid starts, and it may freeze on client's side for 10-15 seconds
 // -> You have to start this program at the Change Grip/Order menu
 // -> It takes ~3 minutes 25 seconds to host a raid
 
-// -> Use optional link code or not? (true/false)
+// -> Use link code or not? (true/false)
 bool m_useLinkCode = false;
 
 // -> Use random code (if m_useLinkCode = true)
 // -> m_seed range is 0 to 255, same seed will always generate the same link code sequence
 // -> As long as the board is not unplugged, the sequence will go random forever
-// -> If the board is unplugged, the squence will start at the beginning again
+// -> If the board is unplugged, the sequence will start at the beginning again
 bool m_useRandomCode = false;
 uint8_t m_seed = 169;
 
@@ -60,8 +59,8 @@ static const Command autoHost[] = {
 	{NOTHING, 60},
 
 	//----------Connect Internet [6,12]----------
-	{Y, 50},
-	{PLUS, 1200},		// Internet connection time (400 ~= 9 seconds wait)
+	{Y, 80},
+	{PLUS, 900},		// Internet connection time (400 ~= 9 seconds wait)
 	{B, 1},
 	{NOTHING, 6},
 	{B, 140},			// Allow time to load other players
@@ -92,7 +91,7 @@ static const Command autoHost[] = {
 	{A, 1},			// Choose game
 	{NOTHING, 50},
 	{A, 1},			// Pick User
-	{NOTHING, 800},
+	{NOTHING, 850},
 	{A, 1},			// Enter game
 	{NOTHING, 460},
 
