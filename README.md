@@ -24,6 +24,7 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **AutoFossil**: Shiny Fossil grinding
 * **AutoHost**: Auto hosting raids, with optional fixed/random link code
 * **AutoHostAirplane**: Auto hosting raids, using airplane mode method to exit
+* **AutoHostAirplane**: Auto hosting raids, using airplane mode method to exit, and adding friends between raids
 * **TurboA**: A button masher (for digging duo)
 * **WattFarmer**: Fast watt collector
 * **BerryFarmer**: Fast berry farmer
@@ -37,8 +38,9 @@ Each of these have instructions written in a comment at the top of the correspon
 In the build folder, you will find precompiled hexes for the scripts that don't require variables to be changed.  These include:
 * Auto3DaySkipper
 * AutoLoto
-* AutoHost
-* AutoHostAirplane
+* AutoHost (No Link Code)
+* AutoHostAirplane (No Link Code)
+* AutoHostAirplaneWithFriendAccept (No Link Code)
 * TurboA
 * WattFarmer
 * BerryFarmer

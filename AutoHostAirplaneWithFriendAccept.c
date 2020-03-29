@@ -22,31 +22,36 @@ these buttons for our use.
 #include "Joystick.h"
 
 /*------------------------------------------*/
-// INSTRUCTION
+// INSTRUCTIONS
+// -> THIS SCRIPT RELIES ON AIRPLANE MODE AND ONLY WORKS HANDHELD
+// -> Your cursor must be over "Add Friends" in the Profile menu (the Switch will remember)
 // -> You MUST stand in front of an active den (with watts already collected)
-// -> Be careful if time is synced and past mid-night, you will start able to collect watts
 // -> You MUST not have connected to the internet at the beginning
-// -> You are adviced to have wired connection for stable and fast internet
-// -> If you use WiFi you probably need to adjust your connection time below in code
-// -> This program relies on clients to be ready before 1 minute mark, otherwise the raid fails
-// -> Program will close the game when raid starts, and it may freeze on client's side for 10-15 seconds
+// -> You may need to adjust the network connection time below based on your connection
+// -> This program relies on raiders being ready before 2 minute mark, otherwise the raid fails
+// -> Once the raid starts, it will turn on airplane mode to remove you from the raid
+// -> After, it will immediately open your profile and add friends
 // -> You have to start this program at the Change Grip/Order menu
 // -> It takes ~3 minutes 25 seconds to host a raid
+//
+// WARNING
+// If a raid begins without anyone joining, airplane mode will not kick you out and you will
+// have to restart your game and re-roll your Pokemon
 
-// -> Use optional link code or not? (true/false)
+// -> Use link code or not? (true/false)
 bool m_useLinkCode = false;
 
 // -> Use random code (if m_useLinkCode = true)
 // -> m_seed range is 0 to 255, same seed will always generate the same link code sequence
 // -> As long as the board is not unplugged, the sequence will go random forever
-// -> If the board is unplugged, the squence will start at the beginning again
+// -> If the board is unplugged, the sequence will start at the beginning again
 bool m_useRandomCode = false;
 uint8_t m_seed = 169;
 
 // -> Set optional link code here (if m_useLinkCode = true, m_useRandomCode = false)
 // -> e.g 4501: m_linkCode[] = {4,5,0,1};
 // -> e.g 0389: m_linkCode[] = {0,3,8,9};
-uint8_t m_linkCode[] = {1,6,4,9};
+uint8_t m_linkCode[] = {1,3,2,9};
 /*------------------------------------------*/
 
 static const Command autoHost[] = {
@@ -81,24 +86,10 @@ static const Command autoHost[] = {
 	{A, 50},
 	{NOTHING, 1},
 	{A, 1},
-	/* {NOTHING, 800},	// Wait until game starting showing abilities (if any has one) */
 	{NOTHING, 500},
 
-	//----------Finish/Prepare SR [24,34]----------
-  /* {HOME, 1},                      */
-  /* {NOTHING, 40},                  */
-  /* {X, 9},			// Close game         */
-  /* {A, 1},			// Comfirm close game */
-  /* {NOTHING, 120},                 */
-  /* {A, 1},			// Choose game        */
-  /* {NOTHING, 50},                  */
-  /* {A, 1},			// Pick User          */
-  /* {NOTHING, 800},                 */
-  /* {A, 1},			// Enter game         */
-  /* {NOTHING, 460},                 */
 
   //----------Airplane On/Off [24, 33]----------
-  // NOTE:  This breaks link codes
 	{HOME, 40},
 	{DOWN, 40},
 	{A, 1},
@@ -109,7 +100,9 @@ static const Command autoHost[] = {
 	{NOTHING, 40},
 	{A, 1},
 	{NOTHING, 10},
-  //----------Airplane On/Off [34, 57]----------
+
+
+  //----------Accept Friend [34, 57]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{UP, 1},
@@ -134,9 +127,8 @@ static const Command autoHost[] = {
 	{NOTHING, 40},
 	{A, 1},
 	{NOTHING, 200},
-  //----------Airplane On/Off [34, 57]----------
 
-	//----------Set Link Code [34, 57]----------
+	//----------Set Link Code [58, 82]----------
 	// Init
 	{PLUS, 35},
 
@@ -152,7 +144,7 @@ static const Command autoHost[] = {
 	{A, 1},
 	{NOTHING, 1},
 
-	// 1,4,7,2,5,8 [43-50]
+	// 1,4,7,2,5,8 [67-74]
 	{UP, 1},
 	{NOTHING, 1},
 	{UP, 1},
@@ -162,7 +154,7 @@ static const Command autoHost[] = {
 	{LEFT, 1},
 	{NOTHING, 1},
 
-	// 3,6,9 [51-58]
+	// 3,6,9 [75-82]
 	{UP, 1},
 	{NOTHING, 1},
 	{UP, 1},
@@ -339,15 +331,15 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			else
 			{
 				// Prepare link code, goto 0
-				commandIndex = 31;
-				m_endIndex = 37;
+				commandIndex = 58;
+				m_endIndex = 64;
 			}
 		}
 		else if (m_sequence == 14)
 		{
 			// Finish setting link code, invite others, SR
 			commandIndex = 13;
-			m_endIndex = 34;
+			m_endIndex = 57;
 
 			m_sequence = 0;
 		}
@@ -363,34 +355,34 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					return;
 
 					// Just press A for 0
-					commandIndex = 42;
-					m_endIndex = 43;
+					commandIndex = 65;
+					m_endIndex = 66;
 
 					// Skip going down
 					m_sequence += 2;
 				}
 				else if (number % 3 == 0) // 3,6,9
 				{
-					commandIndex = 52 + (number / 3 - 1) * 2;
-					m_endIndex = 57;
+					commandIndex = 75 + (number / 3 - 1) * 2;
+					m_endIndex = 82;
 				}
 				else // 1,4,7,2,5,8
 				{
-					commandIndex = 44 + (number / 3) * 2;
-					m_endIndex = (number % 3 == 1) ? 51 : 49;
+					commandIndex = 67 + (number / 3) * 2;
+					m_endIndex = (number % 3 == 1) ? 74 : 72;
 				}
 			}
 			else if (m_sequence % 3 == 1) // 4,7,10,13
 			{
 				// Press A
-				commandIndex = 42;
-				m_endIndex = 43;
+				commandIndex = 65;
+				m_endIndex = 66;
 			}
 			else // 5,8,11
 			{
 				// Reset to 0
-				commandIndex = 36;
-				m_endIndex = 41;
+				commandIndex = 59;
+				m_endIndex = 64;
 			}
 		}
 	}

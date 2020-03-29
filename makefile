@@ -26,6 +26,7 @@
 # AutoFossil: Shiny Fossil grinding
 # AutoHost: Auto hosting raids, with optional fixed/random link code, using game restart to exit
 # AutoHostAirplane: Auto hosting raids using airplane mode method to exit
+# AutoHostAirplaneWithFriendAccept: Auto hosting raids using airplane mode method to exit, and adding friends between raids
 # TurboA: A button masher (for digging duo)
 # WattFarmer: Fast watt collector
 # BerryFarmer: Fast berry farmer

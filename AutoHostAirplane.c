@@ -37,19 +37,19 @@ these buttons for our use.
 // have to restart your game and re-roll your Pokemon
 
 // -> Use link code or not? (true/false)
-bool m_useLinkCode = true;
+bool m_useLinkCode = false;
 
 // -> Use random code (if m_useLinkCode = true)
 // -> m_seed range is 0 to 255, same seed will always generate the same link code sequence
 // -> As long as the board is not unplugged, the sequence will go random forever
 // -> If the board is unplugged, the sequence will start at the beginning again
-bool m_useRandomCode = true;
+bool m_useRandomCode = false;
 uint8_t m_seed = 169;
 
 // -> Set optional link code here (if m_useLinkCode = true, m_useRandomCode = false)
 // -> e.g 4501: m_linkCode[] = {4,5,0,1};
 // -> e.g 0389: m_linkCode[] = {0,3,8,9};
-uint8_t m_linkCode[] = {1,6,4,9};
+uint8_t m_linkCode[] = {1,3,2,9};
 /*------------------------------------------*/
 
 static const Command autoHost[] = {
