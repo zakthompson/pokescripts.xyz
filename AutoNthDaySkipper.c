@@ -21,20 +21,22 @@ these buttons for our use.
 #include "Joystick.h"
 
 /*------------------------------------------*/
-// INSTRUCTION
+// INSTRUCTIONS
 // -> You MUST have system time unsynced
 // -> You MUST have set text speed to FAST
 // -> You MUST stand in front of a wishing piece den
-// -> Your date MUST have the following constrain:
-//    US: Set month between 1 to 9
-//    EU: Set day between 1 to 25
-//    JP: Set year between 2000 to 2057
-// -> You are adviced to ride on the bike (It rings the bell when 3 day skip is over!)
+// -> Your date and days to loop MUST have the following constraint:
+//    US: Month + m_daysToLoop must not exceed 12
+//    EU: Day + m_daysToLoop must not exceed 28
+//    JP: Year + m_daysToLoop must not exceed 2060
+// -> You should save in front of the den on your bike (It rings the bell when skip is over!)
 // -> You have to start this program at the Change Grip/Order menu
-// -> It takes ~54 seconds to reach the 4th day and ~40 seconds to soft reset
 /*------------------------------------------*/
 
-static const Command auto3DaySkipper[] = {
+// Set the number of days you want to loop
+int m_daysToLoop = 3;
+
+static const Command autoDaySkipper[] = {
 	//----------Setup [0,8]----------
 	// Connect controller in Change Grip/Order
 	{NOTHING, 30},
@@ -46,7 +48,7 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 40},
 	{HOME, 1},
 	{NOTHING, 60},
-	
+
 	//----------Collect Watts [9,16]----------
 	{A, 20},		// Talk
 	{NOTHING, 1},
@@ -56,7 +58,7 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 1},
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
-	
+
 	//----------Goto Date and Time [17,48]----------
 	// To System Settings
 	{HOME, 1},
@@ -73,7 +75,7 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 1},
 	{A, 1},
 	{NOTHING, 1},
-	
+
 	// To Date and Time
 	{DOWN, 80},
 	{NOTHING, 1},
@@ -89,29 +91,29 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 1},
 	{A, 1},
 	{NOTHING, 8},
-	
-	// To actually Date and Time
+
+	// To actual Date and Time
 	{DOWN, 1},
 	{NOTHING, 1},
 	{DOWN, 1},
 	{NOTHING, 1},
 
-	//----------Roll 3 days(EU)/months(US)/years(JP) backward [49,60]----------
-	// Minus 3
+	//----------Roll back days(EU)/months(US)/years(JP) [49, 56]----------
+	// Open date selector [49,50]
 	{A, 1},
 	{NOTHING, 7},
+
+  // Go down [51, 52]
 	{DOWN, 1},
 	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
+
+  //  Press OK [53, 56]
 	{RIGHT, 28},
 	{NOTHING, 1},
 	{A, 1},
 	{NOTHING, 4},
-	
-	//----------Roll 1 day(EU)/month(US)/year(JP) forward [61,68]----------
+
+	//----------Roll 1 day(EU)/month(US)/year(JP) forward [57, 64]----------
 	// Plus one
 	{A, 1},
 	{NOTHING, 7},
@@ -121,21 +123,21 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 1},
 	{A, 1},
 	{NOTHING, 4},
-	
-	//----------Back to game [69,76]----------
+
+	//----------Back to game [65, 72]----------
 	// Back to game
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
-	
+
 	// Quit the raid
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
-	
-	//----------Ring bike like mad, collect watts then delay [77,102]----------
+
+	//----------Ring bike like mad, collect watts then delay [73, 98]----------
 	{LCLICK, 1},
 	{NOTHING, 10},
 	{LCLICK, 1},
@@ -162,8 +164,8 @@ static const Command auto3DaySkipper[] = {
 	{NOTHING, 1},
 	{A, 30},		// You gained 2,000W! (Delay longer for player to check)
 	{NOTHING, 300},
-	
-	//----------Finish/Prepare SR [103,114]----------
+
+	//----------Finish/Prepare SR [99, 110]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{X, 1},			// Close game
@@ -329,6 +331,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		return;
 	}
 
+  int skipSequences = m_daysToLoop * 4;
+
 	// States and moves management
 	switch (state)
 	{
@@ -337,24 +341,36 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (commandIndex == -1)
 			{
 				m_sequence++;
-				if (m_sequence == 13)
+				if (m_sequence == (skipSequences + 1))
 				{
-					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 77;
-					m_endIndex = 102;
+					// Done skipping days, user should check the pokemon
+					commandIndex = 73;
+					m_endIndex = 98;
 				}
-				else if (m_sequence == 15)
+				else if (m_sequence == (skipSequences + 3))
 				{
-					// Roll 3 days backward
+					// Open date selector
 					commandIndex = 49;
-					m_endIndex = 60;
+					m_endIndex = 50;
 				}
-				else if (m_sequence == 16)
+				else if (m_sequence >= (skipSequences + 4) && m_sequence < (skipSequences + 4 + m_daysToLoop))
+				{
+					// Roll date back once
+					commandIndex = 51;
+					m_endIndex = 52;
+				}
+				else if (m_sequence == (skipSequences + 4 + m_daysToLoop))
+				{
+					// Confirm date rollback
+					commandIndex = 53;
+					m_endIndex = 56;
+				}
+				else if (m_sequence > (skipSequences + 4 + m_daysToLoop))
 				{
 					// SR
-					commandIndex = 103;
-					m_endIndex = 114;
-					
+					commandIndex = 99;
+					m_endIndex = 110;
+
 					m_sequence = 0;
 				}
 				else if (m_sequence % 4 == 1)	// 1,5,9
@@ -372,33 +388,33 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else if (m_sequence % 4 == 3)	// 3,7,11
 				{
 					// Roll one day forward
-					commandIndex = 61;
-					m_endIndex = 68;
+					commandIndex = 57;
+					m_endIndex = 64;
 				}
 				else if (m_sequence % 4 == 0)	// 4,8,12
 				{
 					// Back to game
-					commandIndex = 69;
-					m_endIndex = 76;
+					commandIndex = 65;
+					m_endIndex = 72;
 				}
 			}
-		
-			switch (auto3DaySkipper[commandIndex].button)
+
+			switch (autoDaySkipper[commandIndex].button)
 			{
 				case UP:
-					ReportData->LY = STICK_MIN;				
+					ReportData->LY = STICK_MIN;
 					break;
 
 				/*case LEFT:
-					ReportData->LX = STICK_MIN;				
+					ReportData->LX = STICK_MIN;
 					break;*/
 
 				case DOWN:
-					ReportData->LY = STICK_MAX;				
+					ReportData->LY = STICK_MAX;
 					break;
 
 				case RIGHT:
-					ReportData->LX = STICK_MAX;				
+					ReportData->LX = STICK_MAX;
 					break;
 
 				case X:
@@ -468,16 +484,16 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 			durationCount++;
 
-			if (durationCount > auto3DaySkipper[commandIndex].duration)
+			if (durationCount > autoDaySkipper[commandIndex].duration)
 			{
 				commandIndex++;
-				durationCount = 0;		
+				durationCount = 0;
 
 				// We reached the end of a command sequence
 				if (commandIndex > m_endIndex)
 				{
 					commandIndex = -1;
-				}		
+				}
 			}
 
 			break;
