@@ -22,9 +22,10 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **AutoNthDaySkipper**: Auto roll den to the nth day, SR and repeats
 * **AutoLoto**: Infinite loto reward grinding
 * **AutoFossil**: Shiny Fossil grinding
-* **AutoHost**: Auto hosting raids, with optional fixed/random link code
+* **AutoHost**: Auto hosting raids, with optional fixed/random link code, using game restart to exit
+* **AutoHostWithFriendAccept**: Auto hosting raids, using game restart to exit, and adding friends betweenraids
 * **AutoHostAirplane**: Auto hosting raids, using airplane mode method to exit
-* **AutoHostAirplane**: Auto hosting raids, using airplane mode method to exit, and adding friends between raids
+* **AutoHostAirplaneWithFriendAccept**: Auto hosting raids, using airplane mode method to exit, and adding friends between raids
 * **TurboA**: A button masher (for digging duo)
 * **WattFarmer**: Fast watt collector
 * **BerryFarmer**: Fast berry farmer
@@ -39,6 +40,7 @@ In the build folder, you will find precompiled hexes for the scripts that don't 
 * AutoNthDaySkipper (set to 3 days)
 * AutoLoto
 * AutoHost (No Link Code)
+* AutoHostWithFriendAccept (No Link Code)
 * AutoHostAirplane (No Link Code)
 * AutoHostAirplaneWithFriendAccept (No Link Code)
 * TurboA
@@ -61,3 +63,5 @@ These scripts originate from various people, and have been tweaked, modified and
 * [bertrandom](https://github.com/bertrandom)
 * [hoskinsw](https://github.com/hoskinsw)
 * [brianuuuSonic](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
+* [plus](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
+* [Pedro](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)

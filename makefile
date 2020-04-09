@@ -25,6 +25,7 @@
 # AutoLoto: Infinite loto reward grinding
 # AutoFossil: Shiny Fossil grinding
 # AutoHost: Auto hosting raids, with optional fixed/random link code, using game restart to exit
+# AutoHostWithFriendAccept: Auto hosting raids, using game restart to exit, and adding friends between raids
 # AutoHostAirplane: Auto hosting raids using airplane mode method to exit
 # AutoHostAirplaneWithFriendAccept: Auto hosting raids using airplane mode method to exit, and adding friends between raids
 # TurboA: A button masher (for digging duo)
