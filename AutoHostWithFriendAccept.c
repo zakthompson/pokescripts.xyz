@@ -20,20 +20,13 @@ these buttons for our use.
 
 /*------------------------------------------*/
 // INSTRUCTIONS
-// -> THIS SCRIPT RELIES ON AIRPLANE MODE AND ONLY WORKS HANDHELD
-// -> Your cursor must be over "Add Friends" in the Profile menu (the Switch will remember)
+// -> This script requires you save-lock to a specific shiny Pokemon
 // -> You MUST stand in front of an active den (with watts already collected)
 // -> You MUST not have connected to the internet at the beginning
 // -> You may need to adjust the network connection time below based on your connection
 // -> This program relies on raiders being ready before 2 minute mark, otherwise the raid fails
-// -> Once the raid starts, it will turn on airplane mode to remove you from the raid
-// -> After, it will immediately open your profile and add friends
+// -> Program will close the game when raid starts, and it may freeze on client's side for 10-15 seconds
 // -> You have to start this program at the Change Grip/Order menu
-// -> It takes ~3 minutes 25 seconds to host a raid
-//
-// WARNING
-// If a raid begins without anyone joining, airplane mode will not kick you out and you will
-// have to restart your game and re-roll your Pokemon
 
 // -> Use link code or not? (true/false)
 bool m_useLinkCode = false;

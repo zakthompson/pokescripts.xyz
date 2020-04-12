@@ -111,7 +111,7 @@ void SetupHardware(void) {
 	wdt_disable();
 
 	// We need to disable clock division before initializing the USB hardware.
-	clock_prescale_set(clock_div_1);
+	// clock_prescale_set(clock_div_1);
 	// We can then initialize our hardware and peripherals, including the USB stack.
 
 	#ifdef ALERT_WHEN_DONE
