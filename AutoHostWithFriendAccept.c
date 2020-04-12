@@ -38,6 +38,10 @@ these buttons for our use.
 // -> Use link code or not? (true/false)
 bool m_useLinkCode = false;
 
+// -> Alternate between coded and free-for-all
+// -> m_useLinkCode will only determine whether the first raid is coded
+bool m_alternate = false;
+
 // -> Use random code (if m_useLinkCode = true)
 // -> m_seed range is 0 to 255, same seed will always generate the same link code sequence
 // -> As long as the board is not unplugged, the sequence will go random forever
@@ -101,24 +105,24 @@ static const Command autoHost[] = {
 	{A, 1},				// Press view friend requests
 	{NOTHING, 250},		// Wait for friends to load
 	{RIGHT, 40},
-	{NOTHING, 10},                
+	{NOTHING, 10},
 	{DOWN, 40},        	// Navigate to the oldest friend request for fairness
-	{NOTHING, 10},                
+	{NOTHING, 10},
 	{A, 1},				// Select friend
-  {NOTHING, 100},                
+  {NOTHING, 100},
   {A, 1},        		// Click add
-  {NOTHING, 150},		// Wait for network   
+  {NOTHING, 150},		// Wait for network
   {A, 1},				// Click OK
   {NOTHING, 20},
   {HOME, 1},
-	{NOTHING, 40},                
+	{NOTHING, 40},
 	{A, 1},
-	{NOTHING, 40},                
-	{A, 1},        
-	{NOTHING, 720},                
+	{NOTHING, 40},
+	{A, 1},
+	{NOTHING, 720},
 	{A, 1},
 	{NOTHING, 460},
-	
+
 	//----------Set Link Code [55, 79]----------
 	// Init
 	{PLUS, 35},
@@ -318,12 +322,20 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = 54;
 
 				m_sequence = 0;
+
+        if (m_alternate) {
+          m_useLinkCode = true;
+        }
 			}
 			else
 			{
 				// Prepare link code, goto 0
 				commandIndex = 55;
 				m_endIndex = 61;
+
+        if (m_alternate) {
+          m_useLinkCode = false;
+        }
 			}
 		}
 		else if (m_sequence == 14)

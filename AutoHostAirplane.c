@@ -39,6 +39,10 @@ these buttons for our use.
 // -> Use link code or not? (true/false)
 bool m_useLinkCode = false;
 
+// -> Alternate between coded and free-for-all
+// -> m_useLinkCode will only determine whether the first raid is coded
+bool m_alternate = false;
+
 // -> Use random code (if m_useLinkCode = true)
 // -> m_seed range is 0 to 255, same seed will always generate the same link code sequence
 // -> As long as the board is not unplugged, the sequence will go random forever
@@ -298,12 +302,20 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = 33;
 
 				m_sequence = 0;
+
+        if (m_alternate) {
+          m_useLinkCode = true;
+        }
 			}
 			else
 			{
 				// Prepare link code, goto 0
 				commandIndex = 34;
 				m_endIndex = 40;
+
+        if (m_alternate) {
+          m_useLinkCode = false;
+        }
 			}
 		}
 		else if (m_sequence == 14)
