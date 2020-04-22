@@ -50,8 +50,8 @@
 *.sym
 
 # Except in the build folder
-!builds/*.hex
-!wip/builds/*.hex
+!bots/builds/*.hex
+!bots/wip/builds/*.hex
 
 # Kernel Module Compile Results
 *.mod*
