@@ -31,18 +31,15 @@ Each of these have instructions written in the README in their folder. Several a
 
 ## Pre-Compiled Hexes
 In the build folder, you will find precompiled hexes for the scripts that don't require variables to be changed.  These include:
-* Auto3DaySkipper
-* AutoLoto
+* Auto3DaySkipper_US
+* AutoLoto_US
 * AutoHost (No Link Code)
 * AutoHostWithFriendAccept (No Link Code)
-* AutoHostAirplane (No Link Code)
-* AutoHostAirplaneWithFriendAccept (No Link Code)
+* AutoHostReroll (No Link Code)
+* AutoHostRerollWithFriendAccept (No Link Code)
 * TurboA
-* WattFarmer
-* BerryFarmer
-* BoxRelease
-
-Additionally, there are precompiled hexes for hatching eggs of Pokemon that require 5120 steps or 6400 steps. Note that these both assume you have the Oval Charm and a Pokemon with Flame Body in your party in a slot other than the 2nd.
+* BerryFarmer_US
+* WattFarmer_US
 
 **Note that these builds are for `atmega16u2` boards such as the Arduino UNO R3. They will not work if your board has a different chipset!**
 
