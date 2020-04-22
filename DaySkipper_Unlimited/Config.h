@@ -1,0 +1,2 @@
+uint8_t m_JP_EU_US = 2; // 0 = JP, 1 = EU, 2 = US
+unsigned long m_dayToSkip = 35; // Number of days to skip
