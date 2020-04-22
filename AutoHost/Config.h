@@ -9,3 +9,4 @@ uint8_t m_linkCode[] = {0,6,9,0}; // Set link code when not using random
 uint8_t m_waitTime = 0;  // 0 to wait until 2-min, 1 to wait until 1-min
 bool m_addFriends = true; // Add friends between raids
 uint8_t m_profile = 1; // If you have multiple profiles, use this to specify which to use
+bool m_alternate = false; // Set this to true to alternate between FFA and coded

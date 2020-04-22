@@ -189,12 +189,19 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (!m_useLinkCode)
 			{
+        if (m_alternate) {
+          m_useLinkCode = true;
+        }
 				// Skip to start raid
 				m_sequence = 14;
 				return;
 			}
 			else
 			{
+        if (m_alternate) {
+          m_useLinkCode = false;
+        }
+
 				// Prepare link code, goto 0
 				commandIndex = 27;
 				m_endIndex = 34;
