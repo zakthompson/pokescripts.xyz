@@ -1,9 +1,7 @@
 import React from 'react';
-import { Box, Heading, Select, Text } from 'grommet';
+import { Box, Button, Heading, Nav } from 'grommet';
 
-import { dateFormatOptions } from '../utils/constants';
-
-export default function AppBar({ dateFormat, setDateFormat }) {
+export default function AppBar() {
   return (
     <Box
       tag="header"
@@ -16,17 +14,16 @@ export default function AppBar({ dateFormat, setDateFormat }) {
       style={{ zIndex: 1 }}
     >
       <Heading level="2" margin="none">Pokemon Hex Generator</Heading>
-      <Box direction="row" align="center">
-        <Text margin={{ horizontal: '10px' }}>Date Format:</Text>
-        <Box direction="row" width="xsmall">
-          <Select
-            size="small"
-            options={dateFormatOptions}
-            value={dateFormatOptions.find((o) => o.value === dateFormat)}
-            onChange={({ option }) => setDateFormat(option.value)}
-            labelKey="name"
-          />
-        </Box>
+      <Box flex direction="row" align="center" justify="end">
+        <Nav>
+          <Button
+            hoverIndicator
+            plain
+            href="https://paypal.me/pleebz"
+          >
+            Donate
+          </Button>
+        </Nav>
       </Box>
     </Box>
   );

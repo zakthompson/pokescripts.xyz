@@ -33,7 +33,6 @@ router.get('/genhex', async (req, res) => {
   const folder = uuid.v1()
 
   try {
-    console.log(configStr);
     await execAsync(`mkdir -p tmp/${folder}`);
     await execAsync(`cp -r bots/makefile bots/HORI_Descriptors bots/Joystick.h bots/LUFA bots/Config bots/${target} tmp/${folder}`);
 
