@@ -105,6 +105,7 @@ export default function BotForm({ state, setState, onSubmit }) {
               {f.type === 'number' && (
                 <Box width="small">
                   <TextInput
+                    size="small"
                     width="auto"
                     type="number"
                     value={f.value}
@@ -119,6 +120,7 @@ export default function BotForm({ state, setState, onSubmit }) {
             <Button
               type="submit"
               primary
+              hoverIndicator={false}
               label="Generate Hex"
               margin={{ top: '20px' }}
             />

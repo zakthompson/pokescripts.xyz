@@ -17,6 +17,7 @@ const theme = {
       darkGray: '#666666',
       yellow: '#FFCC00',
       brand: '#222224',
+      focus: '#222224',
     },
     font: {
       family: 'Open Sans',
@@ -73,7 +74,7 @@ function App() {
       <Box fill>
         <AppBar dateFormat={dateFormat} setDateFormat={setDateFormat} />
         <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
-          <Sidebar botConfigs={botConfigs} state={state} setState={setState} />
+          <Sidebar botConfigs={botConfigs} state={state} setState={setState} dateFormat={dateFormat} setDateFormat={setDateFormat} />
           <BotForm state={state} setState={setState} onSubmit={onSubmit} />
         </Box>
       </Box>
