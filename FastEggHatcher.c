@@ -74,29 +74,29 @@ static const Command commands[] = {
 	{NOTHING,     20},	
 	
 	// Fly to day care center in Bridge Field
-    {A,            1}, // 8 - select town map
+	{A,            1}, // 8 - select town map
 	{NOTHING,    120},
 	{A,            1}, // select day care center
 	{NOTHING,     40},
-    {A,            1}, // confirm
-    {NOTHING,    120},
+	{A,            1}, // confirm
+	{NOTHING,    120},
 	
 	// Ride to day care lady
 	{LEFT,         1},
-    {DOWN,        26},
-    {RIGHT,        6},
-    {NOTHING,     20},
+	{DOWN,        26},
+	{RIGHT,        6},
+	{NOTHING,     20},
 	
 	// Take egg OR leave if no egg is ready
-    {A,            1}, // 18 - talk to day-care lady
-    {NOTHING,     40},
-    {A,            1}, // Yes to take egg (if no egg, advances dialogue)
+	{A,            1}, // 18 - talk to day-care lady
+	{NOTHING,     40},
+	{A,            1}, // Yes to take egg (if no egg, advances dialogue)
 	{NOTHING,    130}, // wait for jingle
 	{B,            1}, // advance dialogue (or leave if no egg)
-    {NOTHING,     60},
-    {B,            1}, // advance dialogue	
-    {NOTHING,     60},
-    {B,            1}, // close dialogue	
+	{NOTHING,     60},
+	{B,            1}, // advance dialogue	
+	{NOTHING,     60},
+	{B,            1}, // close dialogue	
 	{NOTHING,     15},	
 	
 	// go to spinning spot
