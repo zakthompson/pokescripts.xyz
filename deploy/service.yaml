@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokemon-hex-generator
+  namespace: fireinside
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pokemon-hex-generator
+  template:
+    metadata:
+      labels:
+        app: pokemon-hex-generator
+    spec:
+      containers:
+      - name: pokemon-hex-generator
+        image: pleebz/pokemon-hex-generator:1.0.1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokemon-hex-generator
+  namespace: fireinside
+spec:
+  type: ClusterIP
+  selector:
+    app: pokemon-hex-generator
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
