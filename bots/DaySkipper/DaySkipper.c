@@ -18,7 +18,7 @@ exception of Home and Capture. Descriptor modification allows us to unlock
 these buttons for our use.
 */
 
-#include "../../Joystick.h"
+#include "../Joystick.h"
 #include "Commands.h"
 #include "Config.h"
 
@@ -179,7 +179,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				{
 					// Day = 0, Month = 1, Year = 2
 					uint8_t passDayMonthYear = 0;
-					
+
 					if (m_month == 2)
 					{
 						bool isLeapYear = (m_year % 4 == 0);
@@ -210,7 +210,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 							passDayMonthYear = 1;
 						}
 					}
-					
+
 					if (passDayMonthYear == 0)
 					{
 						// Pass day
@@ -287,27 +287,27 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					state = DONE;
 					break;
 				}
-				
+
 				m_dayToSkip--;
 			}
-		
+
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));
 			switch (tempCommand.button)
 			{
 				case UP:
-					ReportData->LY = STICK_MIN;				
+					ReportData->LY = STICK_MIN;
 					break;
 
 				case LEFT:
-					ReportData->LX = STICK_MIN;				
+					ReportData->LX = STICK_MIN;
 					break;
 
 				case DOWN:
-					ReportData->LY = STICK_MAX;				
+					ReportData->LY = STICK_MAX;
 					break;
 
 				case RIGHT:
-					ReportData->LX = STICK_MAX;				
+					ReportData->LX = STICK_MAX;
 					break;
 
 				/*case X:
@@ -380,13 +380,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (durationCount > tempCommand.duration)
 			{
 				commandIndex++;
-				durationCount = 0;		
+				durationCount = 0;
 
 				// We reached the end of a command sequence
 				if (commandIndex > m_endIndex)
 				{
 					commandIndex = -1;
-				}		
+				}
 			}
 
 			break;
