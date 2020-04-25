@@ -12,7 +12,7 @@ import {
 } from 'grommet';
 import { Alert } from 'grommet-icons';
 
-export default function BotForm({ state, setState, onSubmit }) {
+export default function BotForm({ state, setState, onSubmit, dateFormat }) {
   function handleFieldChange(param, value) {
     const index = state.configFields.findIndex((e) => e.param === param);
     setState({
@@ -139,7 +139,7 @@ export default function BotForm({ state, setState, onSubmit }) {
                       />
                     )}
                     {f.type === 'number' && (
-                      <Box width="xsmall">
+                      <Box width="xsmall" direction="column" align="end">
                         <TextInput
                           size="small"
                           width="auto"
@@ -147,6 +147,13 @@ export default function BotForm({ state, setState, onSubmit }) {
                           value={f.value}
                           onChange={(e) => handleFieldChange(f.param, e.target.value)}
                         />
+                        {f.param === 'm_dayToSkip' && ['DaySkipper', 'DaySkipper_Unlimited'].includes(state.target) && (
+                          <Text size="xsmall" margin={{ top: '2px' }}>
+                            {dateFormat === 0 && `${(((f.value/30)*31)/3600).toFixed(2)} hours`}
+                            {dateFormat === 1 && `${(((f.value/30)*43)/3600).toFixed(2)} hours`}
+                            {dateFormat === 2 && `${(((f.value/30)*43)/3600).toFixed(2)} hours`}
+                          </Text>
+                        )}
                       </Box>
                     )}
                   </Box>
