@@ -75,7 +75,7 @@ function App() {
         <AppBar dateFormat={dateFormat} setDateFormat={setDateFormat} />
         <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
           <Sidebar botConfigs={botConfigs} state={state} setState={setState} dateFormat={dateFormat} setDateFormat={setDateFormat} />
-          <BotForm state={state} setState={setState} onSubmit={onSubmit} />
+          <BotForm state={state} setState={setState} onSubmit={onSubmit} dateFormat={dateFormat} />
         </Box>
       </Box>
     </Grommet>

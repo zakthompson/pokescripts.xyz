@@ -276,11 +276,15 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			commandIndex = 19;
 			m_endIndex = 24;
 		}
-		else if (m_sequence >= 17 && m_sequence <= 56)
+		else if (m_sequence >= 17 && m_sequence <= 42)
 		{
-			// A Spam 40 times
+			// A Spam 25 times
 			commandIndex = 25;
 			m_endIndex = 26;
+
+      if (m_sequence == 42) {
+        m_sequence = 56;
+      }
 		}
 		else if (m_sequence == 57)
 		{
