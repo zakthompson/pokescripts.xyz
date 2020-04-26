@@ -123,7 +123,7 @@ static const Command m_command[] PROGMEM = {
 	{HOME, 1},
 	{NOTHING, 60},
 	{A, 1},				// Error message
-	{NOTHING, 600},		// Wait until exit raid
+	{NOTHING, 900},		// Wait until exit raid
 
 	// COPY FROM Auto3DaySkipper
 	//----------Sync and unsync time, goto change date [93,124]----------
