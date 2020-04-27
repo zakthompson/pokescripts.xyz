@@ -509,3 +509,19 @@ export const dateFormatOptions = [
   { name: 'EU', value: 1 },
   { name: 'US', value: 2 },
 ];
+
+export const dateSkipTimings = {
+  0: 30.99,
+  1: 42.51,
+  2: 42.51,
+};
+export const fossilReviveTime = 18.468;
+export const autoLotoTime = 21.204;
+export const berryCollectionTime = 16.884;
+export const boxReleaseTime = 93.81;
+export const boxTradeTime = 1962.117;
+export const boxTradeTimeWithPokedex = 2070.627;
+export const eggCollectTime = 16.333;
+export const eggColumnHatchTime = 188.167;
+export const deleteFriendTime = 10.244;
+export const wattCollectionTime = 10.027;
