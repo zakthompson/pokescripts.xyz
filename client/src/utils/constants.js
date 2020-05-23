@@ -443,7 +443,7 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'Infinite Egg Hatcher',
+    name: 'Infinite Egg Hatcher (BETA)',
     target: 'InfiniteHatcher',
     description: 'This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery.',
     instructions: [
