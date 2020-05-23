@@ -1,7 +1,7 @@
 # Pokemon Scripts for Arduino
 
 ## Introduction
-Since the Nintendo Switch now supports USB controllers, some enterprising individuals reverse-engineered the Pokken Tournament Pro Pad firmware for use on microcontrollers. This repository is a collection of scripts which execute input loops on the controller that allow for automating repetitive tasks in Pokemon Sword & Shield, such as hosting raids and hatching eggs. Additionally, this repository contains a web-based tool for generating and downloading hex files for these various scripts.
+Since the Nintendo Switch now supports USB controllers, some enterprising individuals reverse-engineered the Pokken Tournament Pro Pad firmware for use on microcontrollers. This repository contains a collection of scripts which execute input loops on the controller that allow for automating repetitive tasks in Pokemon Sword & Shield, such as hosting raids and hatching eggs. Additionally, it provides a web-based tool for generating and downloading precompiled hex files for these various scripts. Check it out at https://pokescripts.xyz
 
 ## Contributing
 Feel free to submit a pull-request with a clear explanation of what improvement you are adding. I will review it as quickly as I can.
@@ -14,5 +14,6 @@ The scripts themselves originate from various people, and have been tweaked, mod
 * [bertrandom](https://github.com/bertrandom)
 * [hoskinsw](https://github.com/hoskinsw)
 * [brianuuuSonic](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
-* [plus](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
-* [Pedro](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
+* [kirbunkle](https://github.com/kirbunkle)
+* plus
+* Pedro
