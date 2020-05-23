@@ -221,83 +221,83 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 	// Get the next command sequence (new start and end)
 	if (m_commandIndex == -1)
 	{
-		if (m_endIndex == 29) // we just picked up an egg (hopefully)
+		if (m_endIndex == 26) // we just picked up an egg (hopefully)
 		{
 		    m_eggCount++;
 
 			if (m_eggCount < MAX_NUM_OF_EGGS)
 			{
-				m_commandIndex = 30; // spin
-				m_endIndex = 31;
+				m_commandIndex = 27; // spin
+				m_endIndex = 28;
 				m_spinCount = 0;
 				m_spinMax = 14; // 2 "spins" per second (7 seconds should be enough for next egg)
 			}
 			else
 			{
 				m_phase = 1; // set to hatching phase
-				m_commandIndex = 30; // spin
-				m_endIndex = 31;
+				m_commandIndex = 27; // spin
+				m_endIndex = 28;
 				m_spinCount = 0;
 				m_spinMax = (HATCHING_TIME_SEC * m_eggStepGroup) * 2; // 2 "spins" per second
 			}
 		}
-		else if (m_endIndex == 31) // We are spinning
+		else if (m_endIndex == 28) // We are spinning
 		{
 			m_spinCount++;
 			if (m_spinCount < m_spinMax)
 			{
-				m_commandIndex = 30; // keep spinning
+				m_commandIndex = 27; // keep spinning
 			}
 			else
 			{
 				if (m_phase == 0) // we are still collecting
 				{
-					m_commandIndex = 6; // go back to get an egg
-					m_endIndex = 29;
+					m_commandIndex = 3; // go back to get an egg
+					m_endIndex = 26;
 				}
 				else
 				{
-					m_commandIndex = 32; // put mon in boxes
-					m_endIndex = 66;
+					m_commandIndex = 29; // put mon in boxes
+					m_endIndex = 63;
 					m_phase = 0; // set to egg collecting phase
 				}
 			}
 		}
-		else if (m_endIndex == 66) // We opened the pokemon menu, selected the pokemon, and moved right
+		else if (m_endIndex == 63) // We opened the pokemon menu, selected the pokemon, and moved right
 		{
 			m_columnPosition++;
 			if (m_columnPosition < m_nextColumn)
 			{
-				m_commandIndex = 65; // we need to keep moving right
+				m_commandIndex = 62; // we need to keep moving right
 			}
 			else
 			{
-				m_commandIndex = 67; // we are at an open column, put them in
-				m_endIndex = 70;
+				m_commandIndex = 64; // we are at an open column, put them in
+				m_endIndex = 67;
 			}
 		}
-		else if (m_endIndex == 70) // We just put the pokemon in the box
+		else if (m_endIndex == 67) // We just put the pokemon in the box
 		{
 			if (m_nextColumn < 6)
 			{
-				m_commandIndex = 73; // just quit the menu
-				m_endIndex = 80;
+				m_commandIndex = 70; // just quit the menu
+				m_endIndex = 77;
 				m_nextColumn++;
 			}
 			else
 			{
-				m_commandIndex = 71; // advance to the next box, then quit the menu
-				m_endIndex = 80;
+				m_commandIndex = 68; // advance to the next box, then quit the menu
+				m_endIndex = 77;
 				m_nextColumn = 1;
 				m_boxesFilled++;
 			}
 		}
-		else if (m_endIndex == 80) // We finished putting away the hatched mon and are in the menu
+		else if (m_endIndex == 77) // We finished putting away the hatched mon and are in the menu
 		{
 			m_eggCount = 0;
 			m_columnPosition = 0;
-			m_commandIndex = 8; // start over!
-			m_endIndex = 29;
+			m_commandIndex = 5; // start over!
+			m_endIndex = 26;
 		}
 	}
 
