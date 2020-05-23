@@ -2,21 +2,18 @@
 #include <avr/pgmspace.h>
 
 static const Command m_command[] PROGMEM = {
-	//----------Setup [0,5]----------
-	// Connect controller in Change Grip/Order
-	{NOTHING,     30},
-	{TRIGGERS,    30},
-	{A,           40},
-	{B,           40},
-	{HOME,         1},
-	{NOTHING,    120},
+	//----------Setup [0, 2]----------
+  // Press B once to connect
+	{NOTHING, 30},
+	{B, 1},
+	{NOTHING, 1},
 
 	// Open menu
-	{X,            1}, // 6 - open menu
+	{X,            1}, // 3 - open menu
 	{NOTHING,     20},
 
 	// Fly to day care center in Bridge Field
-	{A,            1}, // 8 - select town map
+	{A,            1}, // 5 - select town map
 	{NOTHING,    120},
 	{A,            1}, // select day care center
 	{NOTHING,     40},
@@ -30,7 +27,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING,     20},
 
 	// Take egg OR leave if no egg is ready
-	{A,            1}, // 18 - talk to day-care lady
+	{A,            1}, // 15 - talk to day-care lady
 	{NOTHING,     40},
 	{A,            1}, // Yes to take egg (if no egg, advances dialogue)
 	{NOTHING,    130}, // wait for jingle
@@ -42,15 +39,15 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING,     15},
 
 	// go to spinning spot
-	{UP,          10}, // 28
-	{UP_RIGHT,   110}, // 29 - move to spinning spot
+	{UP,          10}, // 25
+	{UP_RIGHT,   110}, // 26 - move to spinning spot
 
 	// spinner
-	{ZL,           1}, // 30 - ZL repurposed to be UP_LEFT + A
-	{UP_LEFT,     19}, // 31 - go to 30 until done spinning, then if we need more eggs, go to 6, if not, go to 32
+	{ZL,           1}, // 27 - ZL repurposed to be UP_LEFT + A
+	{UP_LEFT,     19}, // 28 - go to 27 until done spinning, then if we need more eggs, go to 3, if not, go to 29
 
 	// Put hatched mons away
-	{NOTHING,     20}, // 32
+	{NOTHING,     20}, // 29
 	{B,            1},
 	{NOTHING,     20},
 	{X,            1}, // Open menu
@@ -82,30 +79,30 @@ static const Command m_command[] PROGMEM = {
 	{DOWN,         1},
 	{NOTHING,      1},
 	{A,            1}, // select all hatched mons in party
-	{NOTHING,     10}, // 64
+	{NOTHING,     10}, // 61
 
 	// Position selected mons into box
-	{RIGHT,        1}, // 65
-	{NOTHING,     10}, // 66 - go to 65 if we need to keep going right, else go to 67
+	{RIGHT,        1}, // 62
+	{NOTHING,     10}, // 63 - go to 62 if we need to keep going right, else go to 61
 
 	// Drop em
-	{UP,           1}, // 67 - position cursor
+	{UP,           1}, // 64 - position cursor
 	{NOTHING,     10},
 	{A,            1}, // drop selected mons into box
-	{NOTHING,     40}, // 70 - if we are at the end of the box, go to 71, else go to 73
+	{NOTHING,     40}, // 67 - if we are at the end of the box, go to 68, else go to 70
 
 	// Position to next box if we need to
-	{R,            1}, // 71
-	{NOTHING,     60}, // 72
+	{R,            1}, // 68
+	{NOTHING,     60}, // 69
 
-	{B,            1}, // 73 - exit box menu
+	{B,            1}, // 70 - exit box menu
 	{NOTHING,    120},
 	{B,            1}, // exit pokemon menu
 	{NOTHING,    120},
 	{DOWN,         1}, // position cursor
 	{NOTHING,      1},
 	{LEFT,         1}, // position cursor to town map
-	{NOTHING,      1}, // 80 - go to 8
+	{NOTHING,      1}, // 77 - go to 5
 
 	// last instruction, basically stays here forever if we hit this
 	{NOTHING,   5200}
