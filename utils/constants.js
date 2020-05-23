@@ -28,6 +28,7 @@ const configTypes = {
   m_columnsOfEggs: 'uint8_t',
   m_deleteCount: 'unsigned int',
   m_addFriend: 'bool',
+  m_titleScreenBuffer: 'bool',
 };
 
 module.exports = {

@@ -488,7 +488,9 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 	if (commandIndex == 4)
 	{
 		tempCommand.duration = m_internetTime;
-	}
+	} else if (commandIndex == 66 && m_titleScreenBuffer) {
+    tempCommand.duration = 1000;
+  }
 
 	if (durationCount > tempCommand.duration)
 	{
