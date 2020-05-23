@@ -432,13 +432,85 @@ export const botConfigs = [
             value: 7,
           },
         ],
-        value: 0,
+        value: 3,
       },
       {
         param: 'm_columnsOfEggs',
         name: 'Columns of Eggs',
         type: 'number',
         value: 6,
+      },
+    ],
+  },
+  {
+    name: 'Infinite Egg Hatcher (BETA)',
+    target: 'InfiniteHatcher',
+    description: 'This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast" and nicknames are set to "Don\'t Give"',
+      'Have only one Pokemon in your party, and that Pokemon must have the Flame Body ability',
+      'Make sure that the Pokemon you are hatching is already registered in your Pokedex',
+      'Go to Bridge Field and get on your bike',
+      'Ensure that you are not conneced to the Internet',
+      'Your Pokemon icon in the game menu MUST be in the top row, second column',
+      'Your Town Map icon in the game menu MUST be in the second row, first column',
+      'Ensure that all your empty boxes are adjacent, and that your cursor is over the top-left slot in the first empty box (the game remembers its position)',
+      'Ensure that your menu cursor is over Town Map (the game remembers its position)',
+      'An egg should be ready to pick up at the nursery (not strictly necessary, but you will have an empty slot otherwise)',
+      'Plug the bot in to begin the loop',
+    ],
+    botActions: [
+      'The bot will open the Town Map and taxi to Bridge Field to reset position',
+      'It will then continuously pick up eggs, hatch them, and drop them off in your boxes',
+      'Once the set number of boxes has been filled, it will stop',
+    ],
+    configFields: [
+      {
+        param: 'm_eggStepGroup',
+        name: 'Egg Group Steps',
+        description: 'Use Serebii or Bulbapedia to figure out how many steps your Pokemon\'s Egg Group takes to hatch.',
+        type: 'select',
+        options: [
+          {
+            name: '1280 Steps',
+            value: 0,
+          },
+          {
+            name: '2560 Steps',
+            value: 1,
+          },
+          {
+            name: '3840 Steps',
+            value: 2,
+          },
+          {
+            name: '5120 Steps',
+            value: 3,
+          },
+          {
+            name: '6400 Steps',
+            value: 4,
+          },
+          {
+            name: '7680 Steps',
+            value: 5,
+          },
+          {
+            name: '8960 Steps',
+            value: 6,
+          },
+          {
+            name: '10240 Steps',
+            value: 7,
+          },
+        ],
+        value: 3,
+      },
+      {
+        param: 'm_boxesToFill',
+        name: 'Boxes to Fill',
+        type: 'number',
+        value: 3,
       },
     ],
   },
@@ -531,4 +603,3 @@ export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
-export const wattCollectionTime = 10.027;

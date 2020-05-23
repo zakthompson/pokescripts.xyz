@@ -17,7 +17,9 @@ these buttons for our use.
 */
 
 #include <stdlib.h>
-#include "Joystick.h"
+#include "../Joystick.h"
+#include "Commands.h"
+#include "Config.h"
 
 /*------------------------------------------*/
 // INSTRUCTIONS
@@ -40,7 +42,7 @@ these buttons for our use.
 //    the best setup, you will likely only hatch ~9 eggs per two cycles, and not 10. The bot cannot
 //    know if we pick up an egg or not, so we assume that we always get an egg. You will most definitely
 //    have some empty spaces in your boxes after running this for a while, but it can't be helped.
-// -> For reasons mentioned above, it is highly recommended that you have the oval charm. 
+// -> For reasons mentioned above, it is highly recommended that you have the oval charm.
 // -> Adjust the value for NUMBER_OF_BOXES_TO_FILL below to the number of sequential empty boxes you
 //    have available.
 // -> The table below shows the number of steps to hatch an egg, and then the recommended settings based on
@@ -53,122 +55,11 @@ these buttons for our use.
 //    can be found here: https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_Egg_cycles
 // -> 5120 steps - HATCHING_TIME_SEC = 145, MAX_NUM_OF_EGGS = 5 (time to fill a box ~29 mins)
 
-#define HATCHING_TIME_SEC 145      // seconds for hatching
+/* #define HATCHING_TIME_SEC 145      // seconds for hatching */
 #define MAX_NUM_OF_EGGS 5          // number of eggs to hold before hatching
-#define NUMBER_OF_BOXES_TO_FILL 10 // how many empty boxes are available to be filled
+#define HATCHING_TIME_SEC 49
 
 /*------------------------------------------*/
-
-static const Command commands[] = {
-	//----------Setup [0,5]----------
-	// Connect controller in Change Grip/Order
-	{NOTHING,     30},
-	{TRIGGERS,    30},
-	{A,           40},
-	{B,           40},
-	{HOME,         1},
-	{NOTHING,    120},
-	
-	// Open menu
-	{X,            1}, // 6 - open menu
-	{NOTHING,     20},	
-	
-	// Fly to day care center in Bridge Field
-	{A,            1}, // 8 - select town map
-	{NOTHING,    120},
-	{A,            1}, // select day care center
-	{NOTHING,     40},
-	{A,            1}, // confirm
-	{NOTHING,    120},
-	
-	// Ride to day care lady
-	{LEFT,         1},
-	{DOWN,        26},
-	{RIGHT,        6},
-	{NOTHING,     20},
-	
-	// Take egg OR leave if no egg is ready
-	{A,            1}, // 18 - talk to day-care lady
-	{NOTHING,     40},
-	{A,            1}, // Yes to take egg (if no egg, advances dialogue)
-	{NOTHING,    130}, // wait for jingle
-	{B,            1}, // advance dialogue (or leave if no egg)
-	{NOTHING,     60},
-	{B,            1}, // advance dialogue	
-	{NOTHING,     60},
-	{B,            1}, // close dialogue	
-	{NOTHING,     15},	
-	
-	// go to spinning spot
-	{UP,          10}, // 28
-	{UP_RIGHT,   110}, // 29 - move to spinning spot
-	
-	// spinner
-	{ZL,           1}, // 30 - ZL repurposed to be UP_LEFT + A
-	{UP_LEFT,     19}, // 31 - go to 30 until done spinning, then if we need more eggs, go to 6, if not, go to 32
-	
-	// Put hatched mons away
-	{NOTHING,     20}, // 32
-	{B,            1}, 
-	{NOTHING,     20}, 
-	{X,            1}, // Open menu
-	{NOTHING,     20},
-	{RIGHT,        1}, // cursor right
-	{NOTHING,      1},
-	{UP,           1}, // cursor up, to pokemon menu
-	{NOTHING,      1},
-	{A,            1}, // select pokemon menu
-	{NOTHING,    120},
-	{R,            1}, // go to boxes
-	{NOTHING,    120},
-	{LEFT,         1},
-	{NOTHING,      1},
-	{DOWN,         1}, // cursor over first hatched mon
-	{NOTHING,      1},
-	{Y,            1}, // advance cursor type
-	{NOTHING,      1},
-	{Y,            1}, // advance cursor type to multi-select
-	{NOTHING,      1},
-	{A,            1}, // start multi-selecting
-	{NOTHING,      1},
-	{DOWN,         1},
-	{NOTHING,      1},
-	{DOWN,         1},
-	{NOTHING,      1},
-	{DOWN,         1},
-	{NOTHING,      1},
-	{DOWN,         1},
-	{NOTHING,      1},
-	{A,            1}, // select all hatched mons in party
-	{NOTHING,     10}, // 64
-	
-	// Position selected mons into box
-	{RIGHT,        1}, // 65
-	{NOTHING,     10}, // 66 - go to 65 if we need to keep going right, else go to 67
-	
-	// Drop em
-	{UP,           1}, // 67 - position cursor
-	{NOTHING,     10},
-	{A,            1}, // drop selected mons into box
-	{NOTHING,     40}, // 70 - if we are at the end of the box, go to 71, else go to 73
-	
-	// Position to next box if we need to
-	{R,            1}, // 71
-	{NOTHING,     60}, // 72
-	
-	{B,            1}, // 73 - exit box menu
-	{NOTHING,    120},
-	{B,            1}, // exit pokemon menu
-	{NOTHING,    120},
-	{DOWN,         1}, // position cursor
-	{NOTHING,      1},
-	{LEFT,         1}, // position cursor to town map
-	{NOTHING,      1}, // 80 - go to 8
-	
-	// last instruction, basically stays here forever if we hit this
-	{NOTHING,   5200}	
-};
-
 
 // Main entry point.
 int main(void) {
@@ -287,7 +178,7 @@ USB_JoystickReport_Input_t last_report;
 
 int durationCount = 0;
 
-const int8_t LAST_COMMAND = (sizeof(commands) / sizeof(commands[0])) - 1; // used for debugging
+const int8_t LAST_COMMAND = (sizeof(m_command) / sizeof(m_command[0])) - 1; // used for debugging
 
 int8_t m_commandIndex = 0;    // current executing command
 int8_t m_endIndex = 29;       // last command to execute in sequence, then we check for new command
@@ -317,37 +208,37 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		echoes--;
 		return;
 	}
-	
+
 	// quit executing if we are at the last command
-	if ((m_commandIndex == LAST_COMMAND) && (commands[m_commandIndex].button == NOTHING))
+	if ((m_commandIndex == LAST_COMMAND) && (m_command[m_commandIndex].button == NOTHING))
 	{
 		return;
 	}
-	
+
 	// quit executing if we filled all the boxes
-	if (m_boxesFilled >= NUMBER_OF_BOXES_TO_FILL) return;
+	if (m_boxesFilled >= m_boxesToFill) return;
 
 	// Get the next command sequence (new start and end)
 	if (m_commandIndex == -1)
-	{		
+	{
 		if (m_endIndex == 29) // we just picked up an egg (hopefully)
 		{
 		    m_eggCount++;
 
 			if (m_eggCount < MAX_NUM_OF_EGGS)
 			{
-				m_commandIndex = 30; // spin 
+				m_commandIndex = 30; // spin
 				m_endIndex = 31;
 				m_spinCount = 0;
 				m_spinMax = 14; // 2 "spins" per second (7 seconds should be enough for next egg)
 			}
-			else 
+			else
 			{
 				m_phase = 1; // set to hatching phase
 				m_commandIndex = 30; // spin
 				m_endIndex = 31;
 				m_spinCount = 0;
-				m_spinMax = HATCHING_TIME_SEC * 2; // 2 "spins" per second
+				m_spinMax = (HATCHING_TIME_SEC * m_eggStepGroup) * 2; // 2 "spins" per second
 			}
 		}
 		else if (m_endIndex == 31) // We are spinning
@@ -407,10 +298,10 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			m_columnPosition = 0;
 			m_commandIndex = 8; // start over!
 			m_endIndex = 29;
-		}			
+		}
 	}
 
-	Buttons_t button = commands[m_commandIndex].button;
+	Buttons_t button = m_command[m_commandIndex].button;
 	if (button == UP)
 	{
 		ReportData->LY = STICK_MIN;
@@ -478,7 +369,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 	durationCount++;
 
-	if (durationCount > commands[m_commandIndex].duration)
+	if (durationCount > m_command[m_commandIndex].duration)
 	{
 		m_commandIndex++;
 		durationCount = 0;

@@ -29,6 +29,7 @@ const configTypes = {
   m_deleteCount: 'unsigned int',
   m_addFriend: 'bool',
   m_titleScreenBuffer: 'bool',
+  m_boxesToFill: 'uint8_t',
 };
 
 module.exports = {

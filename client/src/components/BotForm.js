@@ -22,7 +22,6 @@ import {
   eggCollectTime,
   eggColumnHatchTime,
   deleteFriendTime,
-  wattCollectionTime,
 } from '../utils/constants';
 
 export default function BotForm({ state, setState, onSubmit, dateFormat }) {
