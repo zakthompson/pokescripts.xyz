@@ -26,6 +26,7 @@ The instructions for putting your microcontroller in DFU mode and flashing firmw
 * **EggCollector**: Automatically collect eggs
 * **EggHatcher**: Batch hatch eggs
 * **FriendDeleteAdd**: Quickly remove as many friends as you'd like, and optionally add more
+* **InifiniteHatcher**: Continously collect and hatch eggs using a single bot
 
 Each of these have instructions written in the README in their folder. Several also have configuration options that you will need to set in the `Config.h` file in their folder.
 
@@ -54,5 +55,6 @@ These scripts originate from various people, and have been tweaked, modified and
 * [bertrandom](https://github.com/bertrandom)
 * [hoskinsw](https://github.com/hoskinsw)
 * [brianuuuSonic](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
-* [plus](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
-* [Pedro](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
+* [kirbunkle](https://github.com/kirbunkle)
+* plus
+* Pedro
