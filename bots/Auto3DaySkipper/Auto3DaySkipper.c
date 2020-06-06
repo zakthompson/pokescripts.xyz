@@ -194,8 +194,6 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					// Done skipping 3 days, user should check the pokemon
 					commandIndex = 75;
 					m_endIndex = 110;
-
-					m_sequence = 19;
 				}
 				else if (m_sequence == 19)
 				{
