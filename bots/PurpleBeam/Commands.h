@@ -1,4 +1,4 @@
-#include "../../Joystick.h"
+#include "../Joystick.h"
 #include <avr/pgmspace.h>
 
 static const Command m_command[] PROGMEM = {
