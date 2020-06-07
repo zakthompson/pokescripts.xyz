@@ -16,7 +16,6 @@ exception of Home and Capture. Descriptor modification allows us to unlock
 these buttons for our use.
 */
 
-#include <stdlib.h>
 #include "../Joystick.h"
 #include "Commands.h"
 #include "Config.h"
@@ -59,11 +58,8 @@ these buttons for our use.
 #define MAX_NUM_OF_EGGS 5          // number of eggs to hold before hatching
 #define HATCHING_TIME_SEC 49
 
-/*------------------------------------------*/
-
 // Main entry point.
 int main(void) {
-	//srand(m_seed);
 	// We'll start by performing hardware and peripheral setup.
 	SetupHardware();
 	// We'll then enable global interrupts for our use.
@@ -172,16 +168,23 @@ void HID_Task(void) {
 	}
 }
 
+typedef enum {
+	PROCESS,
+	DONE
+} State_t;
+State_t state = PROCESS;
+
 #define ECHOES 2
-uint8_t echoes = 0;
+int echoes = 0;
 USB_JoystickReport_Input_t last_report;
 
+Command tempCommand;
 int durationCount = 0;
 
 const int8_t LAST_COMMAND = (sizeof(m_command) / sizeof(m_command[0])) - 1; // used for debugging
 
 int8_t m_commandIndex = 0;    // current executing command
-int8_t m_endIndex = 29;       // last command to execute in sequence, then we check for new command
+int8_t m_endIndex = 26;       // last command to execute in sequence, then we check for new command
 int8_t m_eggCount = 0;        // how many eggs we are holding right now
 int16_t m_spinCount = 0;      // how many times we have spun this iteration
 int16_t m_spinMax = 0;        // how many times we need to spin to move on
@@ -209,176 +212,215 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		return;
 	}
 
-	// quit executing if we are at the last command
-	if ((m_commandIndex == LAST_COMMAND) && (m_command[m_commandIndex].button == NOTHING))
+	// States and moves management
+	switch (state)
 	{
-		return;
-	}
-
-	// quit executing if we filled all the boxes
-	if (m_boxesFilled >= m_boxesToFill) return;
-
-	// Get the next command sequence (new start and end)
-	if (m_commandIndex == -1)
-	{
-		if (m_endIndex == 26) // we just picked up an egg (hopefully)
-		{
-		    m_eggCount++;
-
-			if (m_eggCount < MAX_NUM_OF_EGGS)
+		case PROCESS:
+			// quit executing if we are at the last command
+			if ((m_commandIndex == LAST_COMMAND) && (m_command[m_commandIndex].button == NOTHING))
 			{
-				m_commandIndex = 27; // spin
-				m_endIndex = 28;
-				m_spinCount = 0;
-				m_spinMax = 14; // 2 "spins" per second (7 seconds should be enough for next egg)
+				return;
 			}
-			else
+
+			// quit executing if we filled all the boxes
+			if (m_boxesFilled >= m_boxesToFill) return;
+
+			// Get the next command sequence (new start and end)
+			if (m_commandIndex == -1)
 			{
-				m_phase = 1; // set to hatching phase
-				m_commandIndex = 27; // spin
-				m_endIndex = 28;
-				m_spinCount = 0;
-				m_spinMax = (HATCHING_TIME_SEC * m_eggStepGroup) * 2; // 2 "spins" per second
-			}
-		}
-		else if (m_endIndex == 28) // We are spinning
-		{
-			m_spinCount++;
-			if (m_spinCount < m_spinMax)
-			{
-				m_commandIndex = 27; // keep spinning
-			}
-			else
-			{
-				if (m_phase == 0) // we are still collecting
+				if (m_endIndex == 26) // we just picked up an egg (hopefully)
 				{
-					m_commandIndex = 3; // go back to get an egg
+				    m_eggCount++;
+
+					if (m_eggCount < MAX_NUM_OF_EGGS)
+					{
+						m_commandIndex = 27; // spin
+						m_endIndex = 28;
+						m_spinCount = 0;
+						m_spinMax = 14; // 2 "spins" per second (7 seconds should be enough for next egg)
+					}
+					else
+					{
+						m_phase = 1; // set to hatching phase
+						m_commandIndex = 27; // spin
+						m_endIndex = 28;
+						m_spinCount = 0;
+						m_spinMax = (HATCHING_TIME_SEC * m_eggStepGroup) * 2; // 2 "spins" per second
+					}
+				}
+				else if (m_endIndex == 28) // We are spinning
+				{
+					m_spinCount++;
+					if (m_spinCount < m_spinMax)
+					{
+						m_commandIndex = 27; // keep spinning
+					}
+					else
+					{
+						if (m_phase == 0) // we are still collecting
+						{
+							m_commandIndex = 3; // go back to get an egg
+							m_endIndex = 26;
+						}
+						else
+						{
+							m_commandIndex = 29; // put mon in boxes
+							m_endIndex = 63;
+							m_phase = 0; // set to egg collecting phase
+						}
+					}
+				}
+				else if (m_endIndex == 63) // We opened the pokemon menu, selected the pokemon, and moved right
+				{
+					m_columnPosition++;
+					if (m_columnPosition < m_nextColumn)
+					{
+						m_commandIndex = 62; // we need to keep moving right
+					}
+					else
+					{
+						m_commandIndex = 64; // we are at an open column, put them in
+						m_endIndex = 67;
+					}
+				}
+				else if (m_endIndex == 67) // We just put the pokemon in the box
+				{
+					if (m_nextColumn < 6)
+					{
+						m_commandIndex = 70; // just quit the menu
+						m_endIndex = 77;
+						m_nextColumn++;
+					}
+					else
+					{
+						m_commandIndex = 68; // advance to the next box, then quit the menu
+						m_endIndex = 77;
+						m_nextColumn = 1;
+						m_boxesFilled++;
+					}
+				}
+				else if (m_endIndex == 77) // We finished putting away the hatched mon and are in the menu
+				{
+					m_eggCount = 0;
+					m_columnPosition = 0;
+					m_commandIndex = 5; // start over!
 					m_endIndex = 26;
 				}
-				else
+			}
+		
+			memcpy_P(&tempCommand, &(m_command[m_commandIndex]), sizeof(Command));
+			switch (tempCommand.button)
+			{
+				case UP:
+					ReportData->LY = STICK_MIN;				
+					break;
+
+				case LEFT:
+					ReportData->LX = STICK_MIN;				
+					break;
+
+				case DOWN:
+					ReportData->LY = STICK_MAX;				
+					break;
+
+				case RIGHT:
+					ReportData->LX = STICK_MAX;				
+					break;
+
+				case UP_RIGHT:
+					ReportData->LY = STICK_MIN;
+					ReportData->LX = STICK_MAX;
+					break;
+
+				case UP_LEFT:
+					ReportData->LY = STICK_MIN;
+					ReportData->RX = STICK_MIN;
+					break;
+
+				case X:
+					ReportData->Button |= SWITCH_X;
+					break;
+
+				case Y:
+					ReportData->Button |= SWITCH_Y;
+					break;
+
+				case A:
+					ReportData->Button |= SWITCH_A;
+					break;
+
+				case B:
+					ReportData->Button |= SWITCH_B;
+					break;
+
+				case L:
+					ReportData->Button |= SWITCH_L;
+					break;
+
+				case R:
+					ReportData->Button |= SWITCH_R;
+					break;
+
+				case ZL:
+					ReportData->Button |= SWITCH_A;
+					ReportData->LY = STICK_MIN;
+					ReportData->RX = STICK_MIN;
+					break;
+
+				case ZR:
+					ReportData->Button |= SWITCH_ZR;
+					break;
+
+				case MINUS:
+					ReportData->Button |= SWITCH_MINUS;
+					break;
+
+				case PLUS:
+					ReportData->Button |= SWITCH_PLUS;
+					break;
+
+				case LCLICK:
+					ReportData->Button |= SWITCH_LCLICK;
+					break;
+
+				case RCLICK:
+					ReportData->Button |= SWITCH_RCLICK;
+					break;
+
+				case TRIGGERS:
+					ReportData->Button |= SWITCH_L | SWITCH_R;
+					break;
+
+				case HOME:
+					ReportData->Button |= SWITCH_HOME;
+					break;
+
+				case CAPTURE:
+					ReportData->Button |= SWITCH_CAPTURE;
+					break;
+
+				default:
+					// really nothing lol
+					break;
+			}
+
+			durationCount++;
+
+			if (durationCount > tempCommand.duration)
+			{
+				m_commandIndex++;
+				durationCount = 0;		
+
+				// We reached the end of a command sequence
+				if (m_commandIndex > m_endIndex)
 				{
-					m_commandIndex = 29; // put mon in boxes
-					m_endIndex = 63;
-					m_phase = 0; // set to egg collecting phase
-				}
+					m_commandIndex = -1;
+				}		
 			}
-		}
-		else if (m_endIndex == 63) // We opened the pokemon menu, selected the pokemon, and moved right
-		{
-			m_columnPosition++;
-			if (m_columnPosition < m_nextColumn)
-			{
-				m_commandIndex = 62; // we need to keep moving right
-			}
-			else
-			{
-				m_commandIndex = 64; // we are at an open column, put them in
-				m_endIndex = 67;
-			}
-		}
-		else if (m_endIndex == 67) // We just put the pokemon in the box
-		{
-			if (m_nextColumn < 6)
-			{
-				m_commandIndex = 70; // just quit the menu
-				m_endIndex = 77;
-				m_nextColumn++;
-			}
-			else
-			{
-				m_commandIndex = 68; // advance to the next box, then quit the menu
-				m_endIndex = 77;
-				m_nextColumn = 1;
-				m_boxesFilled++;
-			}
-		}
-		else if (m_endIndex == 77) // We finished putting away the hatched mon and are in the menu
-		{
-			m_eggCount = 0;
-			m_columnPosition = 0;
-			m_commandIndex = 5; // start over!
-			m_endIndex = 26;
-		}
-	}
 
-	Buttons_t button = m_command[m_commandIndex].button;
-	if (button == UP)
-	{
-		ReportData->LY = STICK_MIN;
-	}
-	else if (button == LEFT)
-	{
-		ReportData->LX = STICK_MIN;
-	}
-	else if (button == DOWN)
-	{
-		ReportData->LY = STICK_MAX;
-	}
-	else if (button == RIGHT)
-	{
-		ReportData->LX = STICK_MAX;
-	}
-	else if (button == UP_RIGHT)
-	{
-		ReportData->LY = STICK_MIN;
-		ReportData->LX = STICK_MAX;
-	}
-	else if (button == UP_LEFT)
-	{
-		ReportData->LY = STICK_MIN;
-		ReportData->RX = STICK_MIN;
-	}
-	else if (button == ZL)
-	{
-		ReportData->Button |= SWITCH_A;
-		ReportData->LY = STICK_MIN;
-		ReportData->RX = STICK_MIN;
-	}
-	else if (button == X)
-	{
-		ReportData->Button |= SWITCH_X;
-	}
-	else if (button == Y)
-	{
-		ReportData->Button |= SWITCH_Y;
-	}
-	else if (button == A)
-	{
-		ReportData->Button |= SWITCH_A;
-	}
-	else if (button == B)
-	{
-		ReportData->Button |= SWITCH_B;
-	}
-    else if (button == R)
-	{
-		ReportData->Button |= SWITCH_R;
-	}
-	else if (button == PLUS)
-	{
-		ReportData->Button |= SWITCH_PLUS;
-	}
-	else if (button == TRIGGERS)
-	{
-		ReportData->Button |= SWITCH_L | SWITCH_R;
-	}
-	else if (button == HOME)
-	{
-		ReportData->Button |= SWITCH_HOME;
-	}
+			break;
 
-	durationCount++;
-
-	if (durationCount > m_command[m_commandIndex].duration)
-	{
-		m_commandIndex++;
-		durationCount = 0;
-
-		// We reached the end of a command sequence
-		if (m_commandIndex > m_endIndex)
-		{
-			m_commandIndex = -1;
-		}
+		case DONE: return;
 	}
 
 	// Prepare to echo this report
