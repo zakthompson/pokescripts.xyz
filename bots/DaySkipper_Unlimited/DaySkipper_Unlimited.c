@@ -176,7 +176,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_endIndex == 49)
+				if (m_endIndex == 47)
 				{
 					// Finish
 					state = DONE;
@@ -188,17 +188,17 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					if (m_JP_EU_US == 0)
 					{
 						commandIndex = 9;
-						m_endIndex = 19;
+						m_endIndex = 17;
 					}
 					else if (m_JP_EU_US == 1)
 					{
-						commandIndex = 20;
-						m_endIndex = 32;
+						commandIndex = 18;
+						m_endIndex = 30;
 					}
 					else // if (m_JP_EU_US == 2)
 					{
-						commandIndex = 33;
-						m_endIndex = 45;
+						commandIndex = 31;
+						m_endIndex = 43;
 					}
 
 					if (m_day == 31)
@@ -216,8 +216,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else //if (m_dayToSkip == 0)
 				{
 					// Go back to game
-					commandIndex = 46;
-					m_endIndex = 49;
+					commandIndex = 44;
+					m_endIndex = 47;
 				}
 			}
 
