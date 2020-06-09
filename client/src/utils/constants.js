@@ -453,7 +453,7 @@ export const botConfigs = [
   {
     name: 'Infinite Egg Hatcher (BETA)',
     target: 'InfiniteHatcher',
-    description: 'This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery.',
+    description: `This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery. Unfortunately, this bot only works with Pokemon who take 2560 steps or higher to hatch. Additionally, if you are doing a 2560-step Pokemon, only 3 eggs will be collected each cycle, meaning 12 slots will be empty each box.`,
     instructions: [
       'Ensure that your text speed is set to "Fast" and nicknames are set to "Don\'t Give"',
       'Have only one Pokemon in your party, and that Pokemon must have the Flame Body ability',
@@ -479,10 +479,6 @@ export const botConfigs = [
         description: 'Use Serebii or Bulbapedia to figure out how many steps your Pokemon\'s Egg Group takes to hatch.',
         type: 'select',
         options: [
-          {
-            name: '1280 Steps',
-            value: 0,
-          },
           {
             name: '2560 Steps',
             value: 1,
@@ -630,3 +626,12 @@ export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
+export const infiniteHatcherTimes = [
+  18,
+  28,
+  30,
+  32,
+  33,
+  35,
+  37,
+];
