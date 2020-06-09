@@ -176,7 +176,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_endIndex == 82)
+				if (m_endIndex == 47)
 				{
 					// Finish
 					state = DONE;
@@ -188,17 +188,17 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					if (m_JP_EU_US == 0)
 					{
 						commandIndex = 9;
-						m_endIndex = 26;
+						m_endIndex = 17;
 					}
 					else if (m_JP_EU_US == 1)
 					{
-						commandIndex = 27;
-						m_endIndex = 52;
+						commandIndex = 18;
+						m_endIndex = 30;
 					}
 					else // if (m_JP_EU_US == 2)
 					{
-						commandIndex = 53;
-						m_endIndex = 78;
+						commandIndex = 31;
+						m_endIndex = 43;
 					}
 
 					if (m_day == 31)
@@ -216,8 +216,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else //if (m_dayToSkip == 0)
 				{
 					// Go back to game
-					commandIndex = 79;
-					m_endIndex = 82;
+					commandIndex = 44;
+					m_endIndex = 47;
 				}
 			}
 
@@ -226,6 +226,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
 				case UP:
 					ReportData->LY = STICK_MIN;
+					ReportData->Button |= SWITCH_A;
 					break;
 
 				case LEFT:
@@ -252,12 +253,17 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->Button |= SWITCH_A;
 					break;
 
-				/*case B:
-					ReportData->Button |= SWITCH_B;
+				case L:
+					ReportData->RX = STICK_MIN;
 					break;
 
-				case L:
-					ReportData->Button |= SWITCH_L;
+				case R:
+          ReportData->Button |= SWITCH_A;
+          ReportData->RX = STICK_MAX;
+					break;
+
+				/*case B:
+					ReportData->Button |= SWITCH_B;
 					break;
 
 				case R:

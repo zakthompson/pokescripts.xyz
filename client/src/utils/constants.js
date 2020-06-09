@@ -613,7 +613,7 @@ export const dateFormatOptions = [
 ];
 
 export const dateSkipTimings = {
-  0: 30.99,
+  0: 20.5,
   1: 42.51,
   2: 42.51,
 };
