@@ -613,9 +613,9 @@ export const dateFormatOptions = [
 ];
 
 export const dateSkipTimings = {
-  0: 30.99,
-  1: 42.51,
-  2: 42.51,
+  0: 17.75,
+  1: 23.8,
+  2: 23.8,
 };
 export const fossilReviveTime = 18.468;
 export const autoLotoTime = 21.204;
