@@ -22,6 +22,7 @@ import {
   eggCollectTime,
   eggColumnHatchTime,
   deleteFriendTime,
+  infiniteHatcherTimes,
 } from '../utils/constants';
 
 export default function BotForm({ state, setState, onSubmit, dateFormat }) {
@@ -120,6 +121,8 @@ export default function BotForm({ state, setState, onSubmit, dateFormat }) {
                     totalSeconds = f.value * eggColumnHatchTime;
                   } else if (state.target === 'FriendDeleteAdd' && f.param === 'm_deleteCount') {
                     totalSeconds = f.value * deleteFriendTime;
+                  } else if (state.target === 'InfiniteHatcher' && f.param === 'm_boxesToFill') {
+                    totalSeconds = f.value * (infiniteHatcherTimes[state.configFields.find(f => f.param === 'm_eggStepGroup').value - 1] * 60);
                   }
                   if (totalSeconds) {
                     days = Math.floor(totalSeconds / 86400);

@@ -27,15 +27,15 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING,     20},
 
 	// Take egg OR leave if no egg is ready
-	{A,            1}, // 15 - talk to day-care lady
-	{NOTHING,     40},
-	{A,            1}, // Yes to take egg (if no egg, advances dialogue)
-	{NOTHING,    130}, // wait for jingle
-	{B,            1}, // advance dialogue (or leave if no egg)
-	{NOTHING,     60},
-	{B,            1}, // advance dialogue
-	{NOTHING,     60},
-	{B,            1}, // close dialogue
+	{A, 26},		// Talk
+	{NOTHING, 1},
+	{A, 120},		// Yes
+	{NOTHING, 1},
+	{B, 60},		// You received an Egg from the Nursery worker!
+	{NOTHING, 1},
+	{B, 50},		// The Egg has been sent to a Box!
+	{NOTHING, 1},
+	{B, 5},			// Take good care of it, and raise it well!
 	{NOTHING,     15},
 
 	// go to spinning spot

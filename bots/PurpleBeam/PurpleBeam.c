@@ -1,5 +1,6 @@
 /*
-Pokemon Sword & Shield AUTO 3 Day Skipper - Proof-of-Concept
+Pokemon Sword & Shield auto purple beam reroller
+By exykai
 
 Based on the LUFA library's Low-Level Joystick Demo
 	(C) Dean Camera
@@ -148,7 +149,6 @@ int durationCount = 0;
 // start and end index of "Setup"
 int commandIndex = 0;
 int m_endIndex = 2;
-int m_sequence = 0;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -176,102 +176,28 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				m_sequence++;
-				if (m_sequence == 1)
-				{
-					// Sync and unsync time
-					commandIndex = 3;
-					m_endIndex = 34;
-				}
-				else if (m_sequence == 2)
-				{
-					// Back to game after resetting time
-					commandIndex = 59;
-					m_endIndex = 62;
-				}
-				else if (m_sequence == 18)
-				{
-					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 75;
-					m_endIndex = 110;
-				}
-				else if (m_sequence == 19)
-				{
-					// see if we need to wait a bit longer for the game to start up
-					if (m_titleScreenBuffer)
-					{
-						commandIndex = 111; // do the extra wait
-					}
-					else
-					{
-						commandIndex = 112; // skip the extra wait
-					}
-					m_endIndex = 113;
-					m_sequence = 0;
-				}
-				else if (m_sequence % 5 == 3)	// 3,8,13
-				{
-					// Collect watts and invite others
-					commandIndex = 67;
-					m_endIndex = 74;
-				}
-				else if (m_sequence % 5 == 4)	// 4,9,14
-				{
-					// Goto date and time 1
-					commandIndex = 3;
-					m_endIndex = 30;
-				}
-				else if (m_sequence % 5 == 0)	// 5,10,15
-				{
-					// Goto date and time 2
-					commandIndex = 35;
-					m_endIndex = 40;
-				}
-				else if (m_sequence % 5 == 1)	// 6,11,16
-				{
-					// Plus 1 year
-					if (m_JP_EU_US == 0)
-					{
-						commandIndex = 45;
-						m_endIndex = 56;
-					}
-					else if (m_JP_EU_US == 1)
-					{
-						commandIndex = 41;
-						m_endIndex = 52;
-					}
-					else // if (m_JP_EU_US == 2)
-					{
-						commandIndex = 41;
-						m_endIndex = 54;
-					}
-				}
-				else if (m_sequence % 5 == 2)	// 7,12,17
-				{
-					// Back to game and quit raid
-					commandIndex = 57;
-					m_endIndex = 66;
-				}
+				commandIndex = 3;
+				m_endIndex = 40;
 			}
-
+		
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));
 			switch (tempCommand.button)
 			{
-				case UP:
-					ReportData->LY = STICK_MIN;
+				/*case UP:
+					ReportData->LY = STICK_MIN;				
 					break;
 
-				/*case LEFT:
-					ReportData->LX = STICK_MIN;
-					break;*/
+				case LEFT:
+					ReportData->LX = STICK_MIN;				
+					break;
 
 				case DOWN:
-					ReportData->LY = STICK_MAX;
+					ReportData->LY = STICK_MAX;				
 					break;
 
 				case RIGHT:
-					ReportData->LX = STICK_MAX;
-					break;
+					ReportData->LX = STICK_MAX;				
+					break;*/
 
 				case X:
 					ReportData->Button |= SWITCH_X;
@@ -317,9 +243,9 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->Button |= SWITCH_LCLICK;
 					break;
 
-				/*case RCLICK:
+				case RCLICK:
 					ReportData->Button |= SWITCH_RCLICK;
-					break;*/
+					break;
 
 				case TRIGGERS:
 					ReportData->Button |= SWITCH_L | SWITCH_R;
@@ -343,13 +269,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (durationCount > tempCommand.duration)
 			{
 				commandIndex++;
-				durationCount = 0;
+				durationCount = 0;		
 
 				// We reached the end of a command sequence
 				if (commandIndex > m_endIndex)
 				{
 					commandIndex = -1;
-				}
+				}		
 			}
 
 			break;
