@@ -589,6 +589,25 @@ export const botConfigs = [
       },
     ],
   },
+  {
+    name: 'Purple Beam Hunter (NEW!)',
+    target: 'PurpleBeam',
+    description: 'This bot will repeatedly throw Wishing Pieces into an empty den, then exit out into the Home menu before saving can complete. You\'ll need to watch to see what kind of beam shows up, but hey, at least you don\'t have to use your hands.',
+    instructions: [
+      'Ensure that your text speed is set to "Slow"',
+      'Ensure that you are on your bike in front of an empty den',
+      'Ensure that the den has no Watts to collect',
+      'Ensure that you have at least 1 Wishing Piece',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'First, the bot will ring the bike bell to get your attention',
+      'It will then throw in a Wishing Piece and exit to Home before saving completes',
+      'If left for a few seconds, it will restart the game and begin the loop again',
+      'If you see a purple beam, simply unplug the bot to stop the loop',
+    ],
+    configFields: [],
+  },
 ];
 
 export const dateFormatOptions = [
