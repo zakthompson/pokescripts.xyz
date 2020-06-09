@@ -16,7 +16,15 @@ export const botConfigs = [
       'Lastly, it will ring the bike bell several times to get your attention on your shiny frame before checking the den',
       'If left alone, the loop will continue - unplug the bot if you see the Pokemon you want!',
     ],
-    configFields: [],
+    configFields: [
+      {
+        param: 'm_titleScreenBuffer',
+        name: 'Wait Longer at Title Screen',
+        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        type: 'bool',
+        value: 'false',
+      },
+    ],
   },
   {
     name: 'Auto Fossil Restore',
