@@ -127,7 +127,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 30},		// You gained 2,000W! (Delay longer for player to check)
 	{NOTHING, 300},
 
-	//----------Finish/Prepare SR [101,112]----------
+	//----------Finish/Prepare SR [101,113]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{X, 1},			// Close game
@@ -138,6 +138,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 50},
 	{A, 1},			// Pick User
 	{NOTHING, 720},
+	{NOTHING, 280}, // Extra wait time if m_titleScreenBuffer is true
 	{A, 1},			// Enter game
 	{NOTHING, 460}
 };
