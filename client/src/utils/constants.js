@@ -612,6 +612,12 @@ export const dateFormatOptions = [
   { name: 'US', value: 2 },
 ];
 
+export const mcuOptions = [
+  { name: 'atmega16u2 (UNO R3)', value: 'atmega16u2' },
+  { name: 'at90usb1286 (Teensy 2.0++)', value: 'at90usb1286' },
+  { name: 'atmega32u4 (Arduino Micro/Teensy 2.0)', value: 'atmega32u4' },
+];
+
 export const dateSkipTimings = {
   0: 17.75,
   1: 23.8,
