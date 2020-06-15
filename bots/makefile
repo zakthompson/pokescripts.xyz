@@ -31,6 +31,7 @@
 # InifiniteHatcher: Continously collect and hatch eggs using a single bot
 # AutoTournament: Repeatedly beat the championship tournament to grind orbs/apriballs
 # AutoBattleTower: Repeatedly battle in the Battle Tower to grind BP
+# GodEggDuplication: Automatically duplicate Pokemon using the God Egg glitch
 
 MCU          = atmega16u2
 ARCH         = AVR8

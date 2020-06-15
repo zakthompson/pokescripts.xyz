@@ -519,6 +519,35 @@ export const botConfigs = [
     ],
   },
   {
+    name: 'God Egg Duplication (NEW!)',
+    target: 'GodEggDuplication',
+    description: 'This bot automatically duplicates Pokemon using the God Egg exploit. It makes use of the Rotom bike\'s turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to duplicate, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target. Actually acquiring the God Egg is up to you.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Ensure that "Send to Boxes" is set to "Manual"',
+      'Your Rotom bike must be fully upgraded',
+      'Your party must be full of Pokemon, no eggs',
+      'The first Pokemon in your party must be the one you want to duplicate',
+      'Go to the Route 5 nursery, deposit God Egg and a Ditto, and charge up your Rotom bike boost',
+      'Cycle up to the left side of the nursery worker',
+      'Plug in the bot to start the loop',
+    ],
+    botActions: [
+      'The bot does a turbo boosted loop, then attempts to collect an egg',
+      'If an egg is collected, it will try to swap it with the first Pokemon in your party, thus duplicating that Pokemon',
+      'Once all attempts have been completed, it will go to the Home menu',
+    ],
+    configFields: [
+      {
+        param: 'm_maxCycle',
+        name: 'Attempts to Duplicate',
+        description: 'The bot will make this many attempts to duplicate a Pokemon. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it\'s recommended you monitor it.',
+        type: 'number',
+        value: 30,
+      },
+    ],
+  },
+  {
     name: 'Delete Friends',
     target: 'FriendDeleteAdd',
     description: 'This bot will delete the specified number of friends, and optionally add friends afterward. Note that it will also delete best friends if you aren\'t careful about how you use it!',

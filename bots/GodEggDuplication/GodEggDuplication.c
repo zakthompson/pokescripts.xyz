@@ -1,5 +1,5 @@
 /*
-Pokemon Sword & Shield Fast Egg Hatcher - Proof-of-Concept
+Pokemon Sword & Shield Pokemon Duplication - Proof-of-Concept
 
 Based on the LUFA library's Low-Level Joystick Demo
 	(C) Dean Camera
@@ -139,7 +139,7 @@ typedef enum {
 State_t state = PROCESS;
 
 #define ECHOES 2
-uint8_t echoes = 0;
+int echoes = 0;
 USB_JoystickReport_Input_t last_report;
 
 Command tempCommand;
@@ -148,13 +148,7 @@ int durationCount = 0;
 // start and end index of "Setup"
 int commandIndex = 0;
 int m_endIndex = 2;
-uint8_t m_sequence = 0;
-
-// currently hatching column (1-6,7-12,etc.)
-uint8_t m_column = 1;
-
-// Small loops for each egg group without losing turbo boost
-uint8_t m_smallCycle[] = {8,6,9,7,10,8,11,9};
+int m_cycle = 0;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -182,81 +176,32 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				m_sequence++;
-
-				if (m_endIndex == 5)
+				if (m_endIndex == 19)
 				{
-					// FINISH
 					state = DONE;
 					break;
 				}
-				else if (m_column > m_columnsOfEggs)
+				else if (m_maxCycle > 0 && m_cycle >= m_maxCycle)
 				{
-					// Done press HOME
-					commandIndex = 4;
-					m_endIndex = 5;
-					break;
+					// Done
+					commandIndex = 3;
+					m_endIndex = 4;
 				}
-
-				if (m_sequence == 1)
+				else
 				{
-					// Pick up eggs from Box
-					commandIndex = 16 - ((m_column - 1) % 6) * 2;
-					m_endIndex = 28;
-				}
-				else if (m_sequence <= 16)
-				{
-					// turbo cycle count = m_eggStepGroup * 2 + 1
-					if (m_sequence == 2)
-					{
-						m_sequence += (14 - m_eggStepGroup * 2);
-					}
-
-					// Loop turbo cycle
-					commandIndex = 53;
-					m_endIndex = (m_sequence == 16) ? 59 : 58;
-				}
-				else if (m_sequence <= 30) // Max 14 small cycles
-				{
-					// Skip to amount of small cycles needed
-					if (m_sequence == 17)
-					{
-						m_sequence += (14 - m_smallCycle[m_eggStepGroup]);
-					}
-
-					// Do small loops at least 12 times
-					commandIndex = 60;
-					m_endIndex = 63;
-				}
-				else if (m_sequence <= 35)
-				{
-					// Hatch 5 eggs
-					commandIndex = 64;
-					m_endIndex = 66;
-				}
-				else if (m_sequence == 36)
-				{
-					// Go back to next to NPC
-					commandIndex = 67;
-					m_endIndex = 68;
-				}
-				else if (m_sequence == 37)
-				{
-					// Put eggs back to box
-					commandIndex = 29;
-					m_endIndex = (m_column % 6 == 0) ? 52 : 50;
-
-					// Back to start
-					m_column++;
-					m_sequence = 0;
+					// Cycle
+					commandIndex = 5;
+					m_endIndex = 27;
+					m_cycle++;
 				}
 			}
 
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));
 			switch (tempCommand.button)
 			{
-				case UP:
+				case UP: // Up-Right
 					ReportData->LY = STICK_MIN;
+					ReportData->LX = STICK_MAX;
 					break;
 
 				case LEFT:
@@ -271,13 +216,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LX = STICK_MAX;
 					break;
 
-				case X:
+				/*case X:
 					ReportData->Button |= SWITCH_X;
 					break;
 
 				case Y:
 					ReportData->Button |= SWITCH_Y;
-					break;
+					break;*/
 
 				case A:
 					ReportData->Button |= SWITCH_A;
@@ -287,12 +232,12 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->Button |= SWITCH_B;
 					break;
 
-				case R:
-					ReportData->Button |= SWITCH_R;
-					break;
-
 				/*case L:
 					ReportData->Button |= SWITCH_L;
+					break;
+
+				case R:
+					ReportData->Button |= SWITCH_R;
 					break;
 
 				case ZL:
@@ -327,11 +272,9 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->Button |= SWITCH_HOME;
 					break;
 
-				case CAPTURE: // Right-Down
-					ReportData->LY = 170;
-					ReportData->LX = STICK_MAX;
-					//ReportData->Button |= SWITCH_CAPTURE;
-					break;
+				/*case CAPTURE:
+					ReportData->Button |= SWITCH_CAPTURE;
+					break;*/
 
 				default:
 					// really nothing lol
