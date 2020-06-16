@@ -690,9 +690,9 @@ export const mcuOptions = [
 ];
 
 export const dateSkipTimings = {
-  0: 17.75,
-  1: 23.8,
-  2: 23.8,
+  0: 16.08,
+  1: 20.88,
+  2: 20.88,
 };
 export const fossilReviveTime = 18.468;
 export const autoLotoTime = 21.204;
@@ -712,3 +712,4 @@ export const infiniteHatcherTimes = [
   35,
   37,
 ];
+export const dupTime = 23.023;

@@ -23,6 +23,7 @@ import {
   eggColumnHatchTime,
   deleteFriendTime,
   infiniteHatcherTimes,
+  dupTime,
 } from '../utils/constants';
 
 export default function BotForm({ state, setState, onSubmit, dateFormat }) {
@@ -123,6 +124,8 @@ export default function BotForm({ state, setState, onSubmit, dateFormat }) {
                     totalSeconds = f.value * deleteFriendTime;
                   } else if (state.target === 'InfiniteHatcher' && f.param === 'm_boxesToFill') {
                     totalSeconds = f.value * (infiniteHatcherTimes[state.configFields.find(f => f.param === 'm_eggStepGroup').value - 1] * 60);
+                  } else if (state.target === 'GodEggDuplication' && f.param === 'm_maxCycle') {
+                    totalSeconds = f.value * dupTime;
                   }
                   if (totalSeconds) {
                     days = Math.floor(totalSeconds / 86400);
@@ -235,7 +238,7 @@ export default function BotForm({ state, setState, onSubmit, dateFormat }) {
                   {state.target === 'Auto3DaySkipper' && (
                     <Box direction="row" align="center">
                       <Text size="small" weight="bold" margin={{ right: '5px' }}>Approx. Time per Loop:</Text>
-                      <Text size="small">1 minute, 43 seconds</Text>
+                      <Text size="small">1 minute, 40 seconds</Text>
                     </Box>
                   )}
                   {state.target === 'AutoLoto' && (

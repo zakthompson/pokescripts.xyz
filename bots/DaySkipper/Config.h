@@ -1,5 +1,8 @@
-uint8_t m_JP_EU_US = 2; // 0 = JP, 1 = EU, 2 = US
-uint8_t m_day = 27; // Current day the Switch is set to
-uint8_t m_month = 3; // Current month the Switch is set to
-int m_year = 2020; // Current year the Switch is set to
-int m_dayToSkip = 4886; // Number of days to skip (max 22280)
+// WARNING: You are not adviced to change this manually
+// Please run AutoControllerHelper tool!!!
+
+uint8_t m_JP_EU_US = 1;
+uint8_t m_day = 13;
+uint8_t m_month = 6;
+int m_year = 2020;
+int m_dayToSkip = 984;
