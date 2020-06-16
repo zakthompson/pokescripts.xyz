@@ -181,76 +181,71 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				{
 					// Sync and unsync time
 					commandIndex = 3;
-					m_endIndex = 34;
+					m_endIndex = 37;
 				}
 				else if (m_sequence == 2)
 				{
 					// Back to game after resetting time
-					commandIndex = 59;
-					m_endIndex = 62;
+					commandIndex = 50;
+					m_endIndex = 53;
 				}
 				else if (m_sequence == 18)
 				{
 					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 75;
-					m_endIndex = 110;
+					commandIndex = 66;
+					m_endIndex = 101;
 				}
 				else if (m_sequence == 19)
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
 					{
-						commandIndex = 111; // do the extra wait
+						commandIndex = 102; // do the extra wait
 					}
 					else
 					{
-						commandIndex = 112; // skip the extra wait
+						commandIndex = 103; // skip the extra wait
 					}
-					m_endIndex = 113;
+					m_endIndex = 104;
 					m_sequence = 0;
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
 					// Collect watts and invite others
-					commandIndex = 67;
-					m_endIndex = 74;
+					commandIndex = 58;
+					m_endIndex = 67;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14
 				{
 					// Goto date and time 1
 					commandIndex = 3;
-					m_endIndex = 30;
+					m_endIndex = 33;
 				}
 				else if (m_sequence % 5 == 0)	// 5,10,15
 				{
 					// Goto date and time 2
-					commandIndex = 35;
-					m_endIndex = 40;
+					commandIndex = 38;
+					m_endIndex = 41;
 				}
 				else if (m_sequence % 5 == 1)	// 6,11,16
 				{
 					// Plus 1 year
 					if (m_JP_EU_US == 0)
 					{
-						commandIndex = 45;
-						m_endIndex = 56;
+						commandIndex = 44;
+						m_endIndex = 47;
 					}
-					else if (m_JP_EU_US == 1)
+					else
 					{
-						commandIndex = 41;
-						m_endIndex = 52;
-					}
-					else // if (m_JP_EU_US == 2)
-					{
-						commandIndex = 41;
-						m_endIndex = 54;
+						commandIndex = 42;
+						m_endIndex = 47;
 					}
 				}
 				else if (m_sequence % 5 == 2)	// 7,12,17
 				{
 					// Back to game and quit raid
-					commandIndex = 57;
-					m_endIndex = 66;
+					commandIndex = 48;
+					m_endIndex = 57;
 				}
 			}
 
@@ -261,12 +256,34 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MIN;
 					break;
 
+        case UP_A:
+          ReportData->LY = STICK_MIN;
+          ReportData->Button |= SWITCH_A;
+          break;
+
+				case RIGHT_A:
+					ReportData->LX = STICK_MAX;
+					ReportData->Button |= SWITCH_A;
+					break;
+
+				case RLEFT:
+					ReportData->RX = STICK_MIN;
+					break;
+
+				case RRIGHT:
+					ReportData->RX = STICK_MAX;
+					break;
+
 				/*case LEFT:
 					ReportData->LX = STICK_MIN;
 					break;*/
 
 				case DOWN:
 					ReportData->LY = STICK_MAX;
+					break;
+
+				case RDOWN:
+					ReportData->RY = STICK_MAX;
 					break;
 
 				case RIGHT:

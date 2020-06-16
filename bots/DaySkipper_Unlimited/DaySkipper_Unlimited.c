@@ -138,7 +138,7 @@ typedef enum {
 } State_t;
 State_t state = PROCESS;
 
-#define ECHOES 2
+#define ECHOES 0
 int echoes = 0;
 USB_JoystickReport_Input_t last_report;
 
@@ -176,7 +176,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_endIndex == 47)
+				if (m_endIndex == 34)
 				{
 					// Finish
 					state = DONE;
@@ -190,15 +190,10 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						commandIndex = 9;
 						m_endIndex = 17;
 					}
-					else if (m_JP_EU_US == 1)
+					else
 					{
 						commandIndex = 18;
 						m_endIndex = 30;
-					}
-					else // if (m_JP_EU_US == 2)
-					{
-						commandIndex = 31;
-						m_endIndex = 43;
 					}
 
 					if (m_day == 31)
@@ -216,8 +211,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else //if (m_dayToSkip == 0)
 				{
 					// Go back to game
-					commandIndex = 44;
-					m_endIndex = 47;
+					commandIndex = 31;
+					m_endIndex = 34;
 				}
 			}
 
