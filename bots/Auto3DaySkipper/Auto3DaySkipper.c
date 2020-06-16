@@ -181,71 +181,71 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				{
 					// Sync and unsync time
 					commandIndex = 3;
-					m_endIndex = 34;
+					m_endIndex = 37;
 				}
 				else if (m_sequence == 2)
 				{
 					// Back to game after resetting time
-					commandIndex = 49;
-					m_endIndex = 52;
+					commandIndex = 50;
+					m_endIndex = 53;
 				}
 				else if (m_sequence == 18)
 				{
 					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 65;
-					m_endIndex = 100;
+					commandIndex = 66;
+					m_endIndex = 101;
 				}
 				else if (m_sequence == 19)
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
 					{
-						commandIndex = 101; // do the extra wait
+						commandIndex = 102; // do the extra wait
 					}
 					else
 					{
-						commandIndex = 102; // skip the extra wait
+						commandIndex = 103; // skip the extra wait
 					}
-					m_endIndex = 103;
+					m_endIndex = 104;
 					m_sequence = 0;
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
 					// Collect watts and invite others
-					commandIndex = 57;
-					m_endIndex = 64;
+					commandIndex = 58;
+					m_endIndex = 67;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14
 				{
 					// Goto date and time 1
 					commandIndex = 3;
-					m_endIndex = 30;
+					m_endIndex = 33;
 				}
 				else if (m_sequence % 5 == 0)	// 5,10,15
 				{
 					// Goto date and time 2
-					commandIndex = 35;
-					m_endIndex = 40;
+					commandIndex = 38;
+					m_endIndex = 41;
 				}
 				else if (m_sequence % 5 == 1)	// 6,11,16
 				{
 					// Plus 1 year
 					if (m_JP_EU_US == 0)
 					{
-						commandIndex = 43;
-						m_endIndex = 46;
+						commandIndex = 44;
+						m_endIndex = 47;
 					}
 					else
 					{
-						commandIndex = 41;
-						m_endIndex = 46;
+						commandIndex = 42;
+						m_endIndex = 47;
 					}
 				}
 				else if (m_sequence % 5 == 2)	// 7,12,17
 				{
 					// Back to game and quit raid
-					commandIndex = 47;
-					m_endIndex = 56;
+					commandIndex = 48;
+					m_endIndex = 57;
 				}
 			}
 
@@ -280,6 +280,10 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 				case DOWN:
 					ReportData->LY = STICK_MAX;
+					break;
+
+				case RDOWN:
+					ReportData->RY = STICK_MAX;
 					break;
 
 				case RIGHT:

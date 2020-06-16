@@ -8,36 +8,39 @@ static const Command m_command[] PROGMEM = {
 	{B, 1},
 	{NOTHING, 1},
 
-	//----------Sync and unsync time, goto change date [3,34]----------
+	//----------Sync and unsync time, goto change date [3,25][3,37]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
 	{DOWN, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
+	{A, 40},
 
 	// To Date and Time
-	{DOWN, 80},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{A, 8},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
 	{A, 1},
 	{NOTHING, 8},
 
@@ -47,12 +50,10 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 8},
 
-	//----------Plus 1 year [35,48]----------
+	//----------Plus 1 year [26,37][38,49]----------
 	// To actually Date and Time
 	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{A, 1},
 	{NOTHING, 7},
 
@@ -66,19 +67,19 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 4},
 
-	//----------Back to game [49, 52]----------
+	//----------Back to game [38,41][50,53]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
 
-	//----------Quit the raid [53,56]----------
+	//----------Quit the raid [42,45][54,57]----------
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Collect Watts [57,64]----------
+	//----------Collect Watts [46,53][58,67]----------
 	{A, 20},		// Talk
 	{NOTHING, 1},
 	{A, 6},			// There's energy pouring out from the den!
@@ -88,7 +89,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Ring bike like mad, collect watts then delay [65,90]----------
+	//----------Ring bike like mad, collect watts then delay [54,79][66,91]----------
 	{LCLICK, 1},
 	{NOTHING, 10},
 	{LCLICK, 1},
@@ -116,7 +117,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 30},		// You gained 2,000W! (Delay longer for player to check)
 	{NOTHING, 300},
 
-	//----------Finish/Prepare SR [91,103]----------
+	//----------Finish/Prepare SR [80,92][92,104]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{X, 1},			// Close game
