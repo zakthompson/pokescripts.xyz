@@ -186,34 +186,34 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else if (m_sequence == 2)
 				{
 					// Back to game after resetting time
-					commandIndex = 59;
-					m_endIndex = 62;
+					commandIndex = 49;
+					m_endIndex = 52;
 				}
 				else if (m_sequence == 18)
 				{
 					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 75;
-					m_endIndex = 110;
+					commandIndex = 65;
+					m_endIndex = 100;
 				}
 				else if (m_sequence == 19)
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
 					{
-						commandIndex = 111; // do the extra wait
+						commandIndex = 101; // do the extra wait
 					}
 					else
 					{
-						commandIndex = 112; // skip the extra wait
+						commandIndex = 102; // skip the extra wait
 					}
-					m_endIndex = 113;
+					m_endIndex = 103;
 					m_sequence = 0;
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
 					// Collect watts and invite others
-					commandIndex = 67;
-					m_endIndex = 74;
+					commandIndex = 57;
+					m_endIndex = 64;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14
 				{
@@ -232,25 +232,20 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					// Plus 1 year
 					if (m_JP_EU_US == 0)
 					{
-						commandIndex = 45;
-						m_endIndex = 56;
+						commandIndex = 43;
+						m_endIndex = 46;
 					}
-					else if (m_JP_EU_US == 1)
+					else
 					{
 						commandIndex = 41;
-						m_endIndex = 52;
-					}
-					else // if (m_JP_EU_US == 2)
-					{
-						commandIndex = 41;
-						m_endIndex = 54;
+						m_endIndex = 46;
 					}
 				}
 				else if (m_sequence % 5 == 2)	// 7,12,17
 				{
 					// Back to game and quit raid
-					commandIndex = 57;
-					m_endIndex = 66;
+					commandIndex = 47;
+					m_endIndex = 56;
 				}
 			}
 
@@ -259,6 +254,24 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
 				case UP:
 					ReportData->LY = STICK_MIN;
+					break;
+
+        case UP_A:
+          ReportData->LY = STICK_MIN;
+          ReportData->Button |= SWITCH_A;
+          break;
+
+				case RIGHT_A:
+					ReportData->LX = STICK_MAX;
+					ReportData->Button |= SWITCH_A;
+					break;
+
+				case RLEFT:
+					ReportData->RX = STICK_MIN;
+					break;
+
+				case RRIGHT:
+					ReportData->RX = STICK_MAX;
 					break;
 
 				/*case LEFT:

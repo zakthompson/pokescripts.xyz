@@ -257,8 +257,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (m_addFriends)
 			{
-				commandIndex = 165;
-				m_endIndex = 170;
+				commandIndex = 155;
+				m_endIndex = 160;
 
 				// Jump to add friend sequence
 				m_sequence = 199;
@@ -312,8 +312,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		else if (m_sequence == 102)
 		{
 			// Back to game after resetting time
-			commandIndex = 149;
-			m_endIndex = 152;
+			commandIndex = 139;
+			m_endIndex = 142;
 		}
 		else if (m_sequence == 118)
 		{
@@ -328,8 +328,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (m_sequence % 5 == 3)	// 103,108,113
 			{
 				// Collect watts and invite others
-				commandIndex = 157;
-				m_endIndex = 164;
+				commandIndex = 147;
+				m_endIndex = 154;
 			}
 			else if (m_sequence % 5 == 4)	// 104,109,114
 			{
@@ -348,38 +348,33 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				// Plus 1 year
 				if (m_JP_EU_US == 0)
 				{
-					commandIndex = 135;
-					m_endIndex = 146;
+					commandIndex = 133;
+					m_endIndex = 136;
 				}
-				else if (m_JP_EU_US == 1)
+				else
 				{
 					commandIndex = 131;
-					m_endIndex = 142;
-				}
-				else // if (m_JP_EU_US == 2)
-				{
-					commandIndex = 131;
-					m_endIndex = 144;
+					m_endIndex = 136;
 				}
 			}
 			else if (m_sequence % 5 == 2)	// 107,112,117
 			{
 				// Back to game and quit raid
-				commandIndex = 147;
-				m_endIndex = 156;
+				commandIndex = 137;
+				m_endIndex = 146;
 			}
 		}
 		else if (m_sequence == 200)
 		{
 			// Goto profile 1 to 10's add friend
-			commandIndex = 191 - m_profile * 2;
-			m_endIndex = 194;
+			commandIndex = 181 - m_profile * 2;
+			m_endIndex = 184;
 		}
 		else if (m_sequence >= 201 && m_sequence <= 579)
 		{
 			// Spam A
-			commandIndex = 195;
-			m_endIndex = 196;
+			commandIndex = 185;
+			m_endIndex = 186;
 
 			// Only wait 1 min, skip
 			if (m_waitTime == 0 && m_sequence == 368)
@@ -390,8 +385,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		else if (m_sequence == 580)
 		{
 			// Back to game
-			commandIndex = 197;
-			m_endIndex = 200;
+			commandIndex = 187;
+			m_endIndex = 190;
 
 			// Ready and start raid
 			m_sequence = 15;
@@ -416,6 +411,24 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		case RIGHT:
 			ReportData->LX = STICK_MAX;
 			break;
+
+    case UP_A:
+      ReportData->LY = STICK_MIN;
+      ReportData->Button |= SWITCH_A;
+      break;
+
+    case RIGHT_A:
+      ReportData->LX = STICK_MAX;
+      ReportData->Button |= SWITCH_A;
+      break;
+
+    case RLEFT:
+      ReportData->RX = STICK_MIN;
+      break;
+
+    case RRIGHT:
+      ReportData->RX = STICK_MAX;
+      break;
 
 		case X:
 			ReportData->Button |= SWITCH_X;

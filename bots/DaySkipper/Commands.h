@@ -4,406 +4,173 @@
 static const Command m_command[] PROGMEM = {
 	//----------Setup [0,8]----------
 	// Press A once to connect
-	{NOTHING, 30},
-	{A, 1},
-	{NOTHING, 1},
+	{NOTHING, 80},
+	{A, 3},
+	{NOTHING, 14},
 
 	// Make sure cursor is on OK
-	{A, 1},
-	{NOTHING, 1},
-	{RIGHT, 40},
-	{NOTHING, 1},
+	{A, 5},
+	{NOTHING, 14},
+	{RIGHT, 120},
+	{NOTHING, 3},
 
 	// Exit
-	{A, 1},
-	{NOTHING, 4},
+	{A, 5},
+	{NOTHING, 14},
 
-	//----------Skip day JP [9,26]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip month JP [27,50]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment month
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip year JP [51,80]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set month back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to year
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment year
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip day EU [81,106]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip month EU [107,134]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Increment month
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip year EU [135,164]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Set month back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to year
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Increment year
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip day US [165,190]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip month US [191,222]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment month
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Skip year US [223,256]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set day back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to month
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Set month back to "01"
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to year
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Increment year
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Back to game [257,260]----------
-	{HOME, 1},
+	//----------Back to game [9,12]----------
 	{NOTHING, 30},
-	{HOME, 1},
-	{NOTHING, 30}
+	{HOME, 4},
+	{NOTHING, 150},
+	{HOME, 4},
+
+	//----------Skip day JP [13,21]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<^>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP_A, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip month JP [22,33]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<^<^>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP, 4},
+	{RLEFT, 4},
+	{UP_A, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip year JP [34,48]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<^<^<^>>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP, 4},
+	{RLEFT, 4},
+	{UP, 4},
+	{LEFT, 4},
+	{UP_A, 4},
+	{RRIGHT, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip day EU/US [49,61]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<<<^>>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP_A, 4},
+	{RRIGHT, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip month EU [62,75]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<<<^>^>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP_A, 4},
+	{NOTHING, 2},
+	{UP_A, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip year EU [76,90]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<<<^>^>^>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP_A, 4},
+	{NOTHING, 2},
+	{UP_A, 4},
+	{NOTHING, 2},
+	{UP_A, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip month US [91,106]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<<<^<^>>>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP, 4},
+	{RLEFT, 4},
+	{UP_A, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14},
+
+	//----------Skip year US [107,122]----------
+	{A, 5},
+	{NOTHING, 14},
+
+	// <<<<<^<^>>^>>>>
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{RLEFT, 4},
+	{LEFT, 4},
+	{UP, 4},
+	{RLEFT, 4},
+	{UP_A, 4},
+	{RRIGHT, 4},
+	{UP_A, 4},
+	{RIGHT, 4},
+	{RRIGHT, 4},
+
+	{RIGHT_A, 5},
+	{NOTHING, 14}
 };

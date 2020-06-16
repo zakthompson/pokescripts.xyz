@@ -138,7 +138,7 @@ typedef enum {
 } State_t;
 State_t state = PROCESS;
 
-#define ECHOES 2
+#define ECHOES 0
 int echoes = 0;
 USB_JoystickReport_Input_t last_report;
 
@@ -175,7 +175,12 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_dayToSkip > 0)
+        if (m_endIndex == 12)
+        {
+          state = DONE;
+          break;
+        }
+				else if (m_dayToSkip > 0)
 				{
 					// Day = 0, Month = 1, Year = 2
 					uint8_t passDayMonthYear = 0;
@@ -217,18 +222,14 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						m_day++;
 						if (m_JP_EU_US == 0)
 						{
-							commandIndex = 9;
-							m_endIndex = 26;
+							commandIndex = 13;
+							m_endIndex = 21;
 						}
-						else if (m_JP_EU_US == 1)
+						else
 						{
-							commandIndex = 81;
-							m_endIndex = 106;
-						}
-						else // if (m_JP_EU_US == 2)
-						{
-							commandIndex = 165;
-							m_endIndex = 190;
+							// EU/US is the same
+							commandIndex = 49;
+							m_endIndex = 61;
 						}
 					}
 					else if (passDayMonthYear == 1)
@@ -238,18 +239,18 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						m_month++;
 						if (m_JP_EU_US == 0)
 						{
-							commandIndex = 27;
-							m_endIndex = 50;
+							commandIndex = 22;
+							m_endIndex = 33;
 						}
 						else if (m_JP_EU_US == 1)
 						{
-							commandIndex = 107;
-							m_endIndex = 134;
+							commandIndex = 62;
+							m_endIndex = 75;
 						}
 						else // if (m_JP_EU_US == 2)
 						{
-							commandIndex = 191;
-							m_endIndex = 222;
+							commandIndex = 91;
+							m_endIndex = 106;
 						}
 					}
 					else
@@ -260,26 +261,26 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						m_year++;
 						if (m_JP_EU_US == 0)
 						{
-							commandIndex = 51;
-							m_endIndex = 80;
+							commandIndex = 34;
+							m_endIndex = 48;
 						}
 						else if (m_JP_EU_US == 1)
 						{
-							commandIndex = 135;
-							m_endIndex = 164;
+							commandIndex = 76;
+							m_endIndex = 90;
 						}
 						else // if (m_JP_EU_US == 2)
 						{
-							commandIndex = 223;
-							m_endIndex = 256;
+							commandIndex = 107;
+							m_endIndex = 122;
 						}
 					}
 				}
 				else if (m_dayToSkip == 0)
 				{
 					// Go back to game
-					commandIndex = 257;
-					m_endIndex = 260;
+					commandIndex = 9;
+					m_endIndex = 12;
 				}
 				else // if (m_dayToSkip == -1)
 				{
@@ -298,6 +299,11 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MIN;
 					break;
 
+				case UP_A:
+					ReportData->LY = STICK_MIN;
+					ReportData->Button |= SWITCH_A;
+					break;
+
 				case LEFT:
 					ReportData->LX = STICK_MIN;
 					break;
@@ -308,6 +314,19 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 				case RIGHT:
 					ReportData->LX = STICK_MAX;
+					break;
+
+				case RIGHT_A:
+					ReportData->LX = STICK_MAX;
+					ReportData->Button |= SWITCH_A;
+					break;
+
+				case RLEFT:
+					ReportData->RX = STICK_MIN;
+					break;
+
+				case RRIGHT:
+					ReportData->RX = STICK_MAX;
 					break;
 
 				/*case X:
