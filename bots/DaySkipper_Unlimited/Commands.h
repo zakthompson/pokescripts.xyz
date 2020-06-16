@@ -25,7 +25,7 @@ static const Command m_command[] PROGMEM = {
 
 	// Move to day
 	{LEFT, 4},
-	{L, 1},
+	{L, 4},
 	{LEFT, 4},
 
 	// Increment day
