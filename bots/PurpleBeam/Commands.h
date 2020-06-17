@@ -29,7 +29,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 10},
 	{LCLICK, 1},
 	{NOTHING, 10},
-	{A, 100},		// Talk
+	{A, 70},		// Talk
 	{NOTHING, 1},
 	{A, 70},		// There doesn't seem to be anything in the den... Want to throw in a Wishing Piece?
 	{NOTHING, 1},
