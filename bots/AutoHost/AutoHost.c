@@ -175,7 +175,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (m_skip3Days)
 			{
-				m_sequence = 100;
+				m_sequence = 112;
 				return;
 			}
 			else
@@ -193,7 +193,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
           m_useLinkCode = true;
         }
 				// Skip to start raid
-				m_sequence = 14;
+				m_sequence = 26;
 				return;
 			}
 			else
@@ -207,7 +207,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = 34;
 			}
 		}
-		else if (m_sequence >= 3 && m_sequence <= 13)
+		else if (m_sequence >= 3 && m_sequence <= 25)
 		{
 			// Entering link code
 			if (m_sequence % 3 == 0) // 3,6,9,12
@@ -221,7 +221,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					m_endIndex = 36;
 
 					// Skip going down (12 is last input, only skip 1)
-					m_sequence += (m_sequence == 12) ? 1 : 2;
+					m_sequence += (m_sequence == 24) ? 1 : 2;
 				}
 				else if (currentNumber % 3 == 0) // 3,6,9
 				{
@@ -247,13 +247,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = 34;
 			}
 		}
-		else if (m_sequence == 14)
+		else if (m_sequence == 26)
 		{
 			// Finish setting link code
 			commandIndex = 53;
 			m_endIndex = 56;
 		}
-		else if (m_sequence == 15)
+		else if (m_sequence == 27)
 		{
 			if (m_addFriends)
 			{
@@ -261,7 +261,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = 161;
 
 				// Jump to add friend sequence
-				m_sequence = 199;
+				m_sequence = 211;
 			}
 			else
 			{
@@ -270,23 +270,23 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = commandIndex + 1;
 			}
 		}
-		else if (m_sequence == 16)
+		else if (m_sequence == 28)
 		{
 			// Host get ready and start raid
 			commandIndex = 19;
 			m_endIndex = 24;
 		}
-		else if (m_sequence >= 17 && m_sequence <= 40)
+		else if (m_sequence >= 29 && m_sequence <= 52)
 		{
 			// A Spam 23 times
 			commandIndex = 25;
 			m_endIndex = 26;
 
-      if (m_sequence == 40) {
-        m_sequence = 56;
+      if (m_sequence == 52) {
+        m_sequence = 68;
       }
 		}
-		else if (m_sequence == 57)
+		else if (m_sequence == 69)
 		{
 			if (!m_unsafeDC)
 			{
@@ -303,19 +303,19 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 			m_sequence = 0;
 		}
-		else if (m_sequence == 101)	// Day skipping
+		else if (m_sequence == 113)	// Day skipping
 		{
 			// Sync and unsync time
 			commandIndex = 93;
 			m_endIndex = 127;
 		}
-		else if (m_sequence == 102)
+		else if (m_sequence == 114)
 		{
 			// Back to game after resetting time
 			commandIndex = 140;
 			m_endIndex = 143;
 		}
-		else if (m_sequence == 118)
+		else if (m_sequence == 130)
 		{
 			// Connect internet and enter raid
 			commandIndex = 3;	// 3 = go online, 8 = local only
@@ -323,27 +323,27 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 			m_sequence = 1;
 		}
-		else if (m_sequence >= 103 && m_sequence <= 117)
+		else if (m_sequence >= 115 && m_sequence <= 129)
 		{
-			if (m_sequence % 5 == 3)	// 103,108,113
+			if (m_sequence % 5 == 0)	// 103,108,113
 			{
 				// Collect watts and invite others
 				commandIndex = 148;
 				m_endIndex = 155;
 			}
-			else if (m_sequence % 5 == 4)	// 104,109,114
+			else if (m_sequence % 5 == 1)	// 104,109,114
 			{
 				// Goto date and time 1
 				commandIndex = 93;
 				m_endIndex = 123;
 			}
-			else if (m_sequence % 5 == 0)	// 105,110,115
+			else if (m_sequence % 5 == 2)	// 105,110,115
 			{
 				// Goto date and time 2
 				commandIndex = 128;
 				m_endIndex = 131;
 			}
-			else if (m_sequence % 5 == 1)	// 106,111,116
+			else if (m_sequence % 5 == 3)	// 106,111,116
 			{
 				// Plus 1 year
 				if (m_JP_EU_US == 0)
@@ -357,39 +357,39 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					m_endIndex = 139;
 				}
 			}
-			else if (m_sequence % 5 == 2)	// 107,112,117
+			else if (m_sequence % 5 == 4)	// 107,112,117
 			{
 				// Back to game and quit raid
 				commandIndex = 140;
 				m_endIndex = 147;
 			}
 		}
-		else if (m_sequence == 200)
+		else if (m_sequence == 212)
 		{
 			// Goto profile 1 to 10's add friend
 			commandIndex = 182 - m_profile * 2;
 			m_endIndex = 185;
 		}
-		else if (m_sequence >= 201 && m_sequence <= 579)
+		else if (m_sequence >= 213 && m_sequence <= 591)
 		{
 			// Spam A
 			commandIndex = 186;
 			m_endIndex = 187;
 
 			// Only wait 1 min, skip
-			if (m_waitTime == 0 && m_sequence == 368)
+			if (m_waitTime == 0 && m_sequence == 380)
 			{
-				m_sequence = 579;
+				m_sequence = 591;
 			}
 		}
-		else if (m_sequence == 580)
+		else if (m_sequence == 592)
 		{
 			// Back to game
 			commandIndex = 188;
 			m_endIndex = 191;
 
 			// Ready and start raid
-			m_sequence = 15;
+			m_sequence = 27;
 		}
 	}
 

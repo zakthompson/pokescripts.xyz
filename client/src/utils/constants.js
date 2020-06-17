@@ -135,7 +135,7 @@ export const botConfigs = [
         param: 'm_linkCode',
         name: 'Link Code',
         type: 'number',
-        value: 6969,
+        value: 69696969,
       },
       {
         param: 'm_waitTime',

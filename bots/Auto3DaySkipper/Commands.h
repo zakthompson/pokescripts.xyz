@@ -127,7 +127,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},			// Choose game
 	{NOTHING, 50},
 	{A, 1},			// Pick User
-	{NOTHING, 720},
+	{NOTHING, 800},
 	{NOTHING, 280}, // Extra wait time if m_titleScreenBuffer is true
 	{A, 1},			// Enter game
 	{NOTHING, 460}
