@@ -30,6 +30,7 @@ const configTypes = {
   m_addFriend: 'bool',
   m_titleScreenBuffer: 'bool',
   m_boxesToFill: 'uint8_t',
+  m_pokemonIsCatchable: 'bool',
 };
 
 module.exports = {

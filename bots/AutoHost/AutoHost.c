@@ -175,7 +175,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (m_skip3Days)
 			{
-				m_sequence = 112;
+				m_sequence = 113;
 				return;
 			}
 			else
@@ -189,18 +189,18 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (!m_useLinkCode)
 			{
-        if (m_alternate) {
-          m_useLinkCode = true;
-        }
+				if (m_alternate) {
+					m_useLinkCode = true;
+				}
 				// Skip to start raid
 				m_sequence = 26;
 				return;
 			}
 			else
 			{
-        if (m_alternate) {
-          m_useLinkCode = false;
-        }
+				if (m_alternate) {
+					m_useLinkCode = false;
+				}
 
 				// Prepare link code, goto 0
 				commandIndex = 27;
@@ -255,13 +255,26 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		}
 		else if (m_sequence == 27)
 		{
+			if (m_pokemonIsCatchable)
+			{
+				return; // just continue the sequence
+			}
+			else
+			{
+				// we need one more A press for the extra dialogue on non-catchable mons
+				commandIndex = 22;
+				m_endIndex = 24;
+			}
+		}
+		else if (m_sequence == 28)
+		{
 			if (m_addFriends)
 			{
 				commandIndex = 156;
 				m_endIndex = 161;
 
 				// Jump to add friend sequence
-				m_sequence = 211;
+				m_sequence = 212;
 			}
 			else
 			{
@@ -270,23 +283,23 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				m_endIndex = commandIndex + 1;
 			}
 		}
-		else if (m_sequence == 28)
+		else if (m_sequence == 29)
 		{
 			// Host get ready and start raid
 			commandIndex = 19;
 			m_endIndex = 24;
 		}
-		else if (m_sequence >= 29 && m_sequence <= 52)
+		else if (m_sequence >= 30 && m_sequence <= 53)
 		{
 			// A Spam 23 times
 			commandIndex = 25;
 			m_endIndex = 26;
 
-      if (m_sequence == 52) {
-        m_sequence = 68;
+      if (m_sequence == 53) {
+        m_sequence = 69;
       }
 		}
-		else if (m_sequence == 69)
+		else if (m_sequence == 70)
 		{
 			if (!m_unsafeDC)
 			{
@@ -303,19 +316,19 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 			m_sequence = 0;
 		}
-		else if (m_sequence == 113)	// Day skipping
+		else if (m_sequence == 114)	// Day skipping
 		{
 			// Sync and unsync time
 			commandIndex = 93;
 			m_endIndex = 127;
 		}
-		else if (m_sequence == 114)
+		else if (m_sequence == 115)
 		{
 			// Back to game after resetting time
 			commandIndex = 140;
 			m_endIndex = 143;
 		}
-		else if (m_sequence == 130)
+		else if (m_sequence == 131)
 		{
 			// Connect internet and enter raid
 			commandIndex = 3;	// 3 = go online, 8 = local only
@@ -323,27 +336,27 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 			m_sequence = 1;
 		}
-		else if (m_sequence >= 115 && m_sequence <= 129)
+		else if (m_sequence >= 116 && m_sequence <= 130)
 		{
-			if (m_sequence % 5 == 0)	// 103,108,113
+			if (m_sequence % 5 == 1)	// 103,108,113
 			{
 				// Collect watts and invite others
 				commandIndex = 148;
 				m_endIndex = 155;
 			}
-			else if (m_sequence % 5 == 1)	// 104,109,114
+			else if (m_sequence % 5 == 2)	// 104,109,114
 			{
 				// Goto date and time 1
 				commandIndex = 93;
 				m_endIndex = 123;
 			}
-			else if (m_sequence % 5 == 2)	// 105,110,115
+			else if (m_sequence % 5 == 3)	// 105,110,115
 			{
 				// Goto date and time 2
 				commandIndex = 128;
 				m_endIndex = 131;
 			}
-			else if (m_sequence % 5 == 3)	// 106,111,116
+			else if (m_sequence % 5 == 4)	// 106,111,116
 			{
 				// Plus 1 year
 				if (m_JP_EU_US == 0)
@@ -357,39 +370,39 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					m_endIndex = 139;
 				}
 			}
-			else if (m_sequence % 5 == 4)	// 107,112,117
+			else if (m_sequence % 5 == 0)	// 107,112,117
 			{
 				// Back to game and quit raid
 				commandIndex = 140;
 				m_endIndex = 147;
 			}
 		}
-		else if (m_sequence == 212)
+		else if (m_sequence == 213)
 		{
 			// Goto profile 1 to 10's add friend
 			commandIndex = 182 - m_profile * 2;
 			m_endIndex = 185;
 		}
-		else if (m_sequence >= 213 && m_sequence <= 591)
+		else if (m_sequence >= 214 && m_sequence <= 592)
 		{
 			// Spam A
 			commandIndex = 186;
 			m_endIndex = 187;
 
 			// Only wait 1 min, skip
-			if (m_waitTime == 0 && m_sequence == 380)
+			if (m_waitTime == 0 && m_sequence == 381)
 			{
-				m_sequence = 591;
+				m_sequence = 592;
 			}
 		}
-		else if (m_sequence == 592)
+		else if (m_sequence == 593)
 		{
 			// Back to game
 			commandIndex = 188;
 			m_endIndex = 191;
 
 			// Ready and start raid
-			m_sequence = 27;
+			m_sequence = 28;
 		}
 	}
 
