@@ -10,7 +10,7 @@ If you want to get X Premier Balls, ensure you have ₽2000X first! You will get
 
 ## Configuration Options
 ### to_buy
-The number of Premier Balls you want to get.
+The number of Premier Balls you want to get. Please don't set it above 99 because you can't have more than 999 items in your bag!
 
 ### sell_all
 Can be set to true or false. If true, you will sell ALL of your normal Poke Balls. If false, it will only sell the amount you bought.
