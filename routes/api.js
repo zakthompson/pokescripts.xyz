@@ -11,9 +11,10 @@ router.get('/test', (req, res) => {
 
 router.get('/genhex', async (req, res) => {
   const { query } = req;
-  const { target } = query;
+  const { target, mcu } = query;
   const configObj = { ...query };
   delete configObj.target;
+  delete configObj.mcu;
   let configStr = '';
 
   const { m_linkCode } = configObj;
@@ -40,7 +41,7 @@ router.get('/genhex', async (req, res) => {
       fs.writeFileSync(`tmp/${folder}/${target}/Config.h`, configStr);
     }
 
-    await execAsync(`cd tmp/${folder} && make TARGET=${target}`);
+    await execAsync(`cd tmp/${folder} && make TARGET=${target} MCU=${mcu}`);
     res.download(`tmp/${folder}/${target}.hex`);
   } catch(e) {
     res.status(500).json({ error: e });

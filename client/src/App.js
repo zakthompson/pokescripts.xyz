@@ -64,9 +64,10 @@ const theme = {
 function App() {
   const [state, setState] = useState(botConfigs[0]);
   const [dateFormat, setDateFormat] = useState(2);
+  const [mcu, setMcu] = useState('atmega16u2');
 
   function onSubmit() {
-    genHex(state.target, state.configFields, dateFormat);
+    genHex(state.target, state.configFields, dateFormat, mcu);
   }
 
   return (
@@ -74,7 +75,15 @@ function App() {
       <Box fill>
         <AppBar dateFormat={dateFormat} setDateFormat={setDateFormat} />
         <Box direction="row" flex overflow={{ horizontal: 'hidden' }}>
-          <Sidebar botConfigs={botConfigs} state={state} setState={setState} dateFormat={dateFormat} setDateFormat={setDateFormat} />
+          <Sidebar
+            botConfigs={botConfigs}
+            state={state}
+            setState={setState}
+            dateFormat={dateFormat}
+            setDateFormat={setDateFormat}
+            mcu={mcu}
+            setMcu={setMcu}
+          />
           <BotForm state={state} setState={setState} onSubmit={onSubmit} dateFormat={dateFormat} />
         </Box>
       </Box>

@@ -93,7 +93,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},			// Choose game
 	{NOTHING, 50},
 	{A, 1},			// Pick User
-	{NOTHING, 720},
+	{NOTHING, 800},
 	{A, 1},			// Enter game
 	{NOTHING, 460},
 
@@ -126,36 +126,39 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 900},		// Wait until exit raid
 
 	// COPY FROM Auto3DaySkipper
-	//----------Sync and unsync time, goto change date [93,124]----------
+	//----------Sync and unsync time, goto change date [93,124][93,127]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
 	{DOWN, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
+	{A, 40},
 
 	// To Date and Time
-	{DOWN, 80},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{A, 8},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
 	{A, 1},
 	{NOTHING, 8},
 
@@ -165,49 +168,36 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 8},
 
-	//----------Plus 1 year [125,148]----------
+	//----------Plus 1 year [125,148][125,138][128][139]----------
 	// To actually Date and Time
 	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{A, 1},
 	{NOTHING, 7},
 
 	// Plus 1 year
-	{RIGHT, 1},		// EU/US start
+	{RIGHT_A, 1},		// EU/US start
 	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{UP, 1},		// JP start
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},	// EU end
-	{RIGHT, 1},
-	{NOTHING, 1},	// US end
-	{RIGHT, 1},
-	{NOTHING, 1},	// JP end
-
+	{UP_A, 1},		// JP start
+	{RRIGHT, 1},
+  {RIGHT_A, 1},
+  {RRIGHT, 1},
 	{A, 1},
 	{NOTHING, 4},
 
-	//----------Back to game [149,152]----------
+	//----------Back to game [149,152][139,142][140,143]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
 
-	//----------Quit the raid [153,156]----------
+	//----------Quit the raid [153,156][143,146][144,147]----------
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Collect Watts [157,164]----------
+	//----------Collect Watts [157,164][147,154][148,155]----------
 	{A, 20},		// Talk
 	{NOTHING, 1},
 	{A, 6},			// There's energy pouring out from the den!
@@ -217,7 +207,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Goto profile [165,194]----------
+	//----------Goto profile [165,194][155,184][156,185]----------
 	{A, 400},			// Start raid, wait 4-5 seconds
 	{NOTHING, 1},
 	{HOME, 1},
@@ -225,7 +215,7 @@ static const Command m_command[] PROGMEM = {
 	{UP, 1},
 	{NOTHING, 1},
 
-	// 10 profiles maximum [171,188]
+	// 10 profiles maximum [171,188][161,178][162,179]
 	{RIGHT, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
@@ -252,11 +242,11 @@ static const Command m_command[] PROGMEM = {
 	{UP, 1},			// Add friend
 	{NOTHING, 8},
 
-	//----------A Spam [195,196]----------
+	//----------A Spam [195,196][185,186][186,187]----------
 	{A, 1},
 	{NOTHING, 9},
 
-	//----------Back to game [197,200]----------
+	//----------Back to game [197,200][187,190][188,191]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},

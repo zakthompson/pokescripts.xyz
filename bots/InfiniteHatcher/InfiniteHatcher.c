@@ -42,21 +42,7 @@ these buttons for our use.
 //    know if we pick up an egg or not, so we assume that we always get an egg. You will most definitely
 //    have some empty spaces in your boxes after running this for a while, but it can't be helped.
 // -> For reasons mentioned above, it is highly recommended that you have the oval charm.
-// -> Adjust the value for NUMBER_OF_BOXES_TO_FILL below to the number of sequential empty boxes you
-//    have available.
-// -> The table below shows the number of steps to hatch an egg, and then the recommended settings based on
-//    that information. If you find eggs in your boxes, or the bot gets desynced, you may want to increase
-//    the HATCHING_TIME_SEC value below.
 
-/*------------------------------------------*/
-// RECOMMENDED SETTINGS
-// -> You will want to find the number of steps it takes for your pokemon to hatch, that information
-//    can be found here: https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_Egg_cycles
-// -> 5120 steps - HATCHING_TIME_SEC = 145, MAX_NUM_OF_EGGS = 5 (time to fill a box ~29 mins)
-
-/* #define HATCHING_TIME_SEC 145      // seconds for hatching */
-#define MAX_NUM_OF_EGGS 5          // number of eggs to hold before hatching
-#define HATCHING_TIME_SEC 49
 
 // Main entry point.
 int main(void) {
@@ -192,9 +178,35 @@ int8_t m_phase = 0;           // 0 = collecting, 1 = hatching
 int8_t m_columnPosition = 0;  // where the cursor is in the boxes menu
 int8_t m_nextColumn = 1;      // where we want the cursor to be to drop the pokemon
 int8_t m_boxesFilled = 0;     // number of boxes we filled up
+int m_hatchSecs = 0;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
+  switch (m_eggStepGroup) {
+    case 1:
+      m_hatchSecs = 80;
+      break;
+    case 2:
+      m_hatchSecs = 133;
+      break;
+    case 3:
+      m_hatchSecs = 145;
+      break;
+    case 4:
+      m_hatchSecs = 165;
+      break;
+    case 5:
+      m_hatchSecs = 175;
+      break;
+    case 6:
+      m_hatchSecs = 195;
+      break;
+    case 7:
+      m_hatchSecs = 210;
+      break;
+    default:
+      break;
+  }
 
 	// Prepare an empty report
 	memset(ReportData, 0, sizeof(USB_JoystickReport_Input_t));
@@ -232,7 +244,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				{
 				    m_eggCount++;
 
-					if (m_eggCount < MAX_NUM_OF_EGGS)
+					if (m_eggCount < (m_eggStepGroup == 1 ? 3 : 5))
 					{
 						m_commandIndex = 27; // spin
 						m_endIndex = 28;
@@ -245,7 +257,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						m_commandIndex = 27; // spin
 						m_endIndex = 28;
 						m_spinCount = 0;
-						m_spinMax = (HATCHING_TIME_SEC * m_eggStepGroup) * 2; // 2 "spins" per second
+						m_spinMax = m_hatchSecs * 2; // 2 "spins" per second
 					}
 				}
 				else if (m_endIndex == 28) // We are spinning
@@ -307,24 +319,24 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					m_endIndex = 26;
 				}
 			}
-		
+
 			memcpy_P(&tempCommand, &(m_command[m_commandIndex]), sizeof(Command));
 			switch (tempCommand.button)
 			{
 				case UP:
-					ReportData->LY = STICK_MIN;				
+					ReportData->LY = STICK_MIN;
 					break;
 
 				case LEFT:
-					ReportData->LX = STICK_MIN;				
+					ReportData->LX = STICK_MIN;
 					break;
 
 				case DOWN:
-					ReportData->LY = STICK_MAX;				
+					ReportData->LY = STICK_MAX;
 					break;
 
 				case RIGHT:
-					ReportData->LX = STICK_MAX;				
+					ReportData->LX = STICK_MAX;
 					break;
 
 				case UP_RIGHT:
@@ -409,13 +421,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (durationCount > tempCommand.duration)
 			{
 				m_commandIndex++;
-				durationCount = 0;		
+				durationCount = 0;
 
 				// We reached the end of a command sequence
 				if (m_commandIndex > m_endIndex)
 				{
 					m_commandIndex = -1;
-				}		
+				}
 			}
 
 			break;

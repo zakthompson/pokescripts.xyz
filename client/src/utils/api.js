@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-export function genHex(target, configFields, dateFormat) {
+export function genHex(target, configFields, dateFormat, mcu) {
   const configParams = configFields.reduce((acc, f) => {
     const { param, value } = f;
     return { ...acc, [param]: value };
   }, {});
   axios.get('/api/genhex', {
     params: {
-      target: target,
+      target,
+      mcu,
       ...configParams,
       m_JP_EU_US: dateFormat,
     },

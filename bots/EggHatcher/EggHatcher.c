@@ -154,7 +154,7 @@ uint8_t m_sequence = 0;
 uint8_t m_column = 1;
 
 // Small loops for each egg group without losing turbo boost
-uint8_t m_smallCycle[] = {8,6,9,7,10,8,11,8};
+uint8_t m_smallCycle[] = {8,6,9,7,10,8,11,9};
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {

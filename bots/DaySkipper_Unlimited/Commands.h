@@ -4,126 +4,67 @@
 static const Command m_command[] PROGMEM = {
 	//----------Setup [0,8]----------
 	// Press A once to connect
-	{NOTHING, 30},
-	{A, 1},
-	{NOTHING, 1},
+	{NOTHING, 80},
+	{A, 3},
+	{NOTHING, 14},
 
 	// Make sure cursor is on OK
-	{A, 1},
-	{NOTHING, 1},
-	{RIGHT, 40},
-	{NOTHING, 1},
+	{A, 5},
+	{NOTHING, 14},
+	{RIGHT, 120},
+	{NOTHING, 3},
 
 	// Exit
-	{A, 1},
-	{NOTHING, 4},
+	{A, 5},
+	{NOTHING, 14},
 
-	//----------Skip day JP [9,26]----------
+	//----------Skip day JP [9,17]----------
 	// Enter
-	{A, 1},
-	{NOTHING, 5},
+	{A, 5},
+	{NOTHING, 14},
 
 	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
+	{LEFT, 4},
+	{L, 4},
+	{LEFT, 4},
 
 	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
+	{UP, 4},
 
 	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
+	{RIGHT, 4},
 
 	// Exit
-	{A, 1},
-	{NOTHING, 4},
+	{R, 5},
+	{NOTHING, 14},
 
-	//----------Skip day EU [27,52]----------
+	//----------Skip day EU/US [18,30]----------
 	// Enter
-	{A, 1},
-	{NOTHING, 5},
+	{A, 5},
+	{NOTHING, 14},
 
 	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
+	{LEFT, 4},
+	{L, 4},
+	{LEFT, 4},
+	{L, 4},
+	{LEFT, 4},
 
 	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
+	{UP, 4},
 
 	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
+	{RIGHT, 4},
+	{R, 4},
+	{RIGHT, 4},
 
 	// Exit
-	{A, 1},
-	{NOTHING, 4},
+	{A, 4},
+	{NOTHING, 14},
 
-	//----------Skip day US [53,78]----------
-	// Enter
-	{A, 1},
-	{NOTHING, 5},
-
-	// Move to day
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-	{LEFT, 1},
-	{NOTHING, 1},
-
-	// Increment day
-	{UP, 1},
-	{NOTHING, 1},
-
-	// Move to OK
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-
-	// Exit
-	{A, 1},
-	{NOTHING, 4},
-
-	//----------Back to game [79,82]----------
-	{HOME, 1},
-	{NOTHING, 30},
-	{HOME, 1},
-	{NOTHING, 30}
+	//----------Back to game [31,34]----------
+  {NOTHING, 30},
+	{HOME, 4},
+	{NOTHING, 150},
+	{HOME, 4},
 };

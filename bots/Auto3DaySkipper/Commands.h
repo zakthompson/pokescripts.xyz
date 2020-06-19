@@ -8,36 +8,39 @@ static const Command m_command[] PROGMEM = {
 	{B, 1},
 	{NOTHING, 1},
 
-	//----------Sync and unsync time, goto change date [3,34]----------
+	//----------Sync and unsync time, goto change date [3,25][3,37]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
 	{DOWN, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
+	{A, 40},
 
 	// To Date and Time
-	{DOWN, 80},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{A, 8},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
 	{A, 1},
 	{NOTHING, 8},
 
@@ -47,49 +50,36 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 8},
 
-	//----------Plus 1 year [35,58]----------
+	//----------Plus 1 year [26,37][38,49]----------
 	// To actually Date and Time
 	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{A, 1},
 	{NOTHING, 7},
 
 	// Plus 1 year
-	{RIGHT, 1},		// EU/US start
+	{RIGHT_A, 1},		// EU/US start
 	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{UP, 1},		// JP start
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},	// EU end
-	{RIGHT, 1},
-	{NOTHING, 1},	// US end
-	{RIGHT, 1},
-	{NOTHING, 1},	// JP end
-
+	{UP_A, 1},		// JP start
+	{RRIGHT, 1},
+  {RIGHT_A, 1},
+  {RRIGHT, 1},
 	{A, 1},
 	{NOTHING, 4},
 
-	//----------Back to game [59,62]----------
+	//----------Back to game [38,41][50,53]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
 
-	//----------Quit the raid [63,66]----------
+	//----------Quit the raid [42,45][54,57]----------
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Collect Watts [67,74]----------
+	//----------Collect Watts [46,53][58,67]----------
 	{A, 20},		// Talk
 	{NOTHING, 1},
 	{A, 6},			// There's energy pouring out from the den!
@@ -99,7 +89,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Ring bike like mad, collect watts then delay [75,100]----------
+	//----------Ring bike like mad, collect watts then delay [54,79][66,91]----------
 	{LCLICK, 1},
 	{NOTHING, 10},
 	{LCLICK, 1},
@@ -127,7 +117,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 30},		// You gained 2,000W! (Delay longer for player to check)
 	{NOTHING, 300},
 
-	//----------Finish/Prepare SR [101,112]----------
+	//----------Finish/Prepare SR [80,92][92,104]----------
 	{HOME, 1},
 	{NOTHING, 40},
 	{X, 1},			// Close game
@@ -137,7 +127,8 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},			// Choose game
 	{NOTHING, 50},
 	{A, 1},			// Pick User
-	{NOTHING, 720},
+	{NOTHING, 800},
+	{NOTHING, 280}, // Extra wait time if m_titleScreenBuffer is true
 	{A, 1},			// Enter game
 	{NOTHING, 460}
 };

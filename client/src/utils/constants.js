@@ -16,7 +16,15 @@ export const botConfigs = [
       'Lastly, it will ring the bike bell several times to get your attention on your shiny frame before checking the den',
       'If left alone, the loop will continue - unplug the bot if you see the Pokemon you want!',
     ],
-    configFields: [],
+    configFields: [
+      {
+        param: 'm_titleScreenBuffer',
+        name: 'Wait Longer at Title Screen',
+        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        type: 'bool',
+        value: 'false',
+      },
+    ],
   },
   {
     name: 'Auto Fossil Restore',
@@ -127,7 +135,7 @@ export const botConfigs = [
         param: 'm_linkCode',
         name: 'Link Code',
         type: 'number',
-        value: 6969,
+        value: 69696969,
       },
       {
         param: 'm_waitTime',
@@ -445,7 +453,7 @@ export const botConfigs = [
   {
     name: 'Infinite Egg Hatcher (BETA)',
     target: 'InfiniteHatcher',
-    description: 'This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery.',
+    description: `This bot is significantly slower than the the Collector/Hatcher combo, but does not require two separate steps. It will continually collect eggs from the Bridge Field nursery and hatch them, filling boxes up to a specified maximum. Note that, similar to the Egg Collector bot, it is possible that an egg will not be collected every time, so some spots in your boxes may be skipped. For the best results, be sure to have the Oval Charm and have Pokemon with different trainer IDs in the nursery. Unfortunately, this bot only works with Pokemon who take 2560 steps or higher to hatch. Additionally, if you are doing a 2560-step Pokemon, only 3 eggs will be collected each cycle, meaning 12 slots will be empty each box.`,
     instructions: [
       'Ensure that your text speed is set to "Fast" and nicknames are set to "Don\'t Give"',
       'Have only one Pokemon in your party, and that Pokemon must have the Flame Body ability',
@@ -471,10 +479,6 @@ export const botConfigs = [
         description: 'Use Serebii or Bulbapedia to figure out how many steps your Pokemon\'s Egg Group takes to hatch.',
         type: 'select',
         options: [
-          {
-            name: '1280 Steps',
-            value: 0,
-          },
           {
             name: '2560 Steps',
             value: 1,
@@ -511,6 +515,35 @@ export const botConfigs = [
         name: 'Boxes to Fill',
         type: 'number',
         value: 3,
+      },
+    ],
+  },
+  {
+    name: 'God Egg Duplication (NEW!)',
+    target: 'GodEggDuplication',
+    description: 'This bot automatically duplicates Pokemon using the God Egg exploit. It makes use of the Rotom bike\'s turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to duplicate, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target. Actually acquiring the God Egg is up to you.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Ensure that "Send to Boxes" is set to "Manual"',
+      'Your Rotom bike must be fully upgraded',
+      'Your party must be full of Pokemon, no eggs',
+      'The first Pokemon in your party must be the one you want to duplicate',
+      'Go to the Route 5 nursery, deposit God Egg and a Ditto, and charge up your Rotom bike boost',
+      'Cycle up to the left side of the nursery worker',
+      'Plug in the bot to start the loop',
+    ],
+    botActions: [
+      'The bot does a turbo boosted loop, then attempts to collect an egg',
+      'If an egg is collected, it will try to swap it with the first Pokemon in your party, thus duplicating that Pokemon',
+      'Once all attempts have been completed, it will go to the Home menu',
+    ],
+    configFields: [
+      {
+        param: 'm_maxCycle',
+        name: 'Attempts to Duplicate',
+        description: 'The bot will make this many attempts to duplicate a Pokemon. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it\'s recommended you monitor it.',
+        type: 'number',
+        value: 30,
       },
     ],
   },
@@ -581,6 +614,67 @@ export const botConfigs = [
       },
     ],
   },
+  {
+    name: 'Purple Beam Hunter',
+    target: 'PurpleBeam',
+    description: 'This bot will repeatedly throw Wishing Pieces into an empty den, then exit out into the Home menu before saving can complete. You\'ll need to watch to see what kind of beam shows up, but hey, at least you don\'t have to use your hands.',
+    instructions: [
+      'Ensure that your text speed is set to "Slow"',
+      'Ensure that you are on your bike in front of an empty den',
+      'Ensure that the den has no Watts to collect',
+      'Ensure that you have at least 1 Wishing Piece',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'First, the bot will ring the bike bell to get your attention',
+      'It will then throw in a Wishing Piece and exit to Home before saving completes',
+      'If left for a few seconds, it will restart the game and begin the loop again',
+      'If you see a purple beam, simply unplug the bot to stop the loop',
+    ],
+    configFields: [],
+  },
+  {
+    name: 'Auto Tournament (NEW!)',
+    target: 'AutoTournament',
+    description: 'This bot will repeatedly beat the championship tournament - useful for grinding apriballs and orbs.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Set Battle Effects to "Off"',
+      'Have a Zacian in front of your party with the following stats:',
+      'Level: 100',
+      'Held Item: Rusted Sword',
+      'Ability: Intrepid Sword',
+      'EVs: 252 Atk, Optional: 4 Def, 252 Spe',
+      'Nature: Adamant',
+      'First move: Iron Head (PP Maxed)',
+      'Stand in front of the Wyndon Stadium receptionist',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'The bot will loop battling through the championship tournament forever',
+      'If you win, it will collect your reward from the Ball Guy',
+      'If you lose, it will eventually rejoin',
+    ],
+    configFields: [],
+  },
+  {
+    name: 'Auto Battle Tower (NEW!)',
+    target: 'AutoBattleTower',
+    description: 'This bot will repeatedly fight in the Battle Tower in Wyndon - great for grinding BP for those mints and ability capsules!',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Set Battle Effects to "Off"',
+      'Go to VS -> Battle Stadium -> Rental Teams and rent the team with ID 0000-0006-15Y4-3R',
+      'Join Single Battle on Battle Tower, choose the team above and have Zacian in the front',
+      'Play until you can press Fight on the first battle',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'The bot will loop fighting the Battle Tower forever',
+      'It is able to switch Pokemon and re-enter on loss, pause or win',
+    ],
+    configFields: [],
+  },
 ];
 
 export const dateFormatOptions = [
@@ -589,10 +683,16 @@ export const dateFormatOptions = [
   { name: 'US', value: 2 },
 ];
 
+export const mcuOptions = [
+  { name: 'atmega16u2 (UNO R3)', value: 'atmega16u2' },
+  { name: 'at90usb1286 (Teensy 2.0++)', value: 'at90usb1286' },
+  { name: 'atmega32u4 (Arduino Micro/Teensy 2.0)', value: 'atmega32u4' },
+];
+
 export const dateSkipTimings = {
-  0: 30.99,
-  1: 42.51,
-  2: 42.51,
+  0: 16.08,
+  1: 20.88,
+  2: 20.88,
 };
 export const fossilReviveTime = 18.468;
 export const autoLotoTime = 21.204;
@@ -603,3 +703,13 @@ export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
+export const infiniteHatcherTimes = [
+  18,
+  28,
+  30,
+  32,
+  33,
+  35,
+  37,
+];
+export const dupTime = 23.023;

@@ -1,5 +1,5 @@
 /*
-Pokemon Sword & Shield AUTO Day Skipper w/o Limit - Proof-of-Concept
+Pokemon Sword & Shield Auto Tournament - Proof-of-Concept
 
 Based on the LUFA library's Low-Level Joystick Demo
 	(C) Dean Camera
@@ -147,8 +147,7 @@ int durationCount = 0;
 
 // start and end index of "Setup"
 int commandIndex = 0;
-int m_endIndex = 8;
-int m_day = 1; // [1,31]
+int m_endIndex = 2;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -176,52 +175,22 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_endIndex == 34)
-				{
-					// Finish
-					state = DONE;
-					break;
-				}
-				else if (m_dayToSkip > 0)
-				{
-					// Pass day
-					if (m_JP_EU_US == 0)
-					{
-						commandIndex = 9;
-						m_endIndex = 17;
-					}
-					else
-					{
-						commandIndex = 18;
-						m_endIndex = 30;
-					}
+				commandIndex = 3;
+				m_endIndex = 18;
+			}
 
-					if (m_day == 31)
-					{
-						// Rolling back, no day skipped
-						m_day = 1;
-					}
-					else
-					{
-						// Roll foward by a day
-						m_day++;
-						m_dayToSkip--;
-					}
-				}
-				else //if (m_dayToSkip == 0)
-				{
-					// Go back to game
-					commandIndex = 31;
-					m_endIndex = 34;
-				}
+			// Always hold up left
+			if (commandIndex > 2)
+			{
+				ReportData->LY = STICK_MIN;
+				ReportData->LX = STICK_CENTER + 30;
 			}
 
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));
 			switch (tempCommand.button)
 			{
-				case UP:
+				/*case UP:
 					ReportData->LY = STICK_MIN;
-					ReportData->Button |= SWITCH_A;
 					break;
 
 				case LEFT:
@@ -236,7 +205,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LX = STICK_MAX;
 					break;
 
-				/*case X:
+				case X:
 					ReportData->Button |= SWITCH_X;
 					break;
 
@@ -248,17 +217,12 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->Button |= SWITCH_A;
 					break;
 
-				case L:
-					ReportData->RX = STICK_MIN;
-					break;
-
-				case R:
-          ReportData->Button |= SWITCH_A;
-          ReportData->RX = STICK_MAX;
-					break;
-
-				/*case B:
+				case B:
 					ReportData->Button |= SWITCH_B;
+					break;
+
+				/*case L:
+					ReportData->Button |= SWITCH_L;
 					break;
 
 				case R:
@@ -291,13 +255,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 
 				case TRIGGERS:
 					ReportData->Button |= SWITCH_L | SWITCH_R;
-					break;*/
+					break;
 
 				case HOME:
 					ReportData->Button |= SWITCH_HOME;
 					break;
 
-				/*case CAPTURE:
+				case CAPTURE:
 					ReportData->Button |= SWITCH_CAPTURE;
 					break;*/
 
