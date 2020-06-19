@@ -176,7 +176,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Get the next command sequence (new start and end)
 			if (commandIndex == -1)
 			{
-				if (m_endIndex < 17 && loop < to_buy)
+				if (m_endIndex < 17 && loop < m_toBuy)
 				{
 					commandIndex = 3;
 					m_endIndex = 16;
@@ -188,7 +188,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					loop = 0;
 				} else if (m_endIndex < 36)
 				{
-					if (!sell_all && loop < to_buy)
+					if (!m_sellAll && loop < m_toBuy)
 					{
 						commandIndex = 26;
 						m_endIndex = 27;
