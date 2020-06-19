@@ -675,6 +675,38 @@ export const botConfigs = [
     ],
     configFields: [],
   },
+  {
+    name: 'Premier Ball Buyer',
+    target: 'PremierBallBuyer',
+    description: 'This bot buys 10 Poke Balls each time to farm Premier Balls and sells the Poke Balls off after.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Ensure that you have enough money',
+      'Ensure that your bag cursor is over normal Poke Balls',
+      'Talk to a normal Poke Mart man and enter the buying page and have your cursor over Poke Ball',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'The bot buys 10 Poke Balls and repeats this action until you reach the configured number of Premier Balls',
+      'It will then exit the buying page and go to the selling page and sell off either all Poke Balls or just the number you bought',
+    ],
+    configFields: [
+      {
+        param: 'm_toBuy',
+        name: 'Premier Balls to get',
+        description: 'The number of Premier Balls you want. Ensure you have enough bag space as you cannot have more than 999 Poke Balls!',
+        type: 'number',
+        value: 10,
+      },
+      {
+        param: 'm_sellAll',
+        name: 'Sell All',
+        description: 'Sells all of your Poke Balls instead of just the number you bought',
+        type: 'bool',
+        value: 'false',
+      },
+    ],
+  },
 ];
 
 export const dateFormatOptions = [
