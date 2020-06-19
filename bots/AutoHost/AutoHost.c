@@ -175,7 +175,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (m_skip3Days)
 			{
-				m_sequence = 112;
+				m_sequence = 113;
 				return;
 			}
 			else
