@@ -35,14 +35,14 @@ static const Command m_command[] PROGMEM = {
 	{RDOWN, 1},
 	{DOWN, 1},
 	{RDOWN, 1},
-	{A, 10},
+	{A, 12},
 	{DOWN, 1},
 	{RDOWN, 1},
 	{DOWN, 1},
 	{RDOWN, 1},
 	{DOWN, 1},
 	{A, 1},
-	{NOTHING, 8},
+	{NOTHING, 12},
 
 	// Sync and unsync time
 	{A, 1},
