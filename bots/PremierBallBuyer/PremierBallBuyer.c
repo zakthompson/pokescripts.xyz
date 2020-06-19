@@ -18,7 +18,7 @@ exception of Home and Capture. Descriptor modification allows us to unlock
 these buttons for our use.
 */
 
-#include "../../Joystick.h"
+#include "../Joystick.h"
 #include "Commands.h"
 #include "Config.h"
 
