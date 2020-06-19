@@ -174,10 +174,27 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 	{
 		case PROCESS:
 			// Get the next command sequence (new start and end)
+
 			if (commandIndex == -1)
-			{
-				commandIndex = 3;
-				m_endIndex = 40;
+			{				
+				if (m_endIndex == 38)
+				{
+					// see if we need to wait a bit longer for the game to start up
+					if (m_titleScreenBuffer)
+					{
+						commandIndex = 39; // do the extra wait
+					}
+					else
+					{
+						commandIndex = 40; // skip the extra wait
+					}
+					m_endIndex = 41;
+				}
+				else 
+				{
+					commandIndex = 3;
+				    m_endIndex = 38;
+				}				
 			}
 		
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));

@@ -32,6 +32,7 @@
 # AutoTournament: Repeatedly beat the championship tournament to grind orbs/apriballs
 # AutoBattleTower: Repeatedly battle in the Battle Tower to grind BP
 # GodEggDuplication: Automatically duplicate Pokemon using the God Egg glitch
+# PurpleBeam: Repeatedly puts in a wishing peice and resets game to get a specific beam
 
 MCU          = atmega16u2
 ARCH         = AVR8

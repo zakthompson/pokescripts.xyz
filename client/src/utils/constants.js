@@ -171,6 +171,13 @@ export const botConfigs = [
         type: 'bool',
         value: 'false',
       },
+	  {
+        param: 'm_pokemonIsCatchable',
+        name: 'Pokemon is catchable',
+        description: 'When selected, the pokemon is catchable. Only uncheck this if hosting a pokemon that is an event and is not able to be caught.',
+        type: 'bool',
+        value: 'true',
+      },
     ],
   },
   {
@@ -655,7 +662,15 @@ export const botConfigs = [
       'If you win, it will collect your reward from the Ball Guy',
       'If you lose, it will eventually rejoin',
     ],
-    configFields: [],
+    configFields: [      
+		{
+			param: 'm_titleScreenBuffer',
+			name: 'Wait Longer at Title Screen',
+			description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+			type: 'bool',
+			value: 'false',
+		},
+	],
   },
   {
     name: 'Auto Battle Tower (NEW!)',
