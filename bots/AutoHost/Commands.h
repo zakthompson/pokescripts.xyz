@@ -153,7 +153,7 @@ static const Command m_command[] PROGMEM = {
 	{RDOWN, 1},
 	{DOWN, 1},
 	{RDOWN, 1},
-	{A, 8},
+	{A, 10},
 	{DOWN, 1},
 	{RDOWN, 1},
 	{DOWN, 1},
