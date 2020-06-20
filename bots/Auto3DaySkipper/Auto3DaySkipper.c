@@ -192,27 +192,35 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else if (m_sequence == 18)
 				{
 					// Done skipping 3 days, user should check the pokemon
-					commandIndex = 66;
-					m_endIndex = 101;
+					commandIndex = 68;
+					m_endIndex = 103;
 				}
 				else if (m_sequence == 19)
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
 					{
-						commandIndex = 102; // do the extra wait
+						commandIndex = 104; // do the extra wait
 					}
 					else
 					{
-						commandIndex = 103; // skip the extra wait
+						commandIndex = 105; // skip the extra wait
 					}
-					m_endIndex = 104;
+					m_endIndex = 106;
 					m_sequence = 0;
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
-					// Collect watts and invite others
-					commandIndex = 58;
+					// Collect watts and invite others					
+					if (m_sequence == 3)
+					{
+						// this is the first time we are entering the den, don't collect watts
+						commandIndex = 62;
+					}
+					else
+					{
+						commandIndex = 58;
+					}					
 					m_endIndex = 67;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14
