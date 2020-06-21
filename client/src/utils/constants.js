@@ -638,7 +638,15 @@ export const botConfigs = [
       'If left for a few seconds, it will restart the game and begin the loop again',
       'If you see a purple beam, simply unplug the bot to stop the loop',
     ],
-    configFields: [],
+    configFields: [
+      {
+        param: 'm_titleScreenBuffer',
+        name: 'Wait Longer at Title Screen',
+        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        type: 'bool',
+        value: 'false',
+      },
+    ],
   },
   {
     name: 'Auto Tournament (NEW!)',
@@ -662,15 +670,7 @@ export const botConfigs = [
       'If you win, it will collect your reward from the Ball Guy',
       'If you lose, it will eventually rejoin',
     ],
-    configFields: [      
-		{
-			param: 'm_titleScreenBuffer',
-			name: 'Wait Longer at Title Screen',
-			description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
-			type: 'bool',
-			value: 'false',
-		},
-	],
+    configFields: [],
   },
   {
     name: 'Auto Battle Tower (NEW!)',
