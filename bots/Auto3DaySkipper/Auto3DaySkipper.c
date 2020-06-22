@@ -211,7 +211,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
-					// Collect watts and invite others					
+					// Collect watts and invite others
 					if (m_sequence == 3)
 					{
 						// this is the first time we are entering the den, don't collect watts
@@ -220,7 +220,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					else
 					{
 						commandIndex = 58;
-					}					
+					}
 					m_endIndex = 67;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14

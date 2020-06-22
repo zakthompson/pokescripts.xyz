@@ -711,7 +711,7 @@ export const dateSkipTimings = {
 };
 export const fossilReviveTime = 18.468;
 export const autoLotoTime = 21.204;
-export const berryCollectionTime = 16.884;
+export const berryCollectionTime = 15.56;
 export const boxReleaseTime = 93.81;
 export const boxTradeTime = 1962.117;
 export const boxTradeTimeWithPokedex = 2070.627;
