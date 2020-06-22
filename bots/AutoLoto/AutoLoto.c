@@ -181,7 +181,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
 				if (m_dayToSkip > 0 && m_skip == m_dayToSkip)
 				{
-					if (m_endIndex == 62)
+					if (m_endIndex == 52)
 					{
 						// Stop the program
 						state = DONE;
@@ -190,8 +190,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					else
 					{
 						// Go to home, reached day to skip
-						commandIndex = 61;
-						m_endIndex = 62;
+						commandIndex = 51;
+						m_endIndex = 52;
 					}
 				}
 				else
@@ -208,25 +208,20 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						// Plus 1 year
 						if (m_JP_EU_US == 0)
 						{
-							commandIndex = 45;
-							m_endIndex = 56;
+							commandIndex = 43;
+							m_endIndex = 48;
 						}
-						else if (m_JP_EU_US == 1)
+						else
 						{
 							commandIndex = 41;
-							m_endIndex = 52;
-						}
-						else // if (m_JP_EU_US == 2)
-						{
-							commandIndex = 41;
-							m_endIndex = 54;
+							m_endIndex = 48;
 						}
 					}
 					else // if (m_sequence == 3)
 					{
 						// loto
-						commandIndex = 57;
-						m_endIndex = 102;
+						commandIndex = 49;
+						m_endIndex = 92;
 
 						m_sequence = 0;
 						m_skip++;
@@ -241,6 +236,11 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MIN;
 					break;
 
+				case UP_A:
+					ReportData->LY = STICK_MIN;
+          ReportData->Button |= SWITCH_A;
+					break;
+
 				case LEFT:
 					ReportData->LX = STICK_MIN;
 					break;
@@ -249,8 +249,21 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MAX;
 					break;
 
+				case RDOWN:
+					ReportData->RY = STICK_MAX;
+					break;
+
 				case RIGHT:
 					ReportData->LX = STICK_MAX;
+					break;
+
+				case RRIGHT:
+					ReportData->RX = STICK_MAX;
+					break;
+
+				case RIGHT_A:
+					ReportData->LX = STICK_MAX;
+          ReportData->Button |= SWITCH_A;
 					break;
 
 				case X:
