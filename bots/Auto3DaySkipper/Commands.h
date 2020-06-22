@@ -86,6 +86,8 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 1},
 	{A, 30},		// You gained 2,000W!
 	{NOTHING, 1},
+	{A, 30},		// Extra A press if uncatchable
+	{NOTHING, 1},
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
 
