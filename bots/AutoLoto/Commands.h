@@ -9,79 +9,69 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 1},
 
 	//----------Sync and unsync time, goto change date [3,40]----------
-	// To System Settings
+	// To System Settings [3,11]
 	{HOME, 1},
 	{NOTHING, 30},
 	{DOWN, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 1},
+	{RRIGHT, 1},
+	{A, 40},
 
-	// To Date and Time
-	{DOWN, 80},
-	{NOTHING, 1},
+	// To Date and Time [12,32]
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{A, 12},
+	{DOWN, 1},
+	{RDOWN, 1},
+	{DOWN, 1},
+	{RDOWN, 1},
 	{A, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
-	{A, 1},
-	{NOTHING, 8},
+	{NOTHING, 12},
 
-	// Sync and unsync time
+	// Sync and unsync time [33,36]
 	{A, 1},
 	{NOTHING, 4},
 	{A, 1},
-	{NOTHING, 8},
+	{NOTHING, 12},
 
-	// To actually Date and Time
+	// To actually Date and Time [37,40]
 	{DOWN, 1},
-	{NOTHING, 1},
-	{DOWN, 1},
-	{NOTHING, 1},
+	{RDOWN, 1},
 	{A, 1},
 	{NOTHING, 7},
 
-	//----------Plus 1 year [41,56]----------
-	{RIGHT, 1},		// EU/US start
+	//----------Plus 1 year [41,48]----------
+	{RIGHT_A, 1},		// EU/US start
 	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{UP, 1},		// JP start
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},
-	{RIGHT, 1},
-	{NOTHING, 1},	// EU end
-	{RIGHT, 1},
-	{NOTHING, 1},	// US end
-	{RIGHT, 1},
-	{NOTHING, 1},	// JP end
-
-	//----------Back to game [57,62]----------
+	{UP_A, 1},		// JP start
+	{RRIGHT, 1},
+  {RIGHT_A, 1},
+  {RRIGHT, 1},
 	{A, 1},
 	{NOTHING, 4},
+
+	//----------Back to game [49,52]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
 
-	//----------Loto [63,102]----------
+	//----------Loto [53,92]----------
 	{A, 12},			// Greetingzzz Trainer! What can I help you with? Zzzrt?
 	{NOTHING, 1},
 	{B, 12},

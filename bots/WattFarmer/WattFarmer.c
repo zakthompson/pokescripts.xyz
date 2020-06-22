@@ -191,25 +191,20 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					// Plus 1 year
 					if (m_JP_EU_US == 0)
 					{
-						commandIndex = 45;
-						m_endIndex = 56;
+						commandIndex = 43;
+						m_endIndex = 48;
 					}
-					else if (m_JP_EU_US == 1)
+					else
 					{
 						commandIndex = 41;
-						m_endIndex = 52;
-					}
-					else // if (m_JP_EU_US == 2)
-					{
-						commandIndex = 41;
-						m_endIndex = 54;
+						m_endIndex = 48;
 					}
 				}
 				else if (m_sequence == 3)
 				{
 					// collect watts
-					commandIndex = 57;
-					m_endIndex = 70;
+					commandIndex = 49;
+					m_endIndex = 60;
 
 					m_saveCount++;
 					if (m_saveCount != m_saveAt)
@@ -220,8 +215,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 				else if (m_sequence == 4)
 				{
 					// save game
-					commandIndex = 71;
-					m_endIndex = 76;
+					commandIndex = 61;
+					m_endIndex = 66;
 
 					m_saveCount = 0;
 					m_sequence = 0;
@@ -235,6 +230,11 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MIN;
 					break;
 
+				case UP_A:
+					ReportData->LY = STICK_MIN;
+          ReportData->Button |= SWITCH_A;
+					break;
+
 				case LEFT:
 					ReportData->LX = STICK_MIN;
 					break;
@@ -243,8 +243,21 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					ReportData->LY = STICK_MAX;
 					break;
 
+				case RDOWN:
+					ReportData->RY = STICK_MAX;
+					break;
+
 				case RIGHT:
 					ReportData->LX = STICK_MAX;
+					break;
+
+				case RRIGHT:
+					ReportData->RX = STICK_MAX;
+					break;
+
+				case RIGHT_A:
+					ReportData->LX = STICK_MAX;
+          ReportData->Button |= SWITCH_A;
 					break;
 
 				case X:

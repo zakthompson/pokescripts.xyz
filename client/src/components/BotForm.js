@@ -244,19 +244,19 @@ export default function BotForm({ state, setState, onSubmit, dateFormat }) {
                   {state.target === 'AutoLoto' && (
                     <Box direction="row" align="center">
                       <Text size="small" weight="bold" margin={{ right: '5px' }}>Approx. Time per Loto:</Text>
-                      <Text size="small">21 seconds</Text>
+                      <Text size="small">20 seconds</Text>
                     </Box>
                   )}
                   {state.target === 'BerryFarmer' && (
                     <Box direction="row" align="center">
                       <Text size="small" weight="bold" margin={{ right: '5px' }}>Approx. Time per Gather:</Text>
-                      <Text size="small">17 seconds</Text>
+                      <Text size="small">15 seconds</Text>
                     </Box>
                   )}
                   {state.target === 'WattFarmer' && (
                     <Box direction="row" align="center">
                       <Text size="small" weight="bold" margin={{ right: '5px' }}>Approx. Time per Collect:</Text>
-                      <Text size="small">10 seconds</Text>
+                      <Text size="small">8 seconds</Text>
                     </Box>
                   )}
                   <Button
