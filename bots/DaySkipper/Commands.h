@@ -10,13 +10,13 @@ static const Command m_command[] PROGMEM = {
 
 	// Make sure cursor is on OK
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 	{RIGHT, 120},
 	{NOTHING, 3},
 
 	// Exit
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Back to game [9,12]----------
 	{NOTHING, 30},
@@ -26,7 +26,7 @@ static const Command m_command[] PROGMEM = {
 
 	//----------Skip day JP [13,21]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<^>>>
 	{LEFT, 4},
@@ -36,11 +36,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip month JP [22,33]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<^<^>>>>
 	{LEFT, 4},
@@ -53,11 +53,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip year JP [34,48]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<^<^<^>>>>>
 	{LEFT, 4},
@@ -73,11 +73,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip day EU/US [49,61]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<<<^>>>>>
 	{LEFT, 4},
@@ -91,11 +91,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip month EU [62,75]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<<<^>^>>>>
 	{LEFT, 4},
@@ -110,11 +110,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip year EU [76,90]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<<<^>^>^>>>
 	{LEFT, 4},
@@ -130,11 +130,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip month US [91,106]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<<<^<^>>>>>>
 	{LEFT, 4},
@@ -151,11 +151,11 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip year US [107,122]----------
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// <<<<<^<^>>^>>>>
 	{LEFT, 4},
@@ -172,5 +172,5 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 4},
 
 	{RIGHT_A, 5},
-	{NOTHING, 14}
+	{NOTHING, 16}
 };

@@ -10,18 +10,18 @@ static const Command m_command[] PROGMEM = {
 
 	// Make sure cursor is on OK
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 	{RIGHT, 120},
 	{NOTHING, 3},
 
 	// Exit
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip day JP [9,17]----------
 	// Enter
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// Move to day
 	{LEFT, 4},
@@ -36,12 +36,12 @@ static const Command m_command[] PROGMEM = {
 
 	// Exit
 	{R, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Skip day EU/US [18,30]----------
 	// Enter
 	{A, 5},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	// Move to day
 	{LEFT, 4},
@@ -60,7 +60,7 @@ static const Command m_command[] PROGMEM = {
 
 	// Exit
 	{A, 4},
-	{NOTHING, 14},
+	{NOTHING, 16},
 
 	//----------Back to game [31,34]----------
   {NOTHING, 30},
