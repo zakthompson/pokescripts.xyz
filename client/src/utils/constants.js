@@ -637,7 +637,7 @@ export const botConfigs = [
       'It will then throw in a Wishing Piece and exit to Home before saving completes',
       'If left for a few seconds, it will restart the game and begin the loop again',
       'If you don\'t see red streaks coming from the den before going to the home menu, you found a purple beam. Simply unplug the bot to stop the loop',
-	  'Note that you won\'t see the purple beam itself since the bot enters the home menu before it is shown in the game'
+      'Note that you won\'t see the purple beam itself since the bot enters the home menu before it is shown in the game',
     ],
     configFields: [
       {
