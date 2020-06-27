@@ -1,6 +1,6 @@
 {
   "name": "pokemon-scripts-arduino",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "description": "Web tool for generating microcontroller firmware for automating repetitive tasks in Pokemon Sword & Shield",
   "main": "index.js",
   "repository": "git@github.com:zakthompson/pokemon-scripts-arduino.git",
