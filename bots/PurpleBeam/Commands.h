@@ -7,7 +7,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 30},
 	{B, 1},
 	{NOTHING, 1},
-	
+
 	//----------Ring bell like crazy then throw in wishing Piece [3,30]----------
 	{LCLICK, 1},
 	{NOTHING, 10},
@@ -33,11 +33,11 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 1},
 	{A, 35},		// There doesn't seem to be anything in the den... Want to throw in a Wishing Piece?
 	{NOTHING, 1},
-	{A, 25},		// Would you like to save your adventure so far?
-	{NOTHING, 1},
+	{A, 1},		// Would you like to save your adventure so far?
+	{NOTHING, 27},
 	{HOME, 1},
 	{NOTHING, 300},
-	
+
 	//----------SR [31,41]----------
 	{X, 1},			// Close game
 	{NOTHING, 8},
