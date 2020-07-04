@@ -5,7 +5,7 @@ static const Command m_command[] PROGMEM = {
 	//----------Setup [0,2]----------
 	// Press A once to connect
 	{NOTHING, 80},
-	{A, 3},
+	{B, 3},
 	{NOTHING, 14},
 
 	//----------Battle Tower [3,35]----------
@@ -33,6 +33,8 @@ static const Command m_command[] PROGMEM = {
 	{DPAD_UP, 25},
 	{NOTHING, 75},
 
+	{A, 25},
+	{NOTHING, 75},
 	{A, 25},
 	{NOTHING, 75},
 	{A, 25},

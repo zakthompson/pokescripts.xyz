@@ -1,3 +1,4 @@
+bool m_localMode = false; // Skip connecting to internet
 uint16_t m_internetTime = 900; // Buffer time to let internet connect
 uint8_t m_JP_EU_US = 2; // 0 = JP, 1 = EU, 2 = US
 bool m_skip3Days = false; // Re-roll after each raid
