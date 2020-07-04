@@ -2,7 +2,8 @@ export const botConfigs = [
   {
     name: 'Auto 3-Day Skipper',
     target: 'Auto3DaySkipper',
-    description: 'This bot skips 3 frames forward to a random Pokemon in a wishing piece den and repeats - useful for rolling a particular Pokemon on your shiny frame.',
+    description:
+      'This bot skips 3 frames forward to a random Pokemon in a wishing piece den and repeats - useful for rolling a particular Pokemon on your shiny frame.',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that your system time is unsynced',
@@ -20,7 +21,8 @@ export const botConfigs = [
       {
         param: 'm_titleScreenBuffer',
         name: 'Wait Longer at Title Screen',
-        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        description:
+          "Older or hacked Switches sometimes take longer loading the title screen. You'll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.",
         type: 'bool',
         value: 'false',
       },
@@ -29,33 +31,40 @@ export const botConfigs = [
   {
     name: 'Auto Fossil Restore',
     target: 'AutoFossil',
-    description: 'This bot automatically speaks to Cara Liss to revive fossils - perfect for hunting shiny fossil Pokemon!',
+    description:
+      'This bot automatically speaks to Cara Liss to revive fossils - perfect for hunting shiny fossil Pokemon!',
     instructions: [
       'Ensure that your text speed is set to "Fast" and nicknames are set to "Don\'t Give"',
       'Save in front of Cara Liss on Route 6',
       'Ensure that the fossil you are reviving is registered in your Pokedex',
       'Confirm which slot the two fossils you want to choose are - top or bottom - and configure this hex accordingly',
-      'Ensure that you have enough of both fossils in your inventory to revive the number you\'ve configured',
+      "Ensure that you have enough of both fossils in your inventory to revive the number you've configured",
       'Plug in the bot to begin the loop',
     ],
     botActions: [
       'The bot will continue reviving fossils until it hits the number configured here',
       'If "Restart After Revives" is not set, the bot will go to the Home menu when finished',
-      'If it is set, you\'ll want to monitor each revive to see if you get a shiny - the bot will restart automatically once the number is hit',
+      "If it is set, you'll want to monitor each revive to see if you get a shiny - the bot will restart automatically once the number is hit",
     ],
     configFields: [
       {
         param: 'm_firstFossilTopSlot',
         name: 'First Fossil Slot',
         type: 'select',
-        options: [{ name: 'Top', value: 'true' }, { name: 'Bottom', value: 'false' }],
+        options: [
+          { name: 'Top', value: 'true' },
+          { name: 'Bottom', value: 'false' },
+        ],
         value: 'true',
       },
       {
         param: 'm_secondFossilTopSlot',
         name: 'Second Fossil Slot',
         type: 'select',
-        options: [{ name: 'Top', value: 'true' }, { name: 'Bottom', value: 'false' }],
+        options: [
+          { name: 'Top', value: 'true' },
+          { name: 'Bottom', value: 'false' },
+        ],
         value: 'true',
       },
       {
@@ -75,7 +84,8 @@ export const botConfigs = [
   {
     name: 'Auto Host',
     target: 'AutoHost',
-    description: 'This bot will automatically host raids for as long as you keep it running. There are lots of configuration options available based on your preferences!',
+    description:
+      'This bot will automatically host raids for as long as you keep it running. There are lots of configuration options available based on your preferences!',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Stand in front of your wishing piece den with Watts collected and save',
@@ -95,7 +105,8 @@ export const botConfigs = [
       {
         param: 'm_internetTime',
         name: 'Time to Connect to Internet',
-        description: 'Adjust this to be higher if your connection is slow, or lower if your connection is fast',
+        description:
+          'Adjust this to be higher if your connection is slow, or lower if your connection is fast',
         type: 'number',
         value: 900,
       },
@@ -108,8 +119,10 @@ export const botConfigs = [
       {
         param: 'm_unsafeDC',
         name: 'Use Unsafe DC',
-        description: 'Will disconnect from raid using the "Search for Local Friends" method, which means you don\'t need to save-lock to a Pokemon.',
-        warning: 'If a raid fires with nobody in it, disconnecting will not work, and the bot will break!',
+        description:
+          'Will disconnect from raid using the "Search for Local Friends" method, which means you don\'t need to save-lock to a Pokemon.',
+        warning:
+          'If a raid fires with nobody in it, disconnecting will not work, and the bot will break!',
         type: 'bool',
         value: 'false',
       },
@@ -141,7 +154,10 @@ export const botConfigs = [
         param: 'm_waitTime',
         name: 'When to Fire Raid',
         type: 'select',
-        options: [{ name: '2-Minute Mark', value: 0 }, { name: '1-Minute Mark', value: 1 }],
+        options: [
+          { name: '2-Minute Mark', value: 0 },
+          { name: '1-Minute Mark', value: 1 },
+        ],
         value: 0,
       },
       {
@@ -153,37 +169,42 @@ export const botConfigs = [
       {
         param: 'm_profile',
         name: 'Switch Profile',
-        description: 'If your Switch has multiple profiles on it, set this to the number (from left to right) that should be used.',
+        description:
+          'If your Switch has multiple profiles on it, set this to the number (from left to right) that should be used.',
         type: 'number',
         value: 1,
       },
       {
         param: 'm_alternate',
         name: 'Alternate FFA and Coded',
-        description: 'When selected, each raid will flip between free-for-all and coded. This makes the "Use Link Code" option only determine what the first raid in the sequence will be.',
+        description:
+          'When selected, each raid will flip between free-for-all and coded. This makes the "Use Link Code" option only determine what the first raid in the sequence will be.',
         type: 'bool',
         value: 'false',
       },
       {
         param: 'm_titleScreenBuffer',
         name: 'Wait Longer at Title Screen',
-        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        description:
+          "Older or hacked Switches sometimes take longer loading the title screen. You'll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.",
         type: 'bool',
         value: 'false',
       },
-	  {
-        param: 'm_pokemonIsCatchable',
-        name: 'Pokemon is catchable',
-        description: 'When selected, the pokemon is catchable. Only uncheck this if hosting a pokemon that is an event and is not able to be caught.',
+      {
+        param: 'm_localMode',
+        name: 'Local Hosting Mode',
+        description:
+          'Skips connecting to the Internet for hosting local-only raids.',
         type: 'bool',
-        value: 'true',
+        value: 'false',
       },
     ],
   },
   {
     name: 'Auto Loto',
     target: 'AutoLoto',
-    description: 'This bot grinds the Rotom Loto for rewards. It\'s recommended that you have several boxes of Pokemon with different trainer IDs to maximize your chances of winning.',
+    description:
+      "This bot grinds the Rotom Loto for rewards. It's recommended that you have several boxes of Pokemon with different trainer IDs to maximize your chances of winning.",
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that your system time is unsynced',
@@ -201,7 +222,8 @@ export const botConfigs = [
       {
         param: 'm_dayToSkip',
         name: 'Maximum Attempts',
-        description: 'You can optionally set a maximum number of attempts. Set it to 0 for no limit.',
+        description:
+          'You can optionally set a maximum number of attempts. Set it to 0 for no limit.',
         type: 'number',
         value: 0,
       },
@@ -210,11 +232,12 @@ export const botConfigs = [
   {
     name: 'Berry Farmer',
     target: 'BerryFarmer',
-    description: 'This bot will farm berries from a single tree - great for collecting berries that reset EVs, increase happiness, or are used for competitive play. Also great for collecting Leftovers!',
+    description:
+      'This bot will farm berries from a single tree - great for collecting berries that reset EVs, increase happiness, or are used for competitive play. Also great for collecting Leftovers!',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that your system time is unsynced',
-      'Stand in front of the berry tree you want to farm (make sure it\'s far from any wandering Pokemon!)',
+      "Stand in front of the berry tree you want to farm (make sure it's far from any wandering Pokemon!)",
       'Activate Y-Comm glitch',
       'Plug in the bot to begin the loop',
     ],
@@ -228,7 +251,8 @@ export const botConfigs = [
       {
         param: 'm_saveAt',
         name: 'Save After Attempts',
-        description: 'To prevent loss of berries if the game crashes, set a number of times you would like to collect before saving.',
+        description:
+          'To prevent loss of berries if the game crashes, set a number of times you would like to collect before saving.',
         type: 'number',
         value: 50,
       },
@@ -237,7 +261,8 @@ export const botConfigs = [
   {
     name: 'Box Release',
     target: 'BoxRelease',
-    description: 'This bot releases all Pokemon in one or multiple boxes. Useful for getting rid of your breeding rejects!',
+    description:
+      'This bot releases all Pokemon in one or multiple boxes. Useful for getting rid of your breeding rejects!',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Make sure all the boxes you want to release are side-by-side, with no eggs or empty spaces in-between',
@@ -247,7 +272,7 @@ export const botConfigs = [
     ],
     botActions: [
       'The bot will release the Pokemon in the boxes from left to right, top to bottom',
-      'Once finished, it will return to the Home menu to signal that it\'s finished',
+      "Once finished, it will return to the Home menu to signal that it's finished",
     ],
     configFields: [
       {
@@ -261,20 +286,21 @@ export const botConfigs = [
   {
     name: 'Box Surprise Trade',
     target: 'BoxSurpriseTrade',
-    description: 'This bot automatically surprise trades entire boxes of Pokemon. Useful for stocking up on different trainer IDs for the Rotom Loto!',
+    description:
+      'This bot automatically surprise trades entire boxes of Pokemon. Useful for stocking up on different trainer IDs for the Rotom Loto!',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that you are not in the Wild Area (to avoid lag)',
-      'Make sure that all your trade boxes are side-by-side, with no eggs or empty spaces in-between (empty spaces won\'t actually break it, just wastes time)',
+      "Make sure that all your trade boxes are side-by-side, with no eggs or empty spaces in-between (empty spaces won't actually break it, just wastes time)",
       'Ensure that the first box you want to trade is active (the game remembers the last box you had open)',
       'Connect to the Internet in your Y-Comm',
-      'Plug in the bot to begin the loop'
+      'Plug in the bot to begin the loop',
     ],
     botActions: [
       'The bot will surprise trade each Pokemon in your selected boxes from left to right, top to bottom',
       'Note that a trade may fail if a partner is not found in 30 seconds, if the received Pokemon has a trade evolution, or if a new Pokedex entry is received without the bot being configured to handle it',
       'Usually this will just cause the bot to miss one trade, but if it happens on the last Pokemon in a box, the bot may fail to move onto the next box',
-      'To avoid this, it\'s recommended to monitor near the end of each box',
+      "To avoid this, it's recommended to monitor near the end of each box",
     ],
     configFields: [
       {
@@ -286,7 +312,8 @@ export const botConfigs = [
       {
         param: 'm_completeDex',
         name: 'Completed Pokedex',
-        description: 'Set this only if you have completed your Pokedex. If you haven\'t, the bot will leave extra time for any new Pokedex entries you may receive.',
+        description:
+          "Set this only if you have completed your Pokedex. If you haven't, the bot will leave extra time for any new Pokedex entries you may receive.",
         type: 'bool',
         value: 'true',
       },
@@ -295,7 +322,8 @@ export const botConfigs = [
   {
     name: 'Day Skipper',
     target: 'DaySkipper',
-    description: 'This bot advances frames automatically - useful for skipping to your shiny frame! Note that there are two versions of this bot. This one fully advances your date, making it easier to tell how close you are to finished - however, it has a limit of 22,280 days, since the Switch\'s max date is December 31st, 2060. If your skip would take you beyond that, check out Day Skipper (Unlimited) instead!',
+    description:
+      "This bot advances frames automatically - useful for skipping to your shiny frame! Note that there are two versions of this bot. This one fully advances your date, making it easier to tell how close you are to finished - however, it has a limit of 22,280 days, since the Switch's max date is December 31st, 2060. If your skip would take you beyond that, check out Day Skipper (Unlimited) instead!",
     instructions: [
       'Ensure that your system time is unsynced',
       'If you are not using JP date format, make sure that your system time is NOT between 1am and 3am (certain date/time combinations will be invalid due to Daylight Savings Time)',
@@ -329,7 +357,8 @@ export const botConfigs = [
       {
         param: 'm_dayToSkip',
         name: 'Number of Days to Skip',
-        warning: 'This day skipper has a maximum of 22,280 days. If you need to skip more than that, use the "unlimited" version.',
+        warning:
+          'This day skipper has a maximum of 22,280 days. If you need to skip more than that, use the "unlimited" version.',
         type: 'number',
         value: 1000,
       },
@@ -338,7 +367,8 @@ export const botConfigs = [
   {
     name: 'Day Skipper (Unlimited)',
     target: 'DaySkipper_Unlimited',
-    description: 'This bot advances frames automatically - useful for skipping to your shiny frame! Note that there are two versions of this bot. This one has no limit because it only ever advances the day - it knows not to count going from 31 -> 1 as a skip. The disadvantage is that you have no way of knowing its progress - if your skip is less than 22,280 frames, and you\'d like to be able to monitor progress, use the regular Day Skipper instead.',
+    description:
+      "This bot advances frames automatically - useful for skipping to your shiny frame! Note that there are two versions of this bot. This one has no limit because it only ever advances the day - it knows not to count going from 31 -> 1 as a skip. The disadvantage is that you have no way of knowing its progress - if your skip is less than 22,280 frames, and you'd like to be able to monitor progress, use the regular Day Skipper instead.",
     instructions: [
       'Ensure that your system time is unsynced and set to the first day of any month with 31 days',
       'Go to a Pokemon Center to avoid crashing your game',
@@ -361,7 +391,8 @@ export const botConfigs = [
   {
     name: 'Egg Collector',
     target: 'EggCollector',
-    description: 'This bot automatically collects eggs from the Route 5 nursery. It makes use of the Rotom bike\'s turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to get an egg, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target.',
+    description:
+      "This bot automatically collects eggs from the Route 5 nursery. It makes use of the Rotom bike's turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to get an egg, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target.",
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that "Send to Boxes" is set to "Automatic"',
@@ -379,7 +410,8 @@ export const botConfigs = [
       {
         param: 'm_maxCycle',
         name: 'Attempts to Collect',
-        description: 'The bot will make this many attempts to collect an egg. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it\'s recommended you monitor it.',
+        description:
+          "The bot will make this many attempts to collect an egg. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it's recommended you monitor it.",
         type: 'number',
         value: 90,
       },
@@ -388,7 +420,8 @@ export const botConfigs = [
   {
     name: 'Egg Hatcher',
     target: 'EggHatcher',
-    description: 'This bot hatches columns of eggs from your boxes using the Rotom bike turbo boost for efficiency.',
+    description:
+      'This bot hatches columns of eggs from your boxes using the Rotom bike turbo boost for efficiency.',
     instructions: [
       'Ensure that your text speed is set to "Fast" and nicknames are set to "Don\'t Give"',
       'Have only one Pokemon in your party, and that Pokemon must have the Flame Body ability',
@@ -411,7 +444,8 @@ export const botConfigs = [
       {
         param: 'm_eggStepGroup',
         name: 'Egg Group Steps',
-        description: 'Use Serebii or Bulbapedia to figure out how many steps your Pokemon\'s Egg Group takes to hatch.',
+        description:
+          "Use Serebii or Bulbapedia to figure out how many steps your Pokemon's Egg Group takes to hatch.",
         type: 'select',
         options: [
           {
@@ -483,7 +517,8 @@ export const botConfigs = [
       {
         param: 'm_eggStepGroup',
         name: 'Egg Group Steps',
-        description: 'Use Serebii or Bulbapedia to figure out how many steps your Pokemon\'s Egg Group takes to hatch.',
+        description:
+          "Use Serebii or Bulbapedia to figure out how many steps your Pokemon's Egg Group takes to hatch.",
         type: 'select',
         options: [
           {
@@ -528,7 +563,8 @@ export const botConfigs = [
   {
     name: 'God Egg Duplication (NEW!)',
     target: 'GodEggDuplication',
-    description: 'This bot automatically duplicates Pokemon using the God Egg exploit. It makes use of the Rotom bike\'s turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to duplicate, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target. Actually acquiring the God Egg is up to you.',
+    description:
+      "This bot automatically duplicates Pokemon using the God Egg exploit. It makes use of the Rotom bike's turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to duplicate, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target. Actually acquiring the God Egg is up to you.",
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that "Send to Boxes" is set to "Manual"',
@@ -548,7 +584,8 @@ export const botConfigs = [
       {
         param: 'm_maxCycle',
         name: 'Attempts to Duplicate',
-        description: 'The bot will make this many attempts to duplicate a Pokemon. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it\'s recommended you monitor it.',
+        description:
+          "The bot will make this many attempts to duplicate a Pokemon. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it's recommended you monitor it.",
         type: 'number',
         value: 30,
       },
@@ -557,7 +594,8 @@ export const botConfigs = [
   {
     name: 'Delete Friends',
     target: 'FriendDeleteAdd',
-    description: 'This bot will delete the specified number of friends, and optionally add friends afterward. Note that it will also delete best friends if you aren\'t careful about how you use it!',
+    description:
+      "This bot will delete the specified number of friends, and optionally add friends afterward. Note that it will also delete best friends if you aren't careful about how you use it!",
     instructions: [
       'In your friend list, hover your cursor over the first friend you wish to delete',
       'Plug in the bot to begin the loop',
@@ -576,7 +614,8 @@ export const botConfigs = [
       {
         param: 'm_addFriend',
         name: 'Add Friends',
-        description: 'If enabled, the bot will accept friend-requests after deleting friends.',
+        description:
+          'If enabled, the bot will accept friend-requests after deleting friends.',
         type: 'bool',
         value: 'false',
       },
@@ -585,14 +624,13 @@ export const botConfigs = [
   {
     name: 'Turbo A',
     target: 'TurboA',
-    description: 'This bot just spams the A button forever. It is mostly useful for farming items from the Digging Duo - and maybe getting through conversations with Hop.',
+    description:
+      'This bot just spams the A button forever. It is mostly useful for farming items from the Digging Duo - and maybe getting through conversations with Hop.',
     instructions: [
       'Stand in front of the desired Digging Duo brother',
       'Plug in the bot to begin the loop',
     ],
-    botActions: [
-      'It spams the A button. Forever.',
-    ],
+    botActions: ['It spams the A button. Forever.'],
     configFields: [],
   },
   {
@@ -615,7 +653,8 @@ export const botConfigs = [
       {
         param: 'm_saveAt',
         name: 'Save After',
-        description: 'To avoid losing progress due to a crash, the bot will save after a specified number of Watt collections.',
+        description:
+          'To avoid losing progress due to a crash, the bot will save after a specified number of Watt collections.',
         type: 'number',
         value: 50,
       },
@@ -624,7 +663,8 @@ export const botConfigs = [
   {
     name: 'Purple Beam Hunter',
     target: 'PurpleBeam',
-    description: 'This bot will repeatedly throw Wishing Pieces into an empty den, then exit out into the Home menu before saving can complete. You\'ll need to watch to see what kind of beam shows up, but hey, at least you don\'t have to use your hands.',
+    description:
+      "This bot will repeatedly throw Wishing Pieces into an empty den, then exit out into the Home menu before saving can complete. You'll need to watch to see what kind of beam shows up, but hey, at least you don't have to use your hands.",
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that you are on your bike in front of an empty den',
@@ -636,14 +676,15 @@ export const botConfigs = [
       'First, the bot will ring the bike bell to get your attention',
       'It will then throw in a Wishing Piece and exit to Home before saving completes',
       'If left for a few seconds, it will restart the game and begin the loop again',
-      'If you don\'t see red streaks coming from the den before going to the home menu, you found a purple beam. Simply unplug the bot to stop the loop',
-      'Note that you won\'t see the purple beam itself since the bot enters the home menu before it is shown in the game',
+      "If you don't see red streaks coming from the den before going to the home menu, you found a purple beam. Simply unplug the bot to stop the loop",
+      "Note that you won't see the purple beam itself since the bot enters the home menu before it is shown in the game",
     ],
     configFields: [
       {
         param: 'm_titleScreenBuffer',
         name: 'Wait Longer at Title Screen',
-        description: 'Older or hacked Switches sometimes take longer loading the title screen. You\'ll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.',
+        description:
+          "Older or hacked Switches sometimes take longer loading the title screen. You'll know this is happening if the title screen plays for a long time before entering the game. If this happens to you, check this box, and the bot will wait a little longer before pressing A to skip the title screen.",
         type: 'bool',
         value: 'false',
       },
@@ -652,7 +693,8 @@ export const botConfigs = [
   {
     name: 'Auto Tournament (NEW!)',
     target: 'AutoTournament',
-    description: 'This bot will repeatedly beat the championship tournament - useful for grinding apriballs and orbs.',
+    description:
+      'This bot will repeatedly beat the championship tournament - useful for grinding apriballs and orbs.',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Set Battle Effects to "Off"',
@@ -676,7 +718,8 @@ export const botConfigs = [
   {
     name: 'Auto Battle Tower (NEW!)',
     target: 'AutoBattleTower',
-    description: 'This bot will repeatedly fight in the Battle Tower in Wyndon - great for grinding BP for those mints and ability capsules!',
+    description:
+      'This bot will repeatedly fight in the Battle Tower in Wyndon - great for grinding BP for those mints and ability capsules!',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Set Battle Effects to "Off"',
@@ -719,13 +762,5 @@ export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
-export const infiniteHatcherTimes = [
-  18,
-  28,
-  30,
-  32,
-  33,
-  35,
-  37,
-];
+export const infiniteHatcherTimes = [18, 28, 30, 32, 33, 35, 37];
 export const dupTime = 23.023;

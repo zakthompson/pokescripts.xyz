@@ -24,10 +24,10 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 200},		// Communicating... standing by
 
 	//----------Start raid [15,26]----------
+	{A, 30},			// (Optional) You can't catch this Pokemon, Is that OK?
+	{NOTHING, 1},
 	{A, 2660},			// (2660 ~= until 2 min)
-	{NOTHING, 1},
-	{A, 5200},			// (5200 ~= until 1 min)
-	{NOTHING, 1},
+	{NOTHING, 2510},	// 2660 + 2510 = 5170 ~= until 1 min
 
 	{UP, 1},
 	{NOTHING, 1},
@@ -85,7 +85,7 @@ static const Command m_command[] PROGMEM = {
 
 	//----------Soft-reset [57,68]----------
 	{HOME, 1},
-	{NOTHING, 40},
+	{NOTHING, 45},
 	{X, 1},			// Close game
 	{NOTHING, 8},
 	{A, 1},			// Comfirm close game
@@ -126,7 +126,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 900},		// Wait until exit raid
 
 	// COPY FROM Auto3DaySkipper
-	//----------Sync and unsync time, goto change date [93,124][93,127]----------
+	//----------Sync and unsync time, goto change date [93,127]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
@@ -168,7 +168,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 8},
 
-	//----------Plus 1 year [125,148][125,138][128][139]----------
+	//----------Plus 1 year [128,139]----------
 	// To actually Date and Time
 	{DOWN, 1},
 	{RDOWN, 1},
@@ -185,37 +185,43 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 4},
 
-	//----------Back to game [149,152][139,142][140,143]----------
+	//----------Back to game [140,143]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 30},
 
-	//----------Quit the raid [153,156][143,146][144,147]----------
+	//----------Quit the raid [144,147]----------
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Collect Watts [157,164][147,154][148,155]----------
+	//----------Collect Watts [148,157]----------
 	{A, 20},		// Talk
 	{NOTHING, 1},
 	{A, 6},			// There's energy pouring out from the den!
 	{NOTHING, 1},
 	{A, 30},		// You gained 2,000W!
 	{NOTHING, 1},
+	{A, 30},		// (Optional) You can't catch this Pokemon, Is that OK?
+	{NOTHING, 1},
 	{A, 120},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Goto profile [165,194][155,184][156,185]----------
-	{A, 400},			// Start raid, wait 4-5 seconds
+	//----------Goto profile [158,190]----------
+	{A, 30},		// (Optional) You can't catch this Pokemon, Is that OK?
+	{NOTHING, 1},
+	{A, 1000},			// Wait 20 seconds
+	{NOTHING, 2510},	// Wait extra 60 seconds (for 2 minute wait)
+
 	{NOTHING, 1},
 	{HOME, 1},
 	{NOTHING, 40},
 	{UP, 1},
 	{NOTHING, 1},
 
-	// 10 profiles maximum [171,188][161,178][162,179]
+	// 10 profiles maximum [167,184]
 	{RIGHT, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
@@ -242,13 +248,13 @@ static const Command m_command[] PROGMEM = {
 	{UP, 1},			// Add friend
 	{NOTHING, 8},
 
-	//----------A Spam [195,196][185,186][186,187]----------
+	//----------A Spam [191,192]----------
 	{A, 1},
 	{NOTHING, 9},
 
-	//----------Back to game [197,200][187,190][188,191]----------
+	//----------Back to game [193,196]----------
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
-	{NOTHING, 50},
+	{NOTHING, 450},
 };

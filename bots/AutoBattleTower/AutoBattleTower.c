@@ -176,7 +176,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (commandIndex == -1)
 			{
 				commandIndex = 3;
-				m_endIndex = 35;
+				m_endIndex = 37;
 			}
 
 			memcpy_P(&tempCommand, &(m_command[commandIndex]), sizeof(Command));
