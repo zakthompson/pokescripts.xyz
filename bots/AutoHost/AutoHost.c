@@ -272,7 +272,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (m_addFriends)
 			{
 				commandIndex = 158;
-				m_endIndex = (m_waitTime == 0) ? 170 : 171;
+				m_endIndex = (m_waitTime == 0) ? 160 : 161;
 
 				// Jump to add friend sequence
 				m_sequence = 200;
@@ -412,7 +412,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			m_endIndex = 196;
 
 			// Ready and start raid
-			m_sequence = 28;
+			m_sequence = 27;
 		}
 	}
 

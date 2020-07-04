@@ -214,6 +214,7 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 1},
 	{A, 1000},			// Wait 20 seconds
 	{NOTHING, 2510},	// Wait extra 60 seconds (for 2 minute wait)
+
 	{NOTHING, 1},
 	{HOME, 1},
 	{NOTHING, 40},
