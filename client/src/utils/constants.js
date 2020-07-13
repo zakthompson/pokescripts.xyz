@@ -749,9 +749,9 @@ export const mcuOptions = [
 ];
 
 export const dateSkipTimings = {
-  0: 16.08,
-  1: 20.88,
-  2: 20.88,
+  0: 17.04,
+  1: 21.84,
+  2: 21.84,
 };
 export const fossilReviveTime = 18.468;
 export const autoLotoTime = 21.204;
