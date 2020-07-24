@@ -1,5 +1,5 @@
 /*
-Pokemon Sword & Shield AUTO 3 Day Skipper - Proof-of-Concept
+Pokemon Sword & Shield AutoRoller
 
 Based on the LUFA library's Low-Level Joystick Demo
 	(C) Dean Camera
@@ -149,6 +149,7 @@ int durationCount = 0;
 int commandIndex = 0;
 int m_endIndex = 2;
 int m_sequence = 0;
+int m_numSkips = 0;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -177,7 +178,21 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			if (commandIndex == -1)
 			{
 				m_sequence++;
-				if (m_sequence == 1)
+        if (m_numSkips == 20)
+        {
+          m_numSkips = -1;
+          commandIndex = 3;
+          m_endIndex = 37;
+          m_sequence--;
+        }
+        else if (m_numSkips == -1)
+        {
+          m_numSkips += 1;
+          commandIndex = 50;
+          m_endIndex = 53;
+          m_sequence--;
+        }
+        else if (m_sequence == 1)
 				{
 					// Sync and unsync time
 					commandIndex = 3;
@@ -189,13 +204,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					commandIndex = 50;
 					m_endIndex = 53;
 				}
-				else if (m_sequence == 18)
+				else if (m_daysToSkip && (m_sequence == (m_daysToSkip * 5 + 3)))
 				{
-					// Done skipping 3 days, user should check the pokemon
+					// Done skipping days, user should check the pokemon
 					commandIndex = 68;
 					m_endIndex = 103;
 				}
-				else if (m_sequence == 19)
+				else if (m_daysToSkip && (m_sequence == (m_daysToSkip * 5 + 4)))
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
@@ -208,6 +223,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					}
 					m_endIndex = 106;
 					m_sequence = 0;
+          m_numSkips = 0;
 				}
 				else if (m_sequence % 5 == 3)	// 3,8,13
 				{
@@ -254,6 +270,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					// Back to game and quit raid
 					commandIndex = 48;
 					m_endIndex = 57;
+          m_numSkips += 1;
 				}
 			}
 

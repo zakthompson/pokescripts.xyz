@@ -31,6 +31,7 @@ const configTypes = {
   m_titleScreenBuffer: 'bool',
   m_boxesToFill: 'uint8_t',
   m_localMode: 'bool',
+  m_daysToSkip: 'uint16_t',
 };
 
 module.exports = {

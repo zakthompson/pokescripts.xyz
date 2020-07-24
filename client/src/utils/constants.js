@@ -1,9 +1,9 @@
 export const botConfigs = [
   {
-    name: 'Auto 3-Day Skipper',
-    target: 'Auto3DaySkipper',
+    name: 'Auto Roller',
+    target: 'AutoRoller',
     description:
-      'This bot skips 3 frames forward to a random Pokemon in a wishing piece den and repeats - useful for rolling a particular Pokemon on your shiny frame.',
+      'This bot skips frames forward to a random Pokemon in a wishing piece den and repeats - useful for rolling a particular Pokemon on your shiny frame. By default, it skips 3 frames at a time, but this can be changed to any number you like. Set it to 0 to skip forever.',
     instructions: [
       'Ensure that your text speed is set to "Fast"',
       'Ensure that your system time is unsynced',
@@ -13,11 +13,20 @@ export const botConfigs = [
     ],
     botActions: [
       'First, the bot will sync and unsync the system time to reset to current date',
-      'It will then use the invite glitch to skip 3 frames forward',
-      'Lastly, it will ring the bike bell several times to get your attention on your shiny frame before checking the den',
-      'If left alone, the loop will continue - unplug the bot if you see the Pokemon you want!',
+      'It will then use the invite glitch to skip the desired frames forward',
+      'If set to 0, it will continue this loop forever',
+      'Otherwise, after skipping it will ring the bike bell several times to get your attention on your shiny frame before checking the den',
+      'If left alone, the bot will restart the game and continue the loop - unplug the bot if you see the Pokemon you want!',
+      "The bot will sync and unsync date every 20 skips to ensure it doesn't hit the max year",
     ],
     configFields: [
+      {
+        param: 'm_daysToSkip',
+        name: 'Days to Skip',
+        description: 'Set to 0 to skip forever',
+        type: 'number',
+        value: 3,
+      },
       {
         param: 'm_titleScreenBuffer',
         name: 'Wait Longer at Title Screen',
