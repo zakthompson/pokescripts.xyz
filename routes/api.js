@@ -17,25 +17,33 @@ router.get('/genhex', async (req, res) => {
   delete configObj.mcu;
   let configStr = '';
 
-  const { m_linkCode } = configObj;
+  const { m_linkCodes } = configObj;
 
-  if (m_linkCode) {
-    configStr = `${configTypes.m_linkCode} m_linkCode[] = {${configObj.m_linkCode.split('').join(',')}};`;
-    delete configObj.m_linkCode;
+  if (m_linkCodes) {
+    configStr = `${
+      configTypes.m_linkCodes
+    } m_linkCodes[][8] = {${m_linkCodes.map(
+      (code) => `{${code.split('').join(',')}}`,
+    )}};`;
+    delete configObj.m_linkCodes;
   }
 
   const keys = Object.keys(configObj);
   if (keys.length) {
-    configStr = `${configStr}${Object.keys(configObj).map((key) => {
-      return `${configTypes[key]} ${key} = ${configObj[key]}`;
-    }).join(';')};`;
+    configStr = `${configStr}${Object.keys(configObj)
+      .map((key) => {
+        return `${configTypes[key]} ${key} = ${configObj[key]}`;
+      })
+      .join(';')};`;
   }
 
-  const folder = uuid.v1()
+  const folder = uuid.v1();
 
   try {
     await execAsync(`mkdir -p tmp/${folder}`);
-    await execAsync(`cp -r bots/makefile bots/HORI_Descriptors bots/Joystick.h bots/LUFA bots/Config bots/${target} tmp/${folder}`);
+    await execAsync(
+      `cp -r bots/makefile bots/HORI_Descriptors bots/Joystick.h bots/LUFA bots/Config bots/${target} tmp/${folder}`,
+    );
 
     if (configStr.length) {
       fs.writeFileSync(`tmp/${folder}/${target}/Config.h`, configStr);
@@ -43,7 +51,7 @@ router.get('/genhex', async (req, res) => {
 
     await execAsync(`cd tmp/${folder} && make TARGET=${target} MCU=${mcu}`);
     res.download(`tmp/${folder}/${target}.hex`);
-  } catch(e) {
+  } catch (e) {
     res.status(500).json({ error: e });
   }
 });
@@ -52,7 +60,7 @@ router.delete('/cleartmp', async (req, res) => {
   try {
     await execAsync(`rm -r tmp/*`);
     res.status(204).send();
-  } catch(e) {
+  } catch (e) {
     res.status(500).json({ error: e });
   }
 });
