@@ -145,6 +145,7 @@ int durationCount = 0;
 int commandIndex = 0;
 int m_endIndex = 2;
 int m_sequence = -1;
+int m_linkCodeIndex = 0;
 uint8_t currentNumber = 0;
 
 // Prepare the next report for the host.
@@ -176,6 +177,9 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		// ------------------------------------------------
 		if (m_sequence == 0)	// Raid hosting
 		{
+      // Randomize set link code index
+      m_linkCodeIndex = rand() % (sizeof(m_linkCodes) / sizeof(m_linkCodes[0]));
+
 			if (m_skip3Days)
 			{
 				m_sequence = 100;
@@ -226,7 +230,7 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			// Entering link code
 			if (m_sequence % 3 == 0) // 3,6,9,12,15,18,21,24
 			{
-				currentNumber = m_useRandomCode ? (rand() % 10) : m_linkCode[m_sequence / 3 - 1];
+				currentNumber = m_useRandomCode ? (rand() % 10) : m_linkCodes[m_linkCodeIndex][m_sequence / 3 - 1];
 
 				if (currentNumber == 0)
 				{

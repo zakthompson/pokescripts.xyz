@@ -137,7 +137,7 @@ export const botConfigs = [
       },
       {
         param: 'm_useLinkCode',
-        name: 'Use Link Code',
+        name: 'Use Link Codes',
         type: 'bool',
         value: 'false',
       },
@@ -154,10 +154,10 @@ export const botConfigs = [
         value: 79,
       },
       {
-        param: 'm_linkCode',
-        name: 'Link Code',
-        type: 'number',
-        value: 69696969,
+        param: 'm_linkCodes',
+        name: 'Link Codes',
+        type: 'numberArray',
+        value: ['69696969'],
       },
       {
         param: 'm_waitTime',

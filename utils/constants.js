@@ -10,7 +10,7 @@ const configTypes = {
   m_useLinkCode: 'bool',
   m_useRandomCode: 'bool',
   m_seed: 'uint8_t',
-  m_linkCode: 'uint8_t',
+  m_linkCodes: 'uint8_t',
   m_waitTime: 'uint8_t',
   m_addFriends: 'bool',
   m_profile: 'uint8_t',
