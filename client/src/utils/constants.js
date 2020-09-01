@@ -207,6 +207,29 @@ export const botConfigs = [
         type: 'bool',
         value: 'false',
       },
+      {
+        param: 'm_useCheckpoint',
+        name: 'Use Checkpoint',
+        description: 'Loads a new save between each raid using Checkpoint',
+        type: 'bool',
+        value: 'false',
+      },
+      {
+        param: 'm_checkpointGameIndex',
+        name: 'Checkpoint Game Slot',
+        description:
+          'Checkpoint may have your games in a random order. Enter what slot your Pokemon game is in, starting with 0.',
+        type: 'number',
+        value: 0,
+      },
+      {
+        param: 'm_numSaves',
+        name: 'Number of Saves',
+        description:
+          'The bot will loop through this many saves before starting at the beginning again.',
+        type: 'number',
+        value: 1,
+      },
     ],
   },
   {

@@ -257,4 +257,34 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 30},
 	{HOME, 1},
 	{NOTHING, 450},
+
+  //=======Restore save [197,213]=======
+  //-------Open Checkpoint [197,203]-------
+  {DOWN, 1},
+  {RIGHT, 1},
+  {RRIGHT, 1},
+  {A, 1},
+  {NOTHING, 80},
+  {A, 1},
+  {NOTHING, 60},
+
+  //-------Press right [204,205]--------
+  {RIGHT, 1},
+  {NOTHING, 10},
+
+  //-------Select game [206,207]---------
+  {A, 1},
+  {NOTHING, 10},
+
+  //-------Down to appropriate save [208,209]--------
+  {DOWN, 1},
+  {NOTHING, 1},
+
+  //-------Restore save [210,215]---------
+  {R, 1},
+  {NOTHING, 10},
+  {A, 1},
+  {NOTHING, 40},
+  {HOME, 1},
+  {NOTHING, 40},
 };

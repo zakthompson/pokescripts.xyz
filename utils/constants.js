@@ -32,6 +32,9 @@ const configTypes = {
   m_boxesToFill: 'uint8_t',
   m_localMode: 'bool',
   m_daysToSkip: 'uint16_t',
+  m_useCheckpoint: 'bool',
+  m_checkpointGameIndex: 'uint8_t',
+  m_numSaves: 'uint16_t',
 };
 
 module.exports = {

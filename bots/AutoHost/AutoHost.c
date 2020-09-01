@@ -147,6 +147,9 @@ int m_endIndex = 2;
 int m_sequence = -1;
 int m_linkCodeIndex = 0;
 uint8_t currentNumber = 0;
+uint8_t currentGameIndex = 0;
+uint16_t currentSave = 2; // First save should already be loaded
+uint16_t currentSaveIndex = 0;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
@@ -307,17 +310,77 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
 				// Soft reset
 				commandIndex = 57;
-				m_endIndex = 68;
+
+        if (m_useCheckpoint) {
+          m_endIndex = 62;
+        } else {
+          m_endIndex = 68;
+          m_sequence = -1;
+        }
 			}
 			else
 			{
 				// Unsafe DC
 				commandIndex = 69;
 				m_endIndex = 92;
-			}
 
-			m_sequence = -1;
+        m_sequence = -1;
+			}
 		}
+    // ------------------------------------------------
+    // Save restoring (with Checkpoint)
+    // ------------------------------------------------
+    else if (m_sequence == 55) {
+      // Open checkpoint
+      commandIndex = 197;
+      m_endIndex = 203;
+    }
+    else if (m_sequence == 56) {
+      // Press right until we're at the game
+      if (currentGameIndex < m_checkpointGameIndex) {
+        commandIndex = 204;
+        m_endIndex = 205;
+
+        currentGameIndex++;
+        m_sequence = 55;
+      } else {
+        commandIndex = m_endIndex + 1;
+        currentGameIndex = 0;
+      }
+    }
+    else if (m_sequence == 57) {
+      commandIndex = 206;
+      m_endIndex = 207;
+    }
+    else if (m_sequence == 58) {
+      if (currentSaveIndex < currentSave) {
+        commandIndex = 208;
+        m_endIndex = 209;
+
+        currentSaveIndex++;
+        m_sequence = 57;
+      } else {
+        currentSaveIndex = 0;
+
+        if (currentSave < m_numSaves) {
+          currentSave++;
+        } else {
+          currentSave = 1;
+        }
+
+        commandIndex = m_endIndex + 1;
+      }
+    }
+    else if (m_sequence == 59) {
+      commandIndex = 210;
+      m_endIndex = 215;
+    }
+    else if (m_sequence == 60) {
+      commandIndex = 63;
+      m_endIndex = 68;
+
+      m_sequence = -1;
+    }
 		// ------------------------------------------------
 		// Day skipping
 		// ------------------------------------------------
@@ -477,12 +540,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			ReportData->Button |= SWITCH_B;
 			break;
 
-		/*case L:
-			ReportData->Button |= SWITCH_L;
-			break;
-
 		case R:
 			ReportData->Button |= SWITCH_R;
+			break;
+
+    /*
+		case L:
+			ReportData->Button |= SWITCH_L;
 			break;
 
 		case ZL:

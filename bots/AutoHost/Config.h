@@ -13,3 +13,6 @@ uint8_t m_profile = 1; // If you have multiple profiles, use this to specify whi
 bool m_alternate = false; // Set this to true to alternate between FFA and coded
 bool m_titleScreenBuffer = true; // Set this to true if the title screen takes long to load
 bool m_pokemonIsCatchable = true; // Set to false if pokemon is an uncatchable event
+bool m_useCheckpoint = false; // HACKED SWITCH - Restore saves between raids
+uint8_t m_checkpointGameIndex = 0; // HACKED SWITCH - Slot in Checkpoint of the game
+uint16_t m_numSaves = 1; // HACKED SWITCH - Number of saves to rotate through
