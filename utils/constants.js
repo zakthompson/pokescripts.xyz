@@ -32,6 +32,8 @@ const configTypes = {
   m_boxesToFill: 'uint8_t',
   m_localMode: 'bool',
   m_daysToSkip: 'uint16_t',
+  m_fastMode: 'bool',
+  m_type: 'uint8_t',
 };
 
 module.exports = {
