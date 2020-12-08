@@ -22,7 +22,8 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 40},
 
-	//----------Navigate to Add friend [15,22]----------
+	//----------Navigate to Add friend [15,24]----------
+	
 	{B, 1},
 	{NOTHING, 1},
 	{DOWN, 1},
@@ -31,8 +32,10 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 1},
 	{DOWN, 1},
 	{NOTHING, 1},
+	{DOWN, 1},       //Extra button added in ver 11.0
+	{NOTHING, 1},    //Extra button added in ver 11.0
 
-	//----------A Spam [23,24]----------
+	//----------A Spam [25,26]----------
 	{A, 1},
 	{NOTHING, 4},
 };

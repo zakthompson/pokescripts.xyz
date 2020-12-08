@@ -190,17 +190,17 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 						state = DONE;
 						break;
 					}
-					else if (m_endIndex == 24)
+					else if (m_endIndex == 26)
 					{
 						// Spam A
-						commandIndex = 23;
-						m_endIndex = 24;
+						commandIndex = 25;
+						m_endIndex = 26;
 					}
 					else
 					{
 						// Goto add friend
 						commandIndex = 15;
-						m_endIndex = 24;
+						m_endIndex = 26;
 					}
 				}
 			}
