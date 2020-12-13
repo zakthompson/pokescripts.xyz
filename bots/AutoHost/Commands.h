@@ -126,17 +126,20 @@ static const Command m_command[] PROGMEM = {
 	{NOTHING, 900},		// Wait until exit raid
 
 	// COPY FROM Auto3DaySkipper
-	//----------Sync and unsync time, goto change date [93,127]----------
+	//----------Sync and unsync time, goto change date [93,137]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
 	{DOWN, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
+	{NOTHING, 1},       // NSO home button added in ver 11.0 
+	{RIGHT, 1},         // NSO home button added in ver 11.0
+	{NOTHING, 1},       // NSO home button added in ver 11.0
 	{RRIGHT, 1},
 	{RIGHT, 1},
 	{RRIGHT, 1},
-	{A, 40},
+	{A, 40}, 
 
 	// To Date and Time
 	{DOWN, 1},
@@ -160,17 +163,17 @@ static const Command m_command[] PROGMEM = {
 	{RDOWN, 1},
 	{DOWN, 1},
 	{A, 1},
-	{NOTHING, 12},
+	{NOTHING, 12}, 
 
-	// Sync and unsync time
+	// Sync and unsync time 
 	{A, 1},
 	{NOTHING, 4},
 	{A, 1},
-	{NOTHING, 8},
+	{NOTHING, 8}, 
 
-	//----------Plus 1 year [128,139]----------
+	//----------Plus 1 year [131,142]----------
 	// To actually Date and Time
-	{DOWN, 1},
+	{DOWN, 1}, 
 	{RDOWN, 1},
 	{A, 1},
 	{NOTHING, 7},
@@ -183,22 +186,24 @@ static const Command m_command[] PROGMEM = {
   {RIGHT_A, 1},
   {RRIGHT, 1},
 	{A, 1},
-	{NOTHING, 4},
+	{NOTHING, 4}, 
 
-	//----------Back to game [140,143]----------
+	//----------Back to game [143,146]----------
+	
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},
-	{NOTHING, 30},
+	{NOTHING, 30}, 
 
-	//----------Quit the raid [144,147]----------
+	//----------Quit the raid [147,150]----------
+	
 	{B, 32},
 	{NOTHING, 1},
 	{A, 200},		// WAITING on local communication
 	{NOTHING, 1},
 
-	//----------Collect Watts [148,157]----------
-	{A, 20},		// Talk
+	//----------Collect Watts [151,160]----------
+	{A, 20},		// Talk 
 	{NOTHING, 1},
 	{A, 6},			// There's energy pouring out from the den!
 	{NOTHING, 1},
@@ -207,22 +212,24 @@ static const Command m_command[] PROGMEM = {
 	{A, 30},		// (Optional) You can't catch this Pokemon, Is that OK?
 	{NOTHING, 1},
 	{A, 120},		// WAITING on local communication
-	{NOTHING, 1},
+	{NOTHING, 1}, 
 
-	//----------Goto profile [158,190]----------
+	//----------Goto profile [161,190]----------
+	
 	{A, 30},		// (Optional) You can't catch this Pokemon, Is that OK?
 	{NOTHING, 1},
 	{A, 1000},			// Wait 20 seconds
 	{NOTHING, 2510},	// Wait extra 60 seconds (for 2 minute wait)
 
-	{NOTHING, 1},
+	{NOTHING, 1}, 
 	{HOME, 1},
 	{NOTHING, 40},
 	{UP, 1},
 	{NOTHING, 1},
 
-	// 10 profiles maximum [167,184]
-	{RIGHT, 1},
+	// 10 profiles maximum [170,193]
+	
+	{RIGHT, 1}, 
 	{NOTHING, 1},
 	{RIGHT, 1},
 	{NOTHING, 1},
@@ -239,20 +246,21 @@ static const Command m_command[] PROGMEM = {
 	{RIGHT, 1},
 	{NOTHING, 1},
 	{RIGHT, 1},
-	{NOTHING, 1},
-
+	{NOTHING, 1}, 
+	
 	{A, 1},				// To profile
 	{NOTHING, 1},
 	{DOWN, 90},			// Scroll to bottom
 	{NOTHING, 1},
 	{UP, 1},			// Add friend
-	{NOTHING, 8},
+	{NOTHING, 8},       
 
-	//----------A Spam [191,192]----------
+	//----------A Spam [194,195]----------
 	{A, 1},
 	{NOTHING, 9},
 
-	//----------Back to game [193,196]----------
+	//----------Back to game [196,199]----------
+	
 	{HOME, 1},
 	{NOTHING, 30},
 	{HOME, 1},

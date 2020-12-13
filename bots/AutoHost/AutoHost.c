@@ -275,8 +275,8 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			if (m_addFriends)
 			{
-				commandIndex = 158;
-				m_endIndex = (m_waitTime == 0) ? 160 : 161;
+				commandIndex = 161;
+				m_endIndex = (m_waitTime == 0) ? 163 : 164;
 
 				// Jump to add friend sequence
 				m_sequence = 200;
@@ -325,13 +325,13 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		{
 			// Sync and unsync time
 			commandIndex = 93;
-			m_endIndex = 127;
+			m_endIndex = 130;
 		}
 		else if (m_sequence == 102)
 		{
 			// Back to game after resetting time
-			commandIndex = 140;
-			m_endIndex = 143;
+			commandIndex = 143;
+			m_endIndex = 146;
 		}
 		else if (m_sequence == 118)
 		{
@@ -347,45 +347,45 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 			{
         if (m_sequence == 103) {
 					// First time, just invite others
-					commandIndex = 152;
+					commandIndex = 155;
         }
         else {
           // Collect watts and invite others
-          commandIndex = 148;
+          commandIndex = 151;
         }
-				m_endIndex = 157;
+				m_endIndex = 160;
 			}
 			else if (m_sequence % 5 == 4)	// 104,109,114
 			{
 				// Goto date and time 1
 				commandIndex = 93;
-				m_endIndex = 123;
+				m_endIndex = 126;
 			}
 			else if (m_sequence % 5 == 0)	// 105,110,115
 			{
 				// Goto date and time 2
-				commandIndex = 128;
-				m_endIndex = 131;
+				commandIndex = 131;
+				m_endIndex = 134;
 			}
 			else if (m_sequence % 5 == 1)	// 106,111,116
 			{
 				// Plus 1 year
 				if (m_JP_EU_US == 0)
 				{
-					commandIndex = 134;
-					m_endIndex = 139;
+					commandIndex = 137;
+					m_endIndex = 142;
 				}
 				else
 				{
-					commandIndex = 132;
-					m_endIndex = 139;
+					commandIndex = 135;
+					m_endIndex = 142;
 				}
 			}
 			else if (m_sequence % 5 == 2)	// 107,112,117
 			{
 				// Back to game and quit raid
-				commandIndex = 140;
-				m_endIndex = 147;
+				commandIndex = 143;
+				m_endIndex = 150;
 			}
 		}
 		// ------------------------------------------------
@@ -394,26 +394,26 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 		else if (m_sequence == 201)
     {
 			// Press home and move up
-			commandIndex = 162;
-			m_endIndex = 166;
+			commandIndex = 165;
+			m_endIndex = 169;
     }
     else if (m_sequence == 202)
 		{
 			// Goto profile 1 to 10's add friend
-			commandIndex = 187 - m_profile * 2;
-			m_endIndex = 190;
+			commandIndex = 190 - m_profile * 2;
+			m_endIndex = 193;
 		}
 		else if (m_sequence >= 203 && m_sequence <= 287)
 		{
 			// Spam A
-			commandIndex = 191;
-			m_endIndex = 192;
+			commandIndex = 194;
+			m_endIndex = 195;
 		}
 		else if (m_sequence == 288)
 		{
 			// Back to game
-			commandIndex = 193;
-			m_endIndex = 196;
+			commandIndex = 196;
+			m_endIndex = 199;
 
 			// Ready and start raid
 			m_sequence = 27;
