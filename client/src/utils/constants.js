@@ -570,7 +570,7 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'God Egg Duplication (NEW!)',
+    name: 'God Egg Duplication',
     target: 'GodEggDuplication',
     description:
       "This bot automatically duplicates Pokemon using the God Egg exploit. It makes use of the Rotom bike's turbo boost to be as efficient as possible. Note that the number you configure is how many times the bot will attempt to duplicate, but not every attempt will be successful. If you have the Oval Charm and both Pokemon in the daycare have different trainer IDs, you should receive approximately 80% of your target. Actually acquiring the God Egg is up to you.",
@@ -700,7 +700,7 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'Auto Tournament (NEW!)',
+    name: 'Auto Tournament',
     target: 'AutoTournament',
     description:
       'This bot will repeatedly beat the championship tournament - useful for grinding apriballs and orbs.',
@@ -725,7 +725,7 @@ export const botConfigs = [
     configFields: [],
   },
   {
-    name: 'Auto Battle Tower (NEW!)',
+    name: 'Auto Battle Tower',
     target: 'AutoBattleTower',
     description:
       'This bot will repeatedly fight in the Battle Tower in Wyndon - great for grinding BP for those mints and ability capsules!',
@@ -742,6 +742,93 @@ export const botConfigs = [
       'It is able to switch Pokemon and re-enter on loss, pause or win',
     ],
     configFields: [],
+  },
+  {
+    name: 'Shiny Hunt Regi (NEW!)',
+    target: 'ShinyFiveRegi',
+    description:
+      'This bot will repeat the encounter with any of the Regi Pokemon, lighting up the necessary tiles automatically.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Ensure your first Pokemon is either fast enough to run away from the battle, or holding a Smoke Bomb to guarantee escape',
+      'For Regirock, Regice or Registeel: Walk up to the giant statue without lighting any tiles',
+      'For Regieleki or Regidrago: First, light up the appropriate tiles, select the Regi you want, start a battle with it and run',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'The bot will run on the appropriate tiles for the Regi you are hunting, then walk up to the statue to start the encounter',
+      'You will have to look at your Switch to see if the Pokemon is shiny - if it is, unplug the bot',
+      "If it's not, leave it alone and the bot will run from the battle and start over",
+    ],
+    configFields: [
+      {
+        param: 'm_type',
+        name: 'Regi to Hunt',
+        type: 'select',
+        options: [
+          {
+            name: 'Regirock',
+            value: 0,
+          },
+          {
+            name: 'Regice',
+            value: 1,
+          },
+          {
+            name: 'Registeel',
+            value: 2,
+          },
+          {
+            name: 'Regieleki',
+            value: 3,
+          },
+          {
+            name: 'Regidrago',
+            value: 4,
+          },
+        ],
+        value: 0,
+      },
+      {
+        param: 'm_fastMode',
+        name: 'Fast Mode',
+        description:
+          'If your lead Pokemon is NOT shiny, does NOT have an ability that pops up on screen (such as Unnerve), and does NOT have high happiness (which can trigger extra animations at the start of battle), turning this on will run from battle quicker.',
+        type: 'bool',
+        value: 'false',
+      },
+    ],
+  },
+  {
+    name: 'Shiny Hunt Sword Trio (NEW!)',
+    target: 'ShinySwordTrio',
+    description:
+      'This bot will automatically loop an encounter with a Sword Trio Pokemon.',
+    instructions: [
+      'Ensure that your text speed is set to "Fast"',
+      'Set Battle Effects to "Off"',
+      'Ensure your first Pokemon is either fast enough to run away from the battle, or holding a Smoke Bomb to guarantee escape',
+      'Encounter the Trio Pokemon you wish to hunt - try to remember the exact location that it spawned',
+      'Run from the encounter',
+      'Position your character exactly where the Pokemon spawned',
+      'Start camping',
+      'Plug in the bot to begin the loop',
+    ],
+    botActions: [
+      'The bot will leave the camp, which should cause the Pokemon to spawn directly on your position',
+      'You will have to look at your Switch to see if the Pokemon is shiny - if it is, unplug the bot',
+      "If it's not, leave it alone and the bot will run from the battle, re-open your camp, and start over",
+    ],
+    configFields: [
+      {
+        param: 'm_fastMode',
+        name: 'Fast Mode',
+        description:
+          "This will loop faster, but the following requirements MUST be met: Your first Pokemon must NOT be shiny and must NOT have an ability that pops up on screen (such as Unnerve). NONE of the Pokemon in your party can have high happiness (if any do, it's possible to get an extra animation while camping, which will mess up the timing). The weather MUST be clear (otherwise an extra dialogue box appears at the beginning of battle - you can change your Switch date to fix the weather if needed).",
+        type: 'bool',
+        value: 'false',
+      },
+    ],
   },
 ];
 

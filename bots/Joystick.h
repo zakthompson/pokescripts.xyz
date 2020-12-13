@@ -140,7 +140,9 @@ typedef enum {
 	TRIGGERS,
 	HOME,
 	CAPTURE,
-	NOTHING
+	NOTHING,
+  DOWN_LEFT,
+  DOWN_RIGHT,
 } Buttons_t;
 
 // Structure used for button array sequence
