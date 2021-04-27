@@ -15,6 +15,6 @@ The scripts themselves originate from various people, and have been tweaked, mod
 * [hoskinsw](https://github.com/hoskinsw)
 * [brianuuuSonic](https://www.youtube.com/channel/UCHV0EP9TifKSo7RERIbY1QA)
 * [kirbunkle](https://github.com/kirbunkle)
-* [exykai](https://github.com/exykai)
+* [zhekaiii](https://github.com/zhekaiii)
 * plus
 * Pedro

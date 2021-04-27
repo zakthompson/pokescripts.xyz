@@ -830,6 +830,25 @@ export const botConfigs = [
       },
     ],
   },
+  {
+    name: 'Home Releaser (NEW!)',
+    target: 'HomeReleaser',
+    description:
+      'This bot will release Pokemon from 3 boxes in Pokemon Home. Works for both in-game boxes and Home boxes. This is much faster than releasing in game.',
+    instructions: [
+      'Remove all wanted Pokemon from 3 consecutive boxes.',
+      'Ensure there is a Pokemon at the top left corner of each box. There can be empty spots in other places in the box, just not the first slot.',
+      'Plug in the bot to mass release quickly.',
+    ],
+    botActions: [
+      'The bot will select all Pokemon in the box and release them.',
+      'It will move to the next box and repeat until it releases 3 boxes (because of the release limit).',
+      'The bot then saves and exits.',
+      'If you wish to release more, just enter the box again and re-plug the bot in.',
+      'If you messed up somewhere, just plug the bot out and exit without saving changes before it\'s too late!'
+    ],
+    configFields: [],
+  },
 ];
 
 export const dateFormatOptions = [
