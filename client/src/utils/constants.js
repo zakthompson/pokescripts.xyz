@@ -831,10 +831,10 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'Home Releaser',
+    name: 'Home Releaser (NEW!)',
     target: 'HomeReleaser',
     description:
-      'This bot will release Pokemon from your boxes in Pokemon Home. Works for both in-game boxes and Home boxes',
+      'This bot will release Pokemon from 3 boxes in Pokemon Home. Works for both in-game boxes and Home boxes. This is much faster than releasing in game.',
     instructions: [
       'Remove all wanted Pokemon from 3 consecutive boxes.',
       'Ensure there is a Pokemon at the top left corner of each box. There can be empty spots in other places in the box, just not the first slot.',
