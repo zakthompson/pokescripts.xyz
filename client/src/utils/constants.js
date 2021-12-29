@@ -427,6 +427,24 @@ export const botConfigs = [
     ],
   },
   {
+    name: 'BDSP Egg Collector (NEW!)',
+    target: 'EggCollectorBDSP',
+    description: 'This bot will continuously collect eggs from the nursery.',
+    instructions: [
+      'Ensure your text speed is set to "Fast" and your game is set to automatically send Pokemon to the box',
+      'Make sure your party has no eggs.',
+      'Also ensure that your bike is the only registered key item.',
+      'Hop onto your bike to the higher gear and go to the bottom left corner of the fence near the nursery.',
+      'Plug in the bot.',
+    ],
+    botActions: [
+      'The bot will make you run in circles for about 250-280 steps.',
+      'It will then talk to the Nursery Man and collect the egg if there is one, otherwise you will just talk to him twice.',
+      'This repeats forever.',
+    ],
+    configFields: [],
+  },
+  {
     name: 'Egg Hatcher',
     target: 'EggHatcher',
     description:
@@ -845,7 +863,7 @@ export const botConfigs = [
       'It will move to the next box and repeat until it releases 3 boxes (because of the release limit).',
       'The bot then saves and exits.',
       'If you wish to release more, just enter the box again and re-plug the bot in.',
-      'If you messed up somewhere, just plug the bot out and exit without saving changes before it\'s too late!'
+      "If you messed up somewhere, just plug the bot out and exit without saving changes before it's too late!",
     ],
     configFields: [],
   },
