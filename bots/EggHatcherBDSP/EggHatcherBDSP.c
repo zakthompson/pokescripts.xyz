@@ -18,6 +18,8 @@ exception of Home and Capture. Descriptor modification allows us to unlock
 these buttons for our use.
 */
 
+#define STEPS_PER_CYCLE 255
+#define STEPS_PER_LOOP 3.5
 #include "../Joystick.h"
 #include "Commands.h"
 #include "Config.h"
@@ -25,6 +27,7 @@ these buttons for our use.
 // Main entry point.
 int main(void)
 {
+    initNumLoops();
     // We'll start by performing hardware and peripheral setup.
     SetupHardware();
     // We'll then enable global interrupts for our use.
@@ -158,15 +161,24 @@ int durationCount = 0;
 // start and end index of "Setup"
 int commandIndex = 0;
 int m_endIndex = 2;
-
 uint8_t m_sequence = 0;
-int m_cycle = 0;
-const int numLoops = 75;
+
+uint8_t m_eggCycles[] = {5, 10, 15, 20, 25, 30, 35, 40};
+int m_loopCount = 0;
+int m_numLoops;
+
+// currently hatching column (1-6,7-12,etc.)
+uint8_t m_column = 1;
+
+void initNumLoops()
+{
+    int eggCycles = m_eggCycles[m_eggStepGroup] / 2 + m_eggCycles[m_eggStepGroup] % 2;
+    m_numLoops = eggCycles * STEPS_PER_CYCLE / STEPS_PER_LOOP + 1;
+}
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
 {
-
     // Prepare an empty report
     memset(ReportData, 0, sizeof(USB_JoystickReport_Input_t));
     ReportData->LX = STICK_CENTER;
@@ -191,52 +203,72 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
         if (commandIndex == -1)
         {
             m_sequence++;
-            if (m_endIndex == 48)
+
+            if (m_endIndex == 71)
             {
                 state = DONE;
                 break;
             }
-            else if (m_maxCycle > 0 && m_cycle >= m_maxCycle)
+            else if (m_column > m_columnsOfEggs)
             {
-                // Done
-                commandIndex = 47;
-                m_endIndex = 48;
+                // Done press HOME
+                commandIndex = 69;
+                m_endIndex = 71;
                 break;
             }
+
             if (m_sequence == 1)
             {
-                // Increment counter
-                commandIndex = 42;
-                m_endIndex = 46;
+                // Pick up eggs from box
+                commandIndex = 13 - ((m_column - 1) % 6) * 2;
+                m_endIndex = 30;
             }
-            else if (m_sequence <= 1 + numLoops)
+            else if (m_sequence == 2)
             {
-                // Turbo spin
-                commandIndex = 3;
-                m_endIndex = 6;
-                if (m_sequence % 50 == 0)
+                // Reset step counter
+                commandIndex = 72;
+                m_endIndex = 76;
+            }
+            else if (m_sequence == 3)
+            {
+                // Go back to corner
+                commandIndex = 55;
+                m_endIndex = 56;
+            }
+            else if (m_sequence == 4)
+            {
+                // turbo cycle
+                commandIndex = 57;
+                m_endIndex = 60;
+                m_loopCount++;
+                if (m_loopCount < m_numLoops)
                 {
-                    // Offset for drift
-                    m_endIndex = 8;
+                    m_sequence--;
+                    if (m_loopCount % 50 == 0)
+                    {
+                        // Left down to offset drifting
+                        m_endIndex = 62;
+                    }
                 }
-                if (m_sequence == numLoops)
+                else
                 {
-                    // Go to corner to realign
-                    m_endIndex = 12;
+                    m_loopCount = 0;
                 }
             }
-            else if (m_sequence == numLoops + 2)
+            else if (m_sequence <= 9)
             {
-                // Talk to nursery man
-                commandIndex = 13;
-                m_endIndex = 37;
+                // Hatch 5 eggs
+                commandIndex = 63;
+                m_endIndex = 68;
             }
-            else if (m_sequence == numLoops + 3)
+            else if (m_sequence == 10)
             {
-                // Return to corner
-                commandIndex = 38;
-                m_endIndex = 41;
-                m_cycle++;
+                // Put eggs back to box
+                commandIndex = 31;
+                m_endIndex = (m_column % 6 == 0) ? 54 : 52;
+
+                // Back to start
+                m_column++;
                 m_sequence = 0;
             }
         }
@@ -263,6 +295,14 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
         case DOWN_LEFT:
             ReportData->LY = STICK_MAX;
             ReportData->LX = STICK_MIN;
+            break;
+
+        case X:
+            ReportData->Button |= SWITCH_X;
+            break;
+
+        case Y:
+            ReportData->Button |= SWITCH_Y;
             break;
 
         case UP:
