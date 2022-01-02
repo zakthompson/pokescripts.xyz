@@ -157,8 +157,11 @@ int durationCount = 0;
 
 // start and end index of "Setup"
 int commandIndex = 0;
-int count = 0;
 int m_endIndex = 2;
+
+uint8_t m_sequence = 0;
+int m_cycle = 0;
+const int numLoops = 74;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
@@ -187,29 +190,43 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
         // Get the next command sequence (new start and end)
         if (commandIndex == -1)
         {
-            if (count < 80)
+            m_sequence++;
+            if (m_endIndex == 41)
             {
+                state = DONE;
+                break;
+            }
+            else if (m_maxCycle > 0 && m_cycle >= m_maxCycle)
+            {
+                // Done
+                commandIndex = 40;
+                m_endIndex = 41;
+                break;
+            }
+            if (m_sequence <= numLoops)
+            {
+                // Turbo spin
                 commandIndex = 3;
                 m_endIndex = 6;
-                count++;
+                if (m_sequence == numLoops)
+                {
+                    // Go to corner to realign
+                    m_endIndex = 10;
+                }
             }
-            else if (count < 81)
+            else if (m_sequence == numLoops + 1)
             {
-                commandIndex = 7;
-                m_endIndex = 10;
-                count++;
-            }
-            else if (count < 82)
-            {
+                // Talk to nursery man
                 commandIndex = 11;
                 m_endIndex = 35;
-                count++;
             }
-            else if (count < 83)
+            else if (m_sequence == numLoops + 2)
             {
+                // Return to corner
                 commandIndex = 36;
                 m_endIndex = 39;
-                count = 0;
+                m_cycle++;
+                m_sequence = 0;
             }
         }
 

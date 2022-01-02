@@ -25,27 +25,27 @@ static const Command m_command[] PROGMEM = {
     {NOTHING, 2},
     {UP, 7},
 
-    {A, 60}, // Ah, it's you!
+    {A, 60},            // Ah, it's you!
     {NOTHING, 1},
-    {A, 60}, // Your Pokemon was holding an Egg!
+    {A, 60},            // Your Pokemon was holding an Egg!
     {NOTHING, 1},
-    {A, 60}, // We don't know how it got there, but your Pokemon had it.
+    {A, 60},            // We don't know how it got there, but your Pokemon had it.
     {NOTHING, 1},
-    {A, 40}, // You do want it, don't you?
+    {A, 40},            // You do want it, don't you?
     {NOTHING, 1},
-    {A, 20}, // Show Yes/No
+    {A, 20},            // Show Yes/No
     {NOTHING, 1},
-    {A, 150}, // Click yes & You received an egg from the Nursery Man
+    {A, 150},           // Click yes & You received an egg from the Nursery Man
     {NOTHING, 1},
-    {B, 1}, // ???
+    {B, 1},             // ???
     {NOTHING, 1},
-    {B, 60}, // The Egg has been sent to a Box!
+    {B, 60},            // The Egg has been sent to a Box!
     {NOTHING, 1},
-    {B, 40}, // You take good care of it.
+    {B, 40},            // You take good care of it.
     {NOTHING, 1},
-    {B, 1}, // ??
+    {B, 1},             // ??
     {NOTHING, 1},
-    {B, 1}, // Close dialog
+    {B, 1},             // Close dialog
     {NOTHING, 1},
 
     //----------Go back to corner [36,39]----------

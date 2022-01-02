@@ -442,7 +442,16 @@ export const botConfigs = [
       'It will then talk to the Nursery Man and collect the egg if there is one, otherwise you will just talk to him twice.',
       'This repeats forever.',
     ],
-    configFields: [],
+    configFields: [
+      {
+        param: 'm_maxCycle',
+        name: 'Attempts to Collect',
+        description:
+          "The bot will make this many attempts to collect an egg. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it's recommended you monitor it.",
+        type: 'number',
+        value: 90,
+      },
+    ],
   },
   {
     name: 'Egg Hatcher',
@@ -893,6 +902,7 @@ export const boxReleaseTime = 93.81;
 export const boxTradeTime = 1962.117;
 export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
+export const bdspEggCollectTime = 30;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
 export const infiniteHatcherTimes = [18, 28, 30, 32, 33, 35, 37];
