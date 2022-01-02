@@ -244,7 +244,7 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
                 if (m_loopCount < m_numLoops)
                 {
                     m_sequence--;
-                    if (m_loopCount % 50 == 0)
+                    if (m_loopCount % 25 == 0)
                     {
                         // Left down to offset drifting
                         m_endIndex = 62;

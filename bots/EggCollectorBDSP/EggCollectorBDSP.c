@@ -191,7 +191,7 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
         if (commandIndex == -1)
         {
             m_sequence++;
-            if (m_endIndex == 48)
+            if (m_endIndex == 43)
             {
                 state = DONE;
                 break;
@@ -199,17 +199,11 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
             else if (m_maxCycle > 0 && m_cycle >= m_maxCycle)
             {
                 // Done
-                commandIndex = 47;
-                m_endIndex = 48;
+                commandIndex = 42;
+                m_endIndex = 43;
                 break;
             }
-            if (m_sequence == 1)
-            {
-                // Increment counter
-                commandIndex = 42;
-                m_endIndex = 46;
-            }
-            else if (m_sequence <= 1 + numLoops)
+            if (m_sequence <= numLoops)
             {
                 // Turbo spin
                 commandIndex = 3;
@@ -225,13 +219,13 @@ void GetNextReport(USB_JoystickReport_Input_t *const ReportData)
                     m_endIndex = 12;
                 }
             }
-            else if (m_sequence == numLoops + 2)
+            else if (m_sequence == numLoops + 1)
             {
                 // Talk to nursery man
                 commandIndex = 13;
                 m_endIndex = 37;
             }
-            else if (m_sequence == numLoops + 3)
+            else if (m_sequence == numLoops + 2)
             {
                 // Return to corner
                 commandIndex = 38;

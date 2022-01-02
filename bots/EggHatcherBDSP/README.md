@@ -5,8 +5,8 @@
 3. The Pokemon you are hatching must already be registered in your Pokedex (if it isn't, simply hatch one egg manually)
 4. Set your bike to high gear.
 5. Go to the corner of the fence right outside the nursery.
-6. Make sure your Pokétch is on your screen and set to the Pedometer (step tracker) or Counter and your cursor when you Press R is over the clear/+ button.
-   - This is optional to let you know how far in each egg hatching cycle you are (step tracker) or which column you are at currently (counter). If you don't wish to keep track, just make sure when you open the Poketch and press A, nothing pops up like the Fly menu or some dialog
+6. Make sure your Pokétch is on your screen and set to the Pedometer (step tracker) and your cursor when you Press R is over the clear button.
+   - This is optional to let you know how far in each egg hatching cycle you are at currently. If you don't wish to keep track, just make sure when you open the Poketch and press A, nothing pops up like the Fly menu or some dialog
 7. Ensure that your eggs are arranged in _full columns_ with _no gaps_ in between (the last column can have less than 5 in it)
 8. Move the cursor to the top egg in the left column and set your cursor to multiselect
 9. Plug in the bot to start the loop

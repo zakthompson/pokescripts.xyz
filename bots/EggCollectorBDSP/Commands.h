@@ -58,14 +58,7 @@ static const Command m_command[] PROGMEM = {
     {PLUS, 1},
     {NOTHING, 20},
 
-	//----------Increment counter [42,46]----------
-    {R, 1},
-    {NOTHING, 5},
-    {A, 1},
-    {R, 1},
-    {NOTHING, 5},
-
-    //----------Done [47,48]----------
+    //----------Done [42,43]----------
     {HOME, 1},
     {NOTHING, 1},
 };
