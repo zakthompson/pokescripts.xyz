@@ -161,7 +161,7 @@ int m_endIndex = 2;
 
 uint8_t m_sequence = 0;
 int m_cycle = 0;
-const int numLoops = 74;
+const int numLoops = 75;
 
 // Prepare the next report for the host.
 void GetNextReport(USB_JoystickReport_Input_t *const ReportData)

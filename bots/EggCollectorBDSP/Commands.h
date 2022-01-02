@@ -53,4 +53,8 @@ static const Command m_command[] PROGMEM = {
     {DOWN, 10},
     {PLUS, 1},
     {NOTHING, 20},
+
+    //----------Done [40,41]----------
+    {HOME, 1},
+    {NOTHING, 1},
 };
