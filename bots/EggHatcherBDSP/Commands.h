@@ -54,21 +54,21 @@ static const Command m_command[] PROGMEM = {
 	{LEFT, 10},
 	{DOWN, 3},
 	{A, 3},			// Pick up hatched mons
-	{DOWN, 45},
+	{DOWN, 50},
 	{A, 3},
 	{DOWN, 45},		// Put them to the current box
 	{RIGHT, 2},
 	{A, 1},         // Open box list
 	{NOTHING, 20},
 	{A, 10},        // Put in box
-	{B, 10},        // Close box list
+	{B, 15},        // Close box list
 	{DOWN, 1},		// Back to top left corner
 	{NOTHING, 15},
 	{DOWN, 1},	
 	{NOTHING, 15},
 	
 	{R, 1},			// Next Box
-	{NOTHING, 14},
+	{NOTHING, 20},
 
     //----------Go back to corner [55,56]----------
     {LEFT, 40},
