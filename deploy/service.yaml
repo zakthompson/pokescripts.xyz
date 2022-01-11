@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pokemon-hex-generator
-        image: pleebz/pokemon-hex-generator:1.19.0
+        image: pleebz/pokemon-hex-generator:1.20.0
 ---
 apiVersion: v1
 kind: Service
