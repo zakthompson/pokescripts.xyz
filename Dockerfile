@@ -14,6 +14,6 @@ COPY utils/ ./utils
 COPY index.js .
 COPY client/build/ ./client/build
 
-EXPOSE 5000
+EXPOSE 5001
 CMD [ "node" , "index.js" ]
 
