@@ -21,6 +21,7 @@ import {
   boxTradeTime,
   boxTradeTimeWithPokedex,
   eggCollectTime,
+  bdspEggCollectTime,
   eggColumnHatchTime,
   deleteFriendTime,
   infiniteHatcherTimes,
@@ -186,6 +187,11 @@ export default function BotForm({ state, setState, onSubmit, dateFormat }) {
                     f.param === 'm_maxCycle'
                   ) {
                     totalSeconds = f.value * eggCollectTime;
+                  } else if (
+                    state.target === 'EggCollectorBDSP' &&
+                    f.param === 'm_maxCycle'
+                  ) {
+                    totalSeconds = f.value * bdspEggCollectTime;
                   } else if (
                     state.target === 'EggHatcher' &&
                     f.param === 'm_columnsOfEggs'

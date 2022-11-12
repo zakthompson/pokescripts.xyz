@@ -427,6 +427,34 @@ export const botConfigs = [
     ],
   },
   {
+    name: 'BDSP Egg Collector (NEW!)',
+    target: 'EggCollectorBDSP',
+    description: 'This bot will continuously collect eggs from the nursery.',
+    instructions: [
+      'Ensure your text speed is set to "Fast" and your game is set to automatically send Pokemon to the box',
+      'Make sure your party has no eggs.',
+      'Also ensure that your bike is the only registered key item.',
+      'Hop onto your bike to the higher gear and go to the bottom left corner of the fence near the nursery.',
+      'Plug in the bot.',
+    ],
+    botActions: [
+      'The bot will make you run in circles for about 250-280 steps.',
+      'It will then talk to the Nursery Man and collect the egg if there is one, otherwise you will just talk to him twice.',
+      'This repeats until you have reached the number of attempts you specify, or forever, if you set the number of attempts to 0.',
+      'Once finished, it will bring you to the Home menu',
+    ],
+    configFields: [
+      {
+        param: 'm_maxCycle',
+        name: 'Attempts to Collect',
+        description:
+          "The bot will make this many attempts to collect an egg. You can set this to 0 to run it indefinitely, but running out of box space is untested, so it's recommended you monitor it.",
+        type: 'number',
+        value: 90,
+      },
+    ],
+  },
+  {
     name: 'Egg Hatcher',
     target: 'EggHatcher',
     description:
@@ -447,6 +475,80 @@ export const botConfigs = [
     botActions: [
       'The bot will pick up 5 eggs and do loops until all 5 eggs hatch',
       'It will then return to the starting point, put the hatched Pokemon back into your box, and pick up the next column to start again',
+      'Once finished, it will bring you to the Home menu',
+    ],
+    configFields: [
+      {
+        param: 'm_eggStepGroup',
+        name: 'Egg Group Steps',
+        description:
+          "Use Serebii or Bulbapedia to figure out how many steps your Pokemon's Egg Group takes to hatch.",
+        type: 'select',
+        options: [
+          {
+            name: '1280 Steps',
+            value: 0,
+          },
+          {
+            name: '2560 Steps',
+            value: 1,
+          },
+          {
+            name: '3840 Steps',
+            value: 2,
+          },
+          {
+            name: '5120 Steps',
+            value: 3,
+          },
+          {
+            name: '6400 Steps',
+            value: 4,
+          },
+          {
+            name: '7680 Steps',
+            value: 5,
+          },
+          {
+            name: '8960 Steps',
+            value: 6,
+          },
+          {
+            name: '10240 Steps',
+            value: 7,
+          },
+        ],
+        value: 3,
+      },
+      {
+        param: 'm_columnsOfEggs',
+        name: 'Columns of Eggs',
+        type: 'number',
+        value: 6,
+      },
+    ],
+  },
+  {
+    name: 'BDSP Egg Hatcher (NEW!)',
+    target: 'EggHatcherBDSP',
+    description:
+      "This bot hatches columns of eggs from your boxes using the bike's high gear for efficiency.",
+    instructions: [
+      'Ensure that your text speed is set to "Fast" and nicknames is set to "Don\'t Give"',
+      'Have only one Pokemon in your party, and that Pokemon should have the Flame Body ability',
+      "The Pokemon you are hatching must already be registered in your Pokedex (if it isn't, simply hatch one egg manually)",
+      'Set your bike to high gear.',
+      'Go to the corner of the fence right outside the nursery.',
+      'Make sure your Pokétch is on your screen and set to the Pedometer (step counter) and your cursor when you Press R is over the clear button.',
+      "This is optional to let you know how far in each egg hatching cycle you are at currently. If you don't wish to keep track, just make sure when you open the Poketch and press A, nothing pops up like the Fly menu or some dialog",
+      'Ensure that your eggs are arranged in full columns with no gaps in between (the last column can have less than 5 in it)',
+      'Move the cursor to the top egg in the left column and set your cursor to multiselect',
+      'Plug in the bot to start the loop',
+    ],
+    botActions: [
+      'The bot will open your Pokétch and press A, clearing the step count.',
+      'The bot will pick up 5 eggs and do loops until all 5 eggs hatch',
+      'It will then put the hatched Pokemon back into your box, and pick up the next column to start again',
       'Once finished, it will bring you to the Home menu',
     ],
     configFields: [
@@ -744,7 +846,7 @@ export const botConfigs = [
     configFields: [],
   },
   {
-    name: 'Shiny Hunt Regi (NEW!)',
+    name: 'Shiny Hunt Regi',
     target: 'ShinyFiveRegi',
     description:
       'This bot will repeat the encounter with any of the Regi Pokemon, lighting up the necessary tiles automatically.',
@@ -800,7 +902,7 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'Shiny Hunt Sword Trio (NEW!)',
+    name: 'Shiny Hunt Sword Trio',
     target: 'ShinySwordTrio',
     description:
       'This bot will automatically loop an encounter with a Sword Trio Pokemon.',
@@ -831,7 +933,7 @@ export const botConfigs = [
     ],
   },
   {
-    name: 'Home Releaser (NEW!)',
+    name: 'Home Releaser',
     target: 'HomeReleaser',
     description:
       'This bot will release Pokemon from 3 boxes in Pokemon Home. Works for both in-game boxes and Home boxes. This is much faster than releasing in game.',
@@ -845,7 +947,7 @@ export const botConfigs = [
       'It will move to the next box and repeat until it releases 3 boxes (because of the release limit).',
       'The bot then saves and exits.',
       'If you wish to release more, just enter the box again and re-plug the bot in.',
-      'If you messed up somewhere, just plug the bot out and exit without saving changes before it\'s too late!'
+      "If you messed up somewhere, just plug the bot out and exit without saving changes before it's too late!",
     ],
     configFields: [],
   },
@@ -875,6 +977,7 @@ export const boxReleaseTime = 93.81;
 export const boxTradeTime = 1962.117;
 export const boxTradeTimeWithPokedex = 2070.627;
 export const eggCollectTime = 16.333;
+export const bdspEggCollectTime = 30;
 export const eggColumnHatchTime = 188.167;
 export const deleteFriendTime = 10.244;
 export const infiniteHatcherTimes = [18, 28, 30, 32, 33, 35, 37];
