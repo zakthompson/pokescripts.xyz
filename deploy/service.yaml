@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pokemon-hex-generator
-        image: pleebz/pokemon-hex-generator:1.19.0
+        image: pleebz/pokemon-hex-generator:1.20.0
 ---
 apiVersion: v1
 kind: Service
@@ -27,6 +27,6 @@ spec:
   selector:
     app: pokemon-hex-generator
   ports:
-  - port: 5000
+  - port: 5001
     protocol: TCP
-    targetPort: 5000
+    targetPort: 5001

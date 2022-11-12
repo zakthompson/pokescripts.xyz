@@ -1,0 +1,99 @@
+# flyctl launch added from .gitignore
+# MacOS stuff
+**/.DS_Store
+
+# Prerequisites
+**/*.d
+
+# Object files
+**/*.o
+**/*.ko
+**/*.obj
+**/*.elf
+
+# Linker output
+**/*.ilk
+**/*.map
+**/*.exp
+
+# Precompiled Headers
+**/*.gch
+**/*.pch
+
+# Libraries
+**/*.lib
+**/*.a
+**/*.la
+**/*.lo
+
+# Shared objects (inc. Windows DLLs)
+**/*.dll
+**/*.so
+**/*.so.*
+**/*.dylib
+
+# Executables
+**/*.exe
+**/*.out
+**/*.app
+**/*.i*86
+**/*.x86_64
+**/*.hex
+
+# Debug files
+**/*.dSYM
+**/*.su
+**/*.idb
+**/*.pdb
+
+# Compiled files
+**/*.hex
+**/*.bin
+**/*.eep
+**/*.lss
+**/*.sym
+
+# Except in the build folder
+!**/bots/builds/*.hex
+!**/bots/wip/builds/*.hex
+
+# Kernel Module Compile Results
+**/*.mod*
+**/*.cmd
+**/.tmp_versions
+**/modules.order
+**/Module.symvers
+**/Mkfile.old
+**/dkms.conf
+
+# Ignore everything in tmp
+**/tmp
+
+# Ignore node_modules
+**/node_modules
+**/client/node_modules
+
+# flyctl launch added from client/.gitignore
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+client/node_modules
+client/.pnp
+client/**/.pnp.js
+
+# testing
+client/coverage
+
+# production
+client/build
+
+# misc
+client/**/.DS_Store
+client/**/.env.local
+client/**/.env.development.local
+client/**/.env.test.local
+client/**/.env.production.local
+
+client/**/npm-debug.log*
+client/**/yarn-debug.log*
+client/**/yarn-error.log*
