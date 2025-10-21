@@ -182,46 +182,46 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
         {
           m_numSkips = -1;
           commandIndex = 3;
-          m_endIndex = 37;
+          m_endIndex = 43;
           m_sequence--;
         }
         else if (m_numSkips == -1)
         {
           m_numSkips += 1;
-          commandIndex = 50;
-          m_endIndex = 53;
+          commandIndex = 56;
+          m_endIndex = 59;
           m_sequence--;
         }
         else if (m_sequence == 1)
 				{
 					// Sync and unsync time
 					commandIndex = 3;
-					m_endIndex = 37;
+					m_endIndex = 43;
 				}
 				else if (m_sequence == 2)
 				{
 					// Back to game after resetting time
-					commandIndex = 50;
-					m_endIndex = 53;
+					commandIndex = 56;
+					m_endIndex = 59;
 				}
 				else if (m_daysToSkip && (m_sequence == (m_daysToSkip * 5 + 3)))
 				{
 					// Done skipping days, user should check the pokemon
-					commandIndex = 68;
-					m_endIndex = 103;
+					commandIndex = 74;
+					m_endIndex = 109;
 				}
 				else if (m_daysToSkip && (m_sequence == (m_daysToSkip * 5 + 4)))
 				{
 					// see if we need to wait a bit longer for the game to start up
 					if (m_titleScreenBuffer)
 					{
-						commandIndex = 104; // do the extra wait
+						commandIndex = 110; // do the extra wait
 					}
 					else
 					{
-						commandIndex = 105; // skip the extra wait
+						commandIndex = 111; // skip the extra wait
 					}
-					m_endIndex = 106;
+					m_endIndex = 112;
 					m_sequence = 0;
           m_numSkips = 0;
 				}
@@ -231,45 +231,45 @@ void GetNextReport(USB_JoystickReport_Input_t* const ReportData) {
 					if (m_sequence == 3)
 					{
 						// this is the first time we are entering the den, don't collect watts
-						commandIndex = 62;
+						commandIndex = 68;
 					}
 					else
 					{
-						commandIndex = 58;
+						commandIndex = 64;
 					}
-					m_endIndex = 67;
+					m_endIndex = 73;
 				}
 				else if (m_sequence % 5 == 4)	// 4,9,14
 				{
 					// Goto date and time 1
 					commandIndex = 3;
-					m_endIndex = 33;
+					m_endIndex = 39;
 				}
 				else if (m_sequence % 5 == 0)	// 5,10,15
 				{
 					// Goto date and time 2
-					commandIndex = 38;
-					m_endIndex = 41;
+					commandIndex = 44;
+					m_endIndex = 47;
 				}
 				else if (m_sequence % 5 == 1)	// 6,11,16
 				{
 					// Plus 1 year
 					if (m_JP_EU_US == 0)
 					{
-						commandIndex = 44;
-						m_endIndex = 47;
+						commandIndex = 50;
+						m_endIndex = 53;
 					}
 					else
 					{
-						commandIndex = 42;
-						m_endIndex = 47;
+						commandIndex = 48;
+						m_endIndex = 53;
 					}
 				}
 				else if (m_sequence % 5 == 2)	// 7,12,17
 				{
 					// Back to game and quit raid
-					commandIndex = 48;
-					m_endIndex = 57;
+					commandIndex = 54;
+					m_endIndex = 63;
           m_numSkips += 1;
 				}
 			}

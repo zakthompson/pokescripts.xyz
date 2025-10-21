@@ -8,7 +8,7 @@ static const Command m_command[] PROGMEM = {
 	{B, 1},
 	{NOTHING, 1},
 
-	//----------Sync and unsync time, goto change date [3,25][3,37]----------
+	//----------Sync and unsync time, goto change date [3,43]----------
 	// To System Settings
 	{HOME, 1},
 	{NOTHING, 30},
@@ -18,6 +18,9 @@ static const Command m_command[] PROGMEM = {
 	{RRIGHT, 1},
 	{RIGHT, 1},
 	{RRIGHT, 1},
+	{RIGHT, 1},
+	{RRIGHT, 1},
+	{RIGHT, 1},
 	{A, 40},
 
 	// To Date and Time
@@ -35,7 +38,10 @@ static const Command m_command[] PROGMEM = {
 	{RDOWN, 1},
 	{DOWN, 1},
 	{RDOWN, 1},
+	{DOWN, 1},
 	{A, 12},
+	{DOWN, 1},
+	{RDOWN, 1},
 	{DOWN, 1},
 	{RDOWN, 1},
 	{DOWN, 1},
@@ -50,7 +56,7 @@ static const Command m_command[] PROGMEM = {
 	{A, 1},
 	{NOTHING, 8},
 
-	//----------Plus 1 year [26,37][38,49]----------
+	//----------Plus 1 year [43,55]----------
 	// To actually Date and Time
 	{DOWN, 1},
 	{RDOWN, 1},
